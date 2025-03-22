@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Logo from "./logo.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,8 +25,7 @@ export default function Header() {
     <nav className={`navbar navbar-expand-lg fixed-top ${isScrolled ? "scrolled" : ""}`}>
       <div className="container">
         <Link className="navbar-brand" to="/">
-          <i className="navbar-brand-icon bi-book me-2"></i>
-          <span>rAnk</span>
+          <img src={Logo} width={100}/>
         </Link>
 
         <div className="d-lg-none ms-auto me-3">

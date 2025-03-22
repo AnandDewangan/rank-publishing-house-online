@@ -1058,3 +1058,9 @@ strong {
 .navbar.scrolled {
   background: black; /* Semi-transparent black */
 }
+
+@media screen and (max-width: 992px){
+  .navbar {
+    background: black;
+  }
+}
