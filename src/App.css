@@ -1064,3 +1064,23 @@ strong {
     background: black;
   }
 }
+
+.social-link {
+  transition: color 0.3s ease-in-out;
+}
+
+.social-link.instagram:hover {
+  color: #dc3545 !important; /* Bootstrap Danger Color */
+}
+
+.social-link.twitter:hover {
+  color: #17a2b8 !important; /* Bootstrap Info Color */
+}
+
+.social-link.facebook:hover {
+  color: #007bff !important; /* Bootstrap Primary Color */
+}
+
+.social-link.whatsapp:hover {
+  color: #28a745 !important; /* Bootstrap Success Color */
+}

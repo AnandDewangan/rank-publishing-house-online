@@ -37,7 +37,7 @@ const LeadForm = () => {
   return (
     <div className="rounded-4 shadow bg-white py-4 px-4">
       <div className="form-widget">
-        <h6 className="text-center mb-3">Sign Up For <b>Free Consultation</b></h6>
+        <h6 className="text-center mb-3 text-danger">Sign Up For <b>Free Consultation</b></h6>
         
         <form onSubmit={formik.handleSubmit} className="row position-relative gap-3">
           {/* Name */}

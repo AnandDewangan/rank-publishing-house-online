@@ -1,34 +1,35 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { motion } from "framer-motion";
 
 const WhoWeAre = () => {
   const features = [
     {
       icon: "bi-printer",
       title: "Print",
-      image: "https://www.orangebooks.in/assets/images/featured-img/2.jpg",
+      color: "text-info",
       description:
         "We provide unbelievable Print On Demand Lifetime Inventory on International Print Quality for your books. We provide best POD service for your book.",
     },
     {
       icon: "bi-truck",
       title: "Quick Service",
-      image: "https://www.orangebooks.in/assets/images/featured-img/3.jpg",
+      color: "text-danger",
       description:
         "With quick publishing within 7 to 10 Days only, your book will be ready for worldwide distribution as print and eBook. We ensure fastest service is delivered to you.",
     },
     {
-      icon: "bi-handshake",
+      icon: "bi-people-fill",
       title: "Support",
-      image: "https://www.orangebooks.in/assets/images/featured-img/1.jpg",
+      color: "text-success",
       description:
         "Get a dedicated Project flow while publishing and a caring post-publishing support once released. You are provided with best in class support platforms.",
     },
     {
       icon: "bi-globe",
       title: "Worldwide Distribution",
-      image: "https://www.orangebooks.in/assets/images/featured-img/2.jpg",
+      color: "text-warning",
       description:
         "We make your book available in upto 150+ countries as paperback and eBook. We are in partnership with largest global book distribution networks.",
     },
@@ -38,8 +39,7 @@ const WhoWeAre = () => {
     <div className="container">
       <div className="row align-items-center justify-content-between">
         <div className="border-bottom-0">
-          <span className="badge bg-secondary">Who Are We</span>
-          <h6 className="fs-3">
+          <h6 className="fs-2 text-danger">
             Most Economical & Trusted Book Publication In India.
           </h6>
         </div>
@@ -55,21 +55,26 @@ const WhoWeAre = () => {
         </p>
         <div className="row">
           {features.map((feature, index) => (
-            <div key={index} className="col-md-6 mb-4">
-              <div className="p-lg-3 border rounded shadow-sm">
-                <div className="row align-items-center p-2">
-                  <div className="col-3">
-                    <i
-                      className={`bi ${feature.icon} text-primary display-6`}
-                    ></i>
-                  </div>
-                  <div className="col-9">
-                    <h6 className="fw-semibold fs-5">{feature.title}</h6>
-                  </div>
+            <motion.div
+            key={index}
+            className="col-md-6 mb-4"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div
+              className="p-lg-3 border rounded shadow-sm feature-card"
+              style={{ transition: "all 0.3s ease-in-out" }}
+            >
+              <div className="row align-items-center p-2">
+                <div className="col-3">
+                  <i className={`bi ${feature.icon} ${feature.color} display-6`}></i>
                 </div>
-                <p className="text-muted">{feature.description}</p>
+                <div className="col-9">
+                  <h6 className={`fw-semibold fs-5 ${feature.color}`}>{feature.title}</h6>
+                </div>
               </div>
+              <p className="text-muted">{feature.description}</p>
             </div>
+          </motion.div>
           ))}
         </div>
       </div>

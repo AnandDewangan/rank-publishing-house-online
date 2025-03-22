@@ -100,7 +100,7 @@ const FreeConsultationForm = () => {
               </Button>
             </Form>
             <div className="text-center mt-3">
-              <a href="#" className="text-black-50"><small><u>No, I Don't Want Discount</u></small></a>
+              <a href="/" className="text-black-50"><small><u>No, I Don't Want Discount</u></small></a>
             </div>
             <hr />
             <small>
