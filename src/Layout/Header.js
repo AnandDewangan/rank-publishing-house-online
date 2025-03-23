@@ -66,7 +66,7 @@ export default function Header() {
           </ul>
 
           <div className="d-none d-lg-block">
-            <a href="+918963906336" className="btn custom-btn custom-border-btn btn-naira btn-inverted">
+            <a href="tel: +919171242297" className="btn custom-btn custom-border-btn btn-naira btn-inverted">
               <i className="btn-icon bi-telephone"></i>
               <span>Call Now</span>
             </a>
