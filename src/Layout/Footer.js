@@ -61,7 +61,7 @@ export default function Footer() {
               </p>
 
               <p className="mb-3 social-link whatsapp">
-                <i className="bi bi-geo-alt me-2"></i> <a className="contact-link text-light" target="_blank">Bilaspur, Chhattisgarh (495001)</a>
+                <i className="bi bi-geo-alt me-2"></i> <a href="https://maps.app.goo.gl/drz3kZUB7grzjaUa7" className="contact-link text-light" target="_blank">Bilaspur, Chhattisgarh (495001)</a>
               </p>
 
               <p className="mb-2 social-link facebook">

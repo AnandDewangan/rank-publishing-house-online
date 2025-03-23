@@ -25,12 +25,12 @@ export default function Header() {
     <nav className={`navbar navbar-expand-lg fixed-top ${isScrolled ? "scrolled" : ""}`}>
       <div className="container">
         <Link className="navbar-brand" to="/">
-          <img src={Logo} width={100}/>
+          <img src={Logo} width={100} alt="Rank Publishing House"/>
         </Link>
 
         <div className="d-lg-none ms-auto me-3">
-          <a href="#" className="btn custom-btn custom-border-btn btn-naira btn-inverted">
-            <i className="btn-icon bi-cloud-download"></i>
+          <a href="tel:+918963906336" className="btn custom-btn custom-border-btn btn-naira btn-inverted">
+            <i className="btn-icon bi-telephone"></i>
             <span>Download</span>
           </a>
         </div>
@@ -57,12 +57,18 @@ export default function Header() {
             <li className="nav-item">
               <Link className="nav-link" to="/how-to-publish">How to Publish</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/registration">Registration</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/author-royalty">Calculate Royalty</Link>
+            </li>
           </ul>
 
           <div className="d-none d-lg-block">
-            <a href="#" className="btn custom-btn custom-border-btn btn-naira btn-inverted">
-              <i className="btn-icon bi-cloud-download"></i>
-              <span>Download</span>
+            <a href="+918963906336" className="btn custom-btn custom-border-btn btn-naira btn-inverted">
+              <i className="btn-icon bi-telephone"></i>
+              <span>Call Now</span>
             </a>
           </div>
         </div>

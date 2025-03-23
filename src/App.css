@@ -598,7 +598,7 @@ strong {
   FEATURED              
 -----------------------------------------*/
 .featured-section {
-  background-color: var(--custom-btn-bg-color);
+  background-color: rgba(109, 80, 60, 0.858);
   position: relative;
   padding-top: 50px;
   padding-bottom: 50px;

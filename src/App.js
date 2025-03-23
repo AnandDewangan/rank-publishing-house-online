@@ -10,6 +10,8 @@ import './App.css';
 import Footer from "./Layout/Footer";
 import Publish from "./Publish/Publish";
 import { Helmet } from "react-helmet";
+import Registration from "./Registration/Registration";
+import RoyaltyCalculate from "./Calculate/RoyaltyCalculate";
 
 <Helmet>
     {/* Primary Meta Tags */}
@@ -54,6 +56,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/how-to-publish" element={<Publish />} />
+              <Route path="/registration" element={<Registration />} />
+              <Route path="/author-royalty" element={<RoyaltyCalculate />} />
             </Routes>
             <Footer />
           </>

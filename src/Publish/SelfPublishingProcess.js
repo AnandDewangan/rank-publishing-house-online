@@ -8,63 +8,63 @@ const steps = [
     title: "Registration and Consultation",
     description:
       "Begin your publishing journey by completing a simple registration form. Our expert book publishing consultant will connect with you to discuss your manuscript and provide you with the best-suited publishing proposal.",
-    img: "/images/publish/registration.png",
+    img: "/images/publish/submit.gif",
   },
   {
     id: "item-2",
     title: "Editing and Proofreading",
     description:
       "Ensure your manuscript meets professional standards with our expert editing and proofreading services. We refine your content, correct errors, and enhance readability to prepare it for publication.",
-    img: "/images/publish/creativity.png",
+    img: "/images/publish/video-editing.gif",
   },
   {
     id: "item-3",
     title: "ISBN Allocation and Copyright Registration",
     description:
       "To safeguard your intellectual property, Rank Publishing House facilitates ISBN allocation and copyright registration, ensuring your book is legally protected and globally recognized.",
-    img: "/images/publish/typewriter.png",
+    img: "/images/publish/copyright.gif",
   },
   {
     id: "item-4",
     title: "Design and Formatting",
     description:
       "Once the proposal is finalized, submit your manuscript along with design preferences for the book cover. At Rank Publishing House, our team ensures professional formatting and a visually compelling design to enhance your book’s appeal.",
-    img: "/images/publish/article.png",
+    img: "/images/publish/digital-art.gif",
   },
   {
     id: "item-5",
     title: "Review and Approval",
     description:
       "At Rank Publishing House, you will be assigned a dedicated Publishing Manager to oversee your book’s production. The finalized interior layout and cover design will be shared with you for thorough review and approval, ensuring your vision is perfectly captured before moving forward.",
-    img: "/images/publish/rating.png",
+    img: "/images/publish/thumbs-up.gif",
   },
   {
     id: "item-6",
     title: "Pre Order, Launch and Distribution",
     description:
       "Once you provide your final approval, Rank Publishing House will proceed with printing and global distribution. Your book will be made available as a paperback and eBook across leading platforms, ensuring worldwide reach and accessibility.",
-    img: "/images/publish/reading-book.png",
+    img: "/images/publish/launch.gif",
   },
   {
     id: "item-7",
     title: "Marketing and Promotions",
     description:
       "Rank Publishing House offers comprehensive online book promotions to maximize your book’s visibility. Our team provides strategic marketing support along with engaging visual creatives to enhance audience reach and drive sales.",
-    img: "/images/publish/marketing.png",
+    img: "/images/publish/media-mix.gif",
   },
   {
     id: "item-8",
     title: "Author Branding and PR",
     description:
       "We help authors establish a strong personal brand through PR campaigns, media outreach, and interviews, ensuring greater recognition and engagement with readers.",
-    img: "/images/publish/branding.png",
+    img: "/images/publish/personal-branding.gif",
   },
   {
     id: "item-9",
     title: "Royalty and Support",
     description:
       "At Rank Publishing House, authors receive exclusive access to a dedicated author dashboard for real-time royalty tracking and support. Royalty payments are processed on a monthly cycle, ensuring transparency and timely earnings.",
-    img: "/images/publish/support.png",
+    img: "/images/publish/audiences.gif",
   },
 ];
 
