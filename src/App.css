@@ -46,6 +46,7 @@ https://templatemo.com/tm-588-ebook-landing
 body {
   background-color: var(--white-color);
   font-family: var(--body-font-family); 
+  overflow-x: hidden;
 }
 
 
@@ -760,19 +761,6 @@ strong {
   display: block;
 }
 
-
-/*---------------------------------------
-  AUTHOR SECTION            
------------------------------------------*/
-.author-section {
-  background-image: url('./images/circle-scatter-haikei.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: left bottom;
-  position: relative;
-  margin-top: 50px;
-}
-
 .author-image {
   border: 10px solid var(--secondary-color);
   border-radius: 100%;
@@ -781,18 +769,7 @@ strong {
   width: 350px;
   height: 350px;
   object-fit: cover;
-}
-
-
-/*---------------------------------------
-  DIVIDER SECTION               
------------------------------------------*/
-.divider-section {
-  /* background-image: url('./images/wave-haikei.png'); */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
+} 
 
 
 /*---------------------------------------
@@ -1052,17 +1029,11 @@ strong {
 
 .navbar {
   transition: background-color 0.3s ease-in-out;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.459);
 }
 
 .navbar.scrolled {
   background: black; /* Semi-transparent black */
-}
-
-@media screen and (max-width: 992px){
-  .navbar {
-    background: black;
-  }
 }
 
 .social-link {

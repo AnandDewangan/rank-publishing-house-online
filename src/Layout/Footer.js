@@ -54,7 +54,7 @@ export default function Footer() {
 
             {/* Contact Details */}
             <Col lg={6} xs={12}>
-              <h3 className="text-danger">Still not sure how to get your book published?</h3>
+              <h3 className="text-danger mt-3">Still not sure how to get your book published?</h3>
               <p className="fs-6">
                 Want to discuss the packages and publication procedure? <br />
                 Talk to our Publishing Consultant or simply register with us to get started!
