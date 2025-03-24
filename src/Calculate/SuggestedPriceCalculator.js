@@ -22,7 +22,7 @@ const SuggestedPriceCalculator = () => {
       <div className="row shadow bg-light border m-0 p-0 rounded">
         <div className="col-lg-12 p-0">
           <div className="text-center p-3 rounded" style={{ background: "#fdefe0" }}>
-            <h3 className="m-2">3. Suggested Price</h3>
+            <h3 className="m-2 text-danger">3. Suggested Price</h3>
             <small>
               Use this tool to get the most suitable price suggested by OrangeBooks.
             </small>
@@ -65,7 +65,7 @@ const SuggestedPriceCalculator = () => {
             </div>
 
             <div className="col-12 d-flex justify-content-center align-items-center pt-2 pb-2">
-              <button type="button" className="btn btn-primary btn-lg rounded" onClick={calculateSuggestedPrice}>
+              <button type="button" className="custom-btn rounded" onClick={calculateSuggestedPrice}>
                 Calculate
               </button>
             </div>

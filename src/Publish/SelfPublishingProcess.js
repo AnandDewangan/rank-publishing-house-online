@@ -97,8 +97,8 @@ export default function Preview() {
       <Container>
         <Row>
           <Col lg={12} className="text-center">
-            <h2 className="text-danger">The Self Publishing Process</h2>
-            <h6>How To Self Publish Your Book</h6>
+            <h2 className="fs-2 text-danger">The Self Publishing Process</h2>
+            <h6 className="text-muted">How To Self Publish Your Book</h6>
           </Col>
 
           {/* Navigation Bar */}

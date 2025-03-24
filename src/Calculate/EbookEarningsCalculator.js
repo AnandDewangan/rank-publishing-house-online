@@ -26,10 +26,9 @@ const EbookEarningsCalculator = () => {
       <div className="row shadow bg-light border m-0 p-0 rounded">
         <div className="col-lg-12 p-0">
           <div className="text-center p-3 rounded" style={{ background: "#fdefe0" }}>
-            <h3 className="m-2">4. Ebook Earnings</h3>
+            <h3 className="m-2 text-danger">4. Ebook Earnings</h3>
             <small>Use this tool to estimate the ebook royalty of your book.</small>
-          </div>
-
+          </div> 
           <div className="row p-4">
             <div className="col-12 form-group">
               <div className="row">
@@ -60,7 +59,7 @@ const EbookEarningsCalculator = () => {
             </div>
 
             <div className="col-12 d-flex justify-content-center align-items-center pt-2">
-              <button type="button" className="btn btn-primary btn-lg rounded" onClick={calculateEbookRoyalty}>
+              <button type="button" className="custom-btn rounded" onClick={calculateEbookRoyalty}>
                 Calculate
               </button>
             </div>

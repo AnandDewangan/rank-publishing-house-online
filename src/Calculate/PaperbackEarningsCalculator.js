@@ -21,7 +21,7 @@ const PaperbackEarningsCalculator = () => {
       <div className="row shadow bg-light border m-0 p-0 rounded">
         <div className="col-lg-12 p-0">
           <div className="text-center p-3 rounded" style={{ background: "#fdefe0" }}>
-            <h3 className="m-2">2. Paperback Earnings</h3>
+            <h3 className="m-2 text-danger">2. Paperback Earnings</h3>
             <small>
               Use the tool below to estimate the paperback royalty of your book with a Black & White interior.
             </small>
@@ -57,7 +57,7 @@ const PaperbackEarningsCalculator = () => {
             </div>
 
             <div className="col-12 d-flex justify-content-center align-items-center pt-2">
-              <button type="button" className="btn btn-primary btn-lg rounded" onClick={calculateRoyalty}>
+              <button type="button" className="custom-btn rounded" onClick={calculateRoyalty}>
                 Calculate
               </button>
             </div>
@@ -72,7 +72,7 @@ const PaperbackEarningsCalculator = () => {
             </div>
             <div className="col-12 form-group">
               <div className="row">
-                <label className="col-sm-8 col-form-label">OrangeBooks Store:</label>
+                <label className="col-sm-8 col-form-label">Rank Store:</label>
                 <div className="col-sm-4 text-larger font-weight-semibold">{obRoyalty}</div>
               </div>
             </div>

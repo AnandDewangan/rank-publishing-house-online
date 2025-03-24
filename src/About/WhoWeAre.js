@@ -39,11 +39,11 @@ const WhoWeAre = () => {
     <div className="container">
       <div className="row align-items-center justify-content-between">
         <div className="border-bottom-0">
-          <h6 className="fs-2 text-danger">
+          <h2 className="fs-2 text-danger">
             Most Economical & Trusted Book Publication In India.
-          </h6>
+          </h2>
         </div>
-        <p
+        <h6
           className="text-muted"
           style={{ fontSize: "16px", textAlign: "justify" }}
         >
@@ -52,7 +52,7 @@ const WhoWeAre = () => {
           publication services, guidance and support to all emerging Indian
           Authors who inspire to write and publish their book with our Worldwide
           Availability on Print & eBook.
-        </p>
+        </h6>
         <div className="row">
           {features.map((feature, index) => (
             <motion.div

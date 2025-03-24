@@ -30,12 +30,12 @@ export default function WhyUs() {
         <Row className="align-items-center">
           <Col md={6}>
             <div className="mb-4">
-              <h2 className="mt-3 text-danger">Why Rank Publishing House?</h2>
-              <p className="text-muted text-justify">
+              <h2 className="fs-2 mt-3 text-danger">Why Rank Publishing House?</h2>
+              <h4 className="text-muted text-justify fs-6">
                 Rank Publishing House provides you the platform, independence, and flexibility to create and share your
                 vision with the world. We offer book publishing, cover designing, sales, and distribution services at
                 the most economical prices.
-              </p>
+              </h4>
               <Button variant="danger" href="/about-us">
                 Learn More
               </Button>

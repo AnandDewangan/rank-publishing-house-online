@@ -15,7 +15,7 @@ const ProductionCostCalculator = () => {
       <div className="row shadow bg-light border m-0 p-0 rounded">
         <div className="col-lg-12 p-0">
           <div className="text-center p-3 rounded" style={{ background: "#fdefe0" }}>
-            <h3 className="m-2">1. Production Cost</h3>
+            <h3 className="m-2 text-danger">1. Production Cost</h3>
             <small>
               Use the tool below to estimate the production cost of your book with a Black & White interior.
             </small>
@@ -69,7 +69,7 @@ const ProductionCostCalculator = () => {
             </div>
 
             <div className="col-12 d-flex justify-content-center align-items-center pt-2 pb-2">
-              <button type="button" className="btn btn-primary btn-lg rounded" onClick={calculateRoyalty}>
+              <button type="button" className="custom-btn rounded" onClick={calculateRoyalty}>
                 Calculate
               </button>
             </div>

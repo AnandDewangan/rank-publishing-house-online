@@ -34,8 +34,8 @@ export default function Features() {
     <section id="features" className="pt-5 bg-light">
       <Container>
         <div className="text-center mb-5">
-          <h2 className="text-danger">Book Publisher In India</h2>
-          <h6>
+          <h2 className="fs-2 text-danger">Book Publisher In India</h2>
+          <h6 className="text-muted">
             Rank Publishing House helps writers publish and sell books worldwide in both paperback & eBook versions.
           </h6>
         </div>

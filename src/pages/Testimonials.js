@@ -35,8 +35,8 @@ export default function Testimonials() {
     <section id="testimonial" className="py-5 bg-light">
       <Container>
         <div className="text-center mb-5">
-          <h2 className="text-danger">More Testimonials from our Authors</h2>
-          <h6>
+          <h2 className="text-danger fs-2">More Testimonials from our Authors</h2>
+          <h6 className="text-muted">
             Real stories from satisfied happy writers sharing their experiences
           </h6>
         </div>

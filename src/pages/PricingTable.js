@@ -5,7 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const PricingTable = () => {
   const packages = [
     {
-      name: "Basic",
+      name: "Silver",
       price: "₹5,999/-",
       icon: "bi-book-fill",
       features: [
@@ -26,7 +26,7 @@ const PricingTable = () => {
       ],
     },
     {
-      name: "Standard",
+      name: "Gold",
       price: "₹7,999",
       icon: "bi-file-earmark-pdf-fill",
       features: [
@@ -45,7 +45,7 @@ const PricingTable = () => {
       missingFeatures: [["Influencer Marketing", "Author Interview"]],
     },
     {
-      name: "Professional",
+      name: "Platinum",
       price: "₹11,999",
       icon: "bi-file-earmark-pdf-fill",
       features: [
@@ -91,8 +91,8 @@ const PricingTable = () => {
   return (
     <div className="container py-5">
       <div className="section-title text-center mb-5">
-        <h4 className="fs-2 text-danger">Pricing</h4>
-        <h6>
+        <h2 className="fs-2 text-danger">Pricing</h2>
+        <h6 className="text-muted">
           Find your best prices of the books premium packages that are available with us. You can purchase the
           prices and get the discount of the purchase of the books.
         </h6>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqsData = [
   {
@@ -48,35 +49,58 @@ const FAQSection = () => {
       <div className="text-center pb-4">
         <div className="badge badge-pill badge-default">FAQs</div>
         <h2>Frequently Asked Questions</h2>
-        <p>
-          Have more questions? Check out the FAQs related to author royalty.
-        </p>
+        <p>Have more questions? Check out the FAQs related to author royalty.</p>
       </div>
 
       <div className="container">
         <div className="row">
           <div className="col-lg-8">
             {faqsData.map((faq, index) => (
-              <div key={index} className="toggle mb-3">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="toggle mb-3"
+              >
                 <div
                   className="toggle-header d-flex justify-content-between"
                   onClick={() => toggleFAQ(index)}
                   style={{ cursor: "pointer", padding: "10px", background: "#f8f9fa", borderRadius: "5px" }}
                 >
                   <h3 className="h5">{faq.question}</h3>
-                  <div className="toggle-icon">
-                    {openIndex === index ? "▼" : "▶"}
-                  </div>
+                  <motion.i 
+                    className={`bi ${openIndex === index ? "bi-chevron-down" : "bi-chevron-right"}`}
+                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  ></motion.i>
                 </div>
-                {openIndex === index && (
-                  <div className="toggle-content p-3" dangerouslySetInnerHTML={{ __html: faq.answer }} />
-                )}
-              </div>
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="toggle-content p-3"
+                    >
+                      <div dangerouslySetInnerHTML={{ __html: faq.answer }} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             ))}
           </div>
 
           <div className="col-lg-4 text-center">
-            <img src="/images/faq.gif" alt="FAQs" className="img-fluid" />
+            <motion.img
+              src="/images/faq.gif"
+              alt="FAQs"
+              className="img-fluid"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            />
           </div>
         </div>
       </div>

@@ -5,11 +5,11 @@ export default function AuthorHeader() {
   return (
     <section className="section p-5 mt-5">
       <div className="container text-center">
-        <h1 className="mt-3 fw-bold">
+        <h2 className="fs-2 mt-3 fw-bold">
           Publish Your Dream Book with{" "}
           <span className="text-danger">Rank Publishing House</span>
-        </h1>
-        <h6 className="fs-4">
+        </h2>
+        <h6 className="text-muted">
           Your journey as an author starts here! 📖 Join hands with us and turn
           your manuscript into a masterpiece.
         </h6>

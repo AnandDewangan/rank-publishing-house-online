@@ -44,7 +44,7 @@ const FeaturedBook = () => {
     <section className="section py-5" style={{ background: "#fdefe0" }}>
       <div className="container">
         <div className="heading-block mb-4 border-bottom-0">
-          <h2 className="ls0 nott mb-0 text-danger">
+          <h2 className="fs-2 text-danger">
             <i className="bi bi-book-fill text-danger"></i> Featured Book
           </h2>
         </div>
@@ -61,7 +61,7 @@ const FeaturedBook = () => {
           </div>
           <div className="col-lg-6 col-sm-6 mt-3 mt-sm-0">
             <div className="heading-block">
-              <h3 className="text-danger">My Life Story</h3>
+              <h6 className="text-danger fs-4">My Life Story</h6>
               <span className="text-primary">By Kamlesh Yadav</span>
             </div>
             <p className="mb-0">
