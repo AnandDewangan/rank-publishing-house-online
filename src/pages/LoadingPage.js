@@ -19,7 +19,7 @@ export default function LoadingPage() {
         transition={{ duration: 1.5, ease: "easeIn" }}
         className="fs-4 text-warning fw-bold"
       >
-        Rank Publishing House
+        R<span className="text-danger">A</span>NK PUBLISHING HOUSE
       </motion.h1>
 
       <motion.div
