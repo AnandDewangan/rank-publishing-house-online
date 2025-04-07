@@ -25,12 +25,12 @@ const Hero = () => {
               </motion.h1>
 
               {/* Call Now Button */}
-              <a href="tel:+919876543210" className="btn custom-btn smoothscroll me-3">
+              <a href="tel:+919171242297" className="btn custom-btn smoothscroll me-3">
                 <i className="bi bi-telephone-fill"></i> Call Now
               </a>
 
               {/* Email Us Button */}
-              <a href="mailto:books@rankpublication.com" className="btn btn-outline-light smoothscroll">
+              <a href="mailto:books@rankpublishinghouse.online" className="btn btn-outline-light smoothscroll">
                 <i className="bi bi-envelope-fill"></i> Email Us
               </a>
             </div>
