@@ -6,19 +6,18 @@ const EbookEarningsCalculator = () => {
   const [playstoreRoyalty, setPlaystoreRoyalty] = useState("");
 
   const calculateEbookRoyalty = () => {
-    const minPrice = 49;
+    const eMrp = parseFloat(ebookMRP);
 
-    if (!ebookMRP || ebookMRP < minPrice) {
-      alert(`Ebook price must be at least ₹${minPrice}.`);
+    if (isNaN(eMrp) || eMrp < 49) {
+      alert("Ebook price must be at least ₹49.");
       return;
     }
 
-    // Dummy Calculation Logic (Replace with actual royalty formula)
-    const kindleRate = 0.7; // Example: 70% royalty
-    const playstoreRate = 0.6; // Example: 60% royalty
+    const kindle = 0.35 * eMrp;
+    const playstore = 0.52 * eMrp;
 
-    setKindleRoyalty(`₹${(ebookMRP * kindleRate).toFixed(2)}`);
-    setPlaystoreRoyalty(`₹${(ebookMRP * playstoreRate).toFixed(2)}`);
+    setKindleRoyalty(`₹${Math.round(kindle)}`);
+    setPlaystoreRoyalty(`₹${Math.round(playstore)}`);
   };
 
   return (
@@ -28,7 +27,8 @@ const EbookEarningsCalculator = () => {
           <div className="text-center p-3 rounded" style={{ background: "#fdefe0" }}>
             <h3 className="m-2 text-danger">4. Ebook Earnings</h3>
             <small>Use this tool to estimate the ebook royalty of your book.</small>
-          </div> 
+          </div>
+
           <div className="row p-4">
             <div className="col-12 form-group">
               <div className="row">
@@ -44,7 +44,6 @@ const EbookEarningsCalculator = () => {
                       placeholder="Set Ebook Selling Price"
                       value={ebookMRP}
                       onChange={(e) => setEbookMRP(e.target.value)}
-                      required
                     />
                   </div>
                 </div>

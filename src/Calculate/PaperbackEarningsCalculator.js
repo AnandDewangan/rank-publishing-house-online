@@ -1,19 +1,31 @@
 import React, { useState } from "react";
 
-const PaperbackEarningsCalculator = () => {
+const PaperbackEarningsCalculator = ({ productionCost, minimumSellingPrice }) => {
   const [mrp, setMrp] = useState("");
-  const [otherRoyalty, setOtherRoyalty] = useState("");
-  const [obRoyalty, setObRoyalty] = useState("");
+  const [otherRoyalty, setOtherRoyalty] = useState(0); // Rank Store
+  const [obRoyalty, setObRoyalty] = useState(0);       // Other Channels
 
   const calculateRoyalty = () => {
-    if (!mrp || mrp <= 0) {
+    const MRP = Number(mrp);
+    const pcost = Number(productionCost);
+    const msp = Number(minimumSellingPrice);
+
+    if (!MRP || MRP <= 0) {
       alert("Please enter a valid MRP.");
       return;
     }
 
-    // Dummy Calculation Logic (Replace with actual logic)
-    setOtherRoyalty(`₹${(mrp * 0.5).toFixed(2)}`);
-    setObRoyalty(`₹${(mrp * 0.7).toFixed(2)}`);
+    if (MRP < msp) {
+      alert("Quote MRP should be greater than or equal to the suggested MSP.");
+      return;
+    }
+
+    // Royalties after respective platform commissions
+    const rankStoreRoyalty = MRP - (MRP * 0.1 + pcost);    // 10% cut
+    const otherChannelRoyalty = MRP - (MRP * 0.4 + pcost); // 40% cut
+
+    setOtherRoyalty(Math.round(otherChannelRoyalty));
+    setObRoyalty(Math.round(rankStoreRoyalty));
   };
 
   return (
@@ -51,8 +63,9 @@ const PaperbackEarningsCalculator = () => {
 
             <div className="col-12 form-group">
               <p className="text-justify" style={{ fontSize: "75%" }}>
-                <strong>Note:</strong> Cost is calculated for a black and white book on white pages. Price may increase for cream pages.
-                Standard 5×8in size books are best suited for non-academic and fiction genres. Contact us for color printing or size variants.
+                <strong>Note:</strong> Cost is calculated for a black and white book on white pages.
+                Price may increase for cream pages. Standard 5×8in size books are best suited for non-academic and fiction genres.
+                Contact us for color printing or size variants.
               </p>
             </div>
 
@@ -67,13 +80,13 @@ const PaperbackEarningsCalculator = () => {
             <div className="col-12 form-group">
               <div className="row">
                 <label className="col-sm-8 col-form-label">Other Distribution Channels:</label>
-                <div className="col-sm-4 font-weight-semibold">{otherRoyalty}</div>
+                <div className="col-sm-4 font-weight-semibold">₹{otherRoyalty}</div>
               </div>
             </div>
             <div className="col-12 form-group">
               <div className="row">
                 <label className="col-sm-8 col-form-label">Rank Store:</label>
-                <div className="col-sm-4 text-larger font-weight-semibold">{obRoyalty}</div>
+                <div className="col-sm-4 text-larger font-weight-semibold">₹{obRoyalty}</div>
               </div>
             </div>
           </div>
