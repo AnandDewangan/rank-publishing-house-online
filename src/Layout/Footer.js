@@ -3,46 +3,62 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Footer() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phone.value.trim();
+    const budget = form.budget.value;
+    const status = form.status.value;
+
+    const message = `Hello, I'm interested in a free consultation.%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Phone:* ${phone}%0A*Publishing Budget:* ${budget}%0A*Manuscript Status:* ${status}`;
+
+    const whatsappURL = `https://wa.me/919171242297?text=${message}`;
+    window.open(whatsappURL, "_blank");
+  };
+
   return (
     <>
-      {/* Contact & Ebook Section */}
       <section className="contact-section section-padding bg-dark text-light" id="section_5">
         <Container>
           <Row className="align-items-center">
             {/* Ebook Download Form */}
             <Col lg={5} xs={12} className="mx-auto">
               <div className="badge bg-danger px-3 py-2">Publish Now</div>
-              <Form action="https://www.orangebooks.in/form-submit" method="post" className="custom-form ebook-download-form bg-white shadow p-4">
+              <Form onSubmit={handleSubmit} className="custom-form ebook-download-form bg-white shadow p-4">
                 <h4 className="text-center text-dark mb-3">Get a Free Consultation</h4>
+
                 <Form.Group className="mb-3">
-                  <Form.Control type="text" placeholder="Your Full Name" required />
+                  <Form.Control type="text" name="name" placeholder="Your Full Name" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Control type="email" placeholder="Your Email" required />
+                  <Form.Control type="email" name="email" placeholder="Your Email" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Control type="tel" pattern="[6-9]{1}[0-9]{9}" placeholder="Your Phone Number" required />
+                  <Form.Control type="tel" name="phone" pattern="[6-9]{1}[0-9]{9}" placeholder="Your Phone Number" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Select required>
-                    <option>Your Publishing Budget</option>
-                    <option value="8000-10000">Rs. 8000 - Rs. 10000</option>
-                    <option value="14000-15000">Rs. 14,000 - Rs. 15,000</option>
-                    <option value="20000-25000">Rs. 20,000 - Rs. 25,000</option>
-                    <option value="30000-40000">Rs. 30,000 - Rs. 40,000</option>
-                    <option value="50000+">Above Rs. 50,000</option>
+                  <Form.Select name="budget" required>
+                    <option value="">Your Publishing Budget</option>
+                    <option value="Rs. 3000 - Rs. 5000">Rs. 3000 - Rs. 5000</option>
+                    <option value="Rs. 5,000 - Rs. 10,000">Rs. 5,000 - Rs. 10,000</option>
+                    <option value="Rs. 10,000 - Rs. 20,000">Rs. 10,000 - Rs. 20,000</option>
+                    <option value="Rs. 20,000 - Rs. 50,000">Rs. 20,000 - Rs. 50,000</option>
+                    <option value="Above Rs. 50,000">Above Rs. 50,000</option>
                   </Form.Select>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Select required>
-                    <option>Your Manuscript Status</option>
-                    <option value="start-now">Want to start the process today.</option>
-                    <option value="start-week">Want to start within a week.</option>
-                    <option value="month-ready">It will take a month to get ready.</option>
+                  <Form.Select name="status" required>
+                    <option value="">Your Manuscript Status</option>
+                    <option value="Want to start the process today.">Want to start the process today.</option>
+                    <option value="Want to start within a week.">Want to start within a week.</option>
+                    <option value="It will take a month to get ready.">It will take a month to get ready.</option>
                   </Form.Select>
                 </Form.Group>
 
@@ -61,34 +77,40 @@ export default function Footer() {
               </p>
 
               <p className="mb-3 social-link whatsapp">
-                <i className="bi bi-geo-alt me-2"></i> <a href="https://maps.app.goo.gl/drz3kZUB7grzjaUa7" className="contact-link text-light" target="_blank">Bilaspur, Chhattisgarh (495001)</a>
+                <i className="bi bi-geo-alt me-2"></i> 
+                <a href="https://maps.app.goo.gl/drz3kZUB7grzjaUa7" className="contact-link text-light" target="_blank">
+                  Bilaspur, Chhattisgarh (495001)
+                </a>
               </p>
 
               <p className="mb-2 social-link facebook">
-              <i className="bi bi-telephone-fill me-2"></i><a href="tel:+919171242297" className="contact-link text-light">+91 91712-42297</a>
+                <i className="bi bi-telephone-fill me-2"></i>
+                <a href="tel:+919171242297" className="contact-link text-light">+91 91712-42297</a>
               </p>
 
-              <p className=" social-link instagram">
-              <i className="bi bi-envelope-fill me-2"></i><a href="mailto:books@rankpublishinghouse.online" className="contact-link text-light">books@rankpublishinghouse.online</a>
+              <p className="social-link instagram">
+                <i className="bi bi-envelope-fill me-2"></i>
+                <a href="mailto:books@rankpublishinghouse.online" className="contact-link text-light">
+                  books@rankpublishinghouse.online
+                </a>
               </p>
 
               {/* Social Links */}
               <h6 className="site-footer-title mt-5 mb-3 text-danger">Social</h6>
               <div className="d-flex gap-3">
-                <a href="#" className="bi bi-instagram fs-3 text-light social-link instagram"></a>
-                <a href="#" className="bi bi-twitter fs-3 text-light social-link twitter"></a>
+                <a href="https://www.instagram.com/rankpublishing_house" className="bi bi-instagram fs-3 text-light social-link instagram"></a>
                 <a href="#" className="bi bi-facebook fs-3 text-light social-link facebook"></a>
-                <a href="#" className="bi bi-whatsapp fs-3 text-light social-link whatsapp"></a>
+                <a href="tel:+919171242297" className="bi bi-whatsapp fs-3 text-light social-link whatsapp"></a>
+                <a href="mailto:books@rankpublishinghouse.online" className="bi bi-envelope fs-3 text-light social-link email"></a>
               </div>
 
-              {/* Copyright Info */}
               <p className="copyright-text mt-4">
                 Copyright © 2025 Rank Publishing House <br />
               </p>
             </Col>
           </Row>
         </Container>
-      </section> 
+      </section>
     </>
   );
 }
