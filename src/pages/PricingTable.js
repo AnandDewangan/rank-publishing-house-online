@@ -6,13 +6,13 @@ const PricingTable = () => {
   const packages = [
     {
       name: "CLASSIC",
-      price: "₹4,999/-",
+      price: "₹5,999/-",
       icon: "bi-book-fill",
       features: [
         ["Paperback + E-Book Publishing", "Author Contract"],
         ["Publishing Duration – 20-25 Days", "Author Copyright"],
         [
-          "Including Pages (Up-To 180 Pages Regular Size)",
+          "Including Pages (Up-To 150 Pages Regular Size)",
           "Dedicated Project Manager",
         ],
         ["B&W Book (Colored Cover)", "Cover Design (Template Based)"],
@@ -42,7 +42,7 @@ const PricingTable = () => {
         ["Paperback + E-Book Publishing", "Author Contract"],
         ["Publishing Duration – 15-20 Days", "Author Copyright"],
         [
-          "Including Pages (Up-To 270 Pages Regular Size)",
+          "Including Pages (Up-To 250 Pages Regular Size)",
           "Dedicated Project Manager",
         ],
         [
@@ -86,7 +86,7 @@ const PricingTable = () => {
         ["Paperback + E-Book Publishing", "Author Contract"],
         ["Publishing Duration - 7-10 Days", "Author Copyright"],
         [
-          "Including Pages (Up-To 370 Pages Regular Size)",
+          "Including Pages (Up-To 350 Pages Regular Size)",
           "Dedicated Project Manager",
         ],
         ["Extensive Editing & Proofreading ", "Govt. Copyright"],
@@ -106,19 +106,15 @@ const PricingTable = () => {
         ["Basic Marketing (1 Weak)", "(100%) Royalty Payment"],
         [
           "Amazon Prime Listing-1Year",
-          "Book Marketing (30 Days Instagram and Facebook Ads)",
+          "Book Marketing (30 Days Instagram and Facebook)",
         ],
         [
-          "Book trailer video (Only One Concept & 1 Revisions)",
+          "Custom Book Trailer Video",
           "Publishing E-Certificate",
         ],
         [
           "Unlimited Inventory Management (Print On Demand Service)",
-          "Distribution To Major Platforms ( Amazon, Flipkart, Kindle And Google Books Etc)",
-        ],
-        [
-          "Listing On Global ebook and Paperback Distribution ( Amazon, Flipkart, Amazon kindle and Google Books Etc)",
-          "Custom Book Trailer Video",
+          "Listing On Global ebook and Paperback Distribution ( Amazon, Flipkart, Amazon kindle and Google Books Etc)"
         ],
       ],
       missingFeatures: [],
