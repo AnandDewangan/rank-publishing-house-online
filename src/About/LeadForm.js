@@ -1,45 +1,39 @@
 import React, { useState } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 const LeadForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      phonenumber: "",
-      budget: "",
-      manuscriptStatus: "",
-    },
-    validationSchema: Yup.object({
-      name: Yup.string().required("Name is required"),
-      email: Yup.string().email("Invalid email").required("Email is required"),
-      phonenumber: Yup.string()
-        .matches(/^[6-9]\d{9}$/, "Invalid phone number")
-        .required("Phone number is required"),
-      budget: Yup.string().required("Publishing budget is required"),
-      manuscriptStatus: Yup.string().required("Manuscript status is required"),
-    }),
-    onSubmit: async (values) => {
-      setIsSubmitting(true);
-      // Simulate form submission (Replace with actual API call)
-      setTimeout(() => {
-        console.log("Form Submitted:", values);
-        window.location.href =
-          "https://www.orangebooks.in/thankyou?utm_source=web&utm_medium=main_lead_form&utm_campaign=home_header";
-      }, 2000);
-    },
-  });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const form = e.target;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phonenumber.value.trim();
+    const budget = form.budget.value;
+    const manuscript = form.manuscriptStatus.value;
+
+    // WhatsApp Message
+    const message = `Hello, I'm interested in a free consultation.%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Phone:* ${phone}%0A*Publishing Budget:* ${budget}%0A*Manuscript Status:* ${manuscript}`;
+
+    const whatsappURL = `https://wa.me/9171242297?text=${message}`;
+
+    // Open WhatsApp
+    window.open(whatsappURL, "_blank");
+
+    setIsSubmitting(false);
+  };
 
   return (
     <div className="rounded-4 shadow bg-white py-4 px-4">
       <div className="form-widget">
-        <h6 className="text-center mb-3 text-danger">Sign Up For <b>Free Consultation</b></h6>
-        
-        <form onSubmit={formik.handleSubmit} className="row position-relative gap-3">
+        <h6 className="text-center mb-3 text-danger">
+          Sign Up For <b>Free Consultation</b>
+        </h6>
+
+        <form className="row position-relative gap-3" onSubmit={handleSubmit}>
           {/* Name */}
           <div className="col-sm-12 input-group form-group">
             <div className="input-group-prepend">
@@ -52,7 +46,7 @@ const LeadForm = () => {
               name="name"
               className="form-control"
               placeholder="Your Full Name"
-              {...formik.getFieldProps("name")}
+              required
             />
           </div>
 
@@ -68,7 +62,7 @@ const LeadForm = () => {
               name="email"
               className="form-control"
               placeholder="Your Email"
-              {...formik.getFieldProps("email")}
+              required
             />
           </div>
 
@@ -84,7 +78,7 @@ const LeadForm = () => {
               name="phonenumber"
               className="form-control"
               placeholder="Your Phone Number"
-              {...formik.getFieldProps("phonenumber")}
+              required
             />
           </div>
 
@@ -95,17 +89,13 @@ const LeadForm = () => {
                 <i className="bi bi-currency-rupee"></i>
               </span>
             </div>
-            <select
-              name="budget"
-              className="form-control"
-              {...formik.getFieldProps("budget")}
-            >
+            <select name="budget" className="form-control" required>
               <option value="">Your Publishing Budget</option>
-              <option value="Rs. 8000 - Rs. 10000">Rs. 8000 - Rs. 10000</option>
-              <option value="Rs. 14,000 - Rs. 15,000">Rs. 14,000 - Rs. 15,000</option>
-              <option value="Rs. 20,000 - Rs. 25,000">Rs. 20,000 - Rs. 25,000</option>
-              <option value="Rs. 30,000 - Rs. 40,000">Rs. 30,000 - Rs. 40,000</option>
-              <option value="Above Rs. 50,000">Above Rs. 50,000</option>
+              <option value="Rs. 3000 - Rs. 5000">Rs. 3000 - Rs. 5000</option>
+              <option value="Rs. 5,000 - Rs. 10,000">Rs. 5,000 - Rs. 10,000</option>
+              <option value="Rs. 10,000 - Rs. 15,000">Rs. 10,000 - Rs. 15,000</option>
+              <option value="Rs. 15,000 - Rs. 25,000">Rs. 15,000 - Rs. 25,000</option>
+              <option value="Above Rs. 25,000">Above Rs. 25,000</option>
             </select>
           </div>
 
@@ -116,11 +106,7 @@ const LeadForm = () => {
                 <i className="bi bi-journal"></i>
               </span>
             </div>
-            <select
-              name="manuscriptStatus"
-              className="form-control"
-              {...formik.getFieldProps("manuscriptStatus")}
-            >
+            <select name="manuscriptStatus" className="form-control" required>
               <option value="">Your Manuscript Status</option>
               <option value="Want to start the process today.">Want to start the process today.</option>
               <option value="Want to start the process within a week.">Want to start the process within a week.</option>
