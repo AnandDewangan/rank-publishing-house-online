@@ -28,7 +28,7 @@ const Hero = () => {
                 transition={{ duration: 1 }}
                 className="text-warning"
               >
-                Rank Publication House
+                Rank Publishing House
               </motion.h5>
 
               {/* India’s Fastest Growing Self-Publishing Company */}
