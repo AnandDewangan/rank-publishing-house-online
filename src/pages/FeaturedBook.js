@@ -54,8 +54,9 @@ const FeaturedBook = () => {
               <img
                 src="/images/cover/Cover3.jpg"
                 alt="Korangeera"
-                className="img-fluid shadow-lg border border-danger rounded-3"
+                className="img-fluid border rounded-3"
                 width={230}
+                style={{box-shadow: 5px 5px 10px black}}
               />
             </a>
           </div>
