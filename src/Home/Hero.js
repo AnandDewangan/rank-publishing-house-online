@@ -55,7 +55,7 @@ const Hero = () => {
             {/* Hero Image */}
             <div className="hero-image-wrap col-lg-6 col-12 mt-3 mt-lg-0">
               <motion.img
-                src="/images/cover/cover6.jpg"
+                src="/images/education-online-books.png"
                 className="hero-image img-fluid"
                 alt="Latest Book"
                 initial={{ opacity: 0, scale: 0.8 }}
