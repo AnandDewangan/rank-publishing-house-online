@@ -47,7 +47,7 @@ const WhoWeAre = () => {
           className="text-muted"
           style={{ fontSize: "16px", textAlign: "justify" }}
         >
-          Rank Publication House offers the most affordable self-publishing
+          Rank Publishing House offers the most affordable self-publishing
           services in India. We aim to provide professional self book
           publication services, guidance and support to all emerging Indian
           Authors who inspire to write and publish their book with our Worldwide
