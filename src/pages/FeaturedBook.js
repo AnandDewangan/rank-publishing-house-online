@@ -52,8 +52,8 @@ const FeaturedBook = () => {
           <div className="col-lg-3 col-sm-6 text-center">
             <a href="">
               <img
-                src="/images/cover/Cover3.jpg"
-                alt="Korangeera"
+                src="/images/cover/cover6.jpg"
+                alt="Bhramjal"
                 className="img-fluid border rounded-3"
                 width={230}
                 style={{box-shadow: 5px 5px 10px black}}
@@ -62,18 +62,11 @@ const FeaturedBook = () => {
           </div>
           <div className="col-lg-6 col-sm-6 mt-3 mt-sm-0">
             <div className="heading-block">
-              <h6 className="text-danger fs-4">My Life Story</h6>
-              <span className="text-primary">By Kamlesh Yadav</span>
+              <h6 className="text-danger fs-4">भ्रमजाल</h6>
+              <span className="text-primary">डॉ. कमलेश कुमार</span>
             </div>
             <p className="mb-0">
-              "Life is a journey filled with both challenges and triumphs. My
-              story is one of resilience, perseverance, and unwavering
-              determination." "There were moments when the road ahead seemed
-              uncertain, and obstacles tested my strength. Yet, I chose to rise,
-              to learn, and to push forward—turning adversity into opportunity."
-              "This is not just my story; it is the story of everyone who dares
-              to dream, who refuses to give up, and who believes that with
-              dedication, anything is possible."
+              कुछ यात्राएँ कलम से नहीं, आत्मा से लिखी जाती हैं। "भ्रमजाल" ऐसी ही एक अनुभूति है, जिसे मैंने केवल शब्दों से नहीं, अपनी चेतना, अपने जीवन और अपने भीतर गूंजते हर प्रश्न के उत्तर की तलाश से रचा है। यह पुस्तक मेरी आवाज़ नहीं, उन सभी मौनों की प्रतिध्वनि है जिन्हें समाज ने अनसुना कर दिया, जिन्हें कभी सवाल पूछने की इजाज़त नहीं मिली।
             </p>
           </div>
           <div className="col-lg-3 mt-5 mt-lg-0 text-center">
