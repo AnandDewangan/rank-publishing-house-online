@@ -51,14 +51,15 @@ const FeaturedBook = () => {
         <div className="row align-items-center">
           <div className="col-lg-3 col-sm-6 text-center">
             <a href="">
-              <img
-                src="/images/cover/cover6.jpg"
-                alt="Bhramjal"
-                className="img-fluid border rounded-3"
-                width={230}
-                style={{box-shadow: 5px 5px 10px black}}
-              />
-            </a>
+  <img
+    src="/images/cover/cover6.jpg"
+    alt="Bhramjal"
+    className="img-fluid border rounded-3"
+    width={230}
+    style={{ boxShadow: "5px 5px 10px black" }}
+  />
+</a>
+
           </div>
           <div className="col-lg-6 col-sm-6 mt-3 mt-sm-0">
             <div className="heading-block">
