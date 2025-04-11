@@ -38,6 +38,18 @@ const FeaturedBook = () => {
       img: "/images/cover/Cover5.jpg",
       title: "Saagara Raagamu",
     },
+    {
+      img: "/images/cover/Cover6.jpg",
+      title: "Bhramjal by Dr. Kamlesh Kumar",
+    },
+    {
+      img: "/images/cover/Cover7.jpg",
+      title: "Natural Vision by Subhadeep Ghosh",
+    },
+    {
+      img: "/images/cover/Cover8.jpg",
+      title: "Known to Unknown by Subhadeep Ghosh",
+    },
   ];
 
   return (
