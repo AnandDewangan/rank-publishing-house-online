@@ -19,37 +19,37 @@ const FeaturedBook = () => {
 
   const books = [
     {
-      img: "/images/cover/Cover1.jpg",
-      title: "Beauty Sleep",
-    },
-    {
-      img: "/images/cover/Cover2.jpg",
-      title: "Eternally Imperfect",
-    },
-    {
-      img: "/images/cover/Cover3.jpg",
-      title: "Samkalin Hindi Sahitya",
-    },
-    {
-      img: "/images/cover/Cover4.jpg",
-      title: "The Cooking God in You",
-    },
-    {
-      img: "/images/cover/Cover5.jpg",
-      title: "Saagara Raagamu",
-    },
-    {
-      img: "/images/cover/Cover6.jpg",
-      title: "Bhramjal by Dr. Kamlesh Kumar",
+      img: "/images/cover/Cover8.jpg",
+      title: "Known to Unknown by Subhadeep Ghosh",
     },
     {
       img: "/images/cover/Cover7.jpg",
       title: "Natural Vision by Subhadeep Ghosh",
     },
     {
-      img: "/images/cover/Cover8.jpg",
-      title: "Known to Unknown by Subhadeep Ghosh",
+      img: "/images/cover/Cover6.jpg",
+      title: "Bhramjal by Dr. Kamlesh Kumar",
     },
+    {
+      img: "/images/cover/Cover5.jpg",
+      title: "Saagara Raagamu",
+    },
+    {
+      img: "/images/cover/Cover4.jpg",
+      title: "The Cooking God in You",
+    },
+    {
+      img: "/images/cover/Cover3.jpg",
+      title: "Samkalin Hindi Sahitya",
+    },
+    {
+      img: "/images/cover/Cover2.jpg",
+      title: "Eternally Imperfect",
+    },
+    {
+      img: "/images/cover/Cover1.jpg",
+      title: "Beauty Sleep",
+    }
   ];
 
   return (
