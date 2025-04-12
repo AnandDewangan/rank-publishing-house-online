@@ -55,15 +55,14 @@ const Hero = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-8 col-12">
-                {/* Rank Publication House - Animated */}
-              <motion.h1
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
-                style={{color:yellow;}}
-              >
-                R<span className="text-danger">A</span>NK PUBLICATION HOUSE
-              </motion.h1>
+               <motion.h1
+  initial={{ y: 50, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 1 }}
+  style={{ color: "yellow" }}
+>
+  R<span className="text-danger">A</span>NK PUBLICATION HOUSE
+</motion.h1>
             </div>
           </div>
         </div>
