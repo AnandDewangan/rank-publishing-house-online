@@ -60,7 +60,7 @@ const Hero = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1 }}
-                className="text-warning"
+                style={{color:yellow;}}
               >
                 R<span className="text-danger">A</span>NK PUBLICATION HOUSE
               </motion.h1>
