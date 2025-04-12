@@ -19,15 +19,15 @@ const FeaturedBook = () => {
 
   const books = [
     {
-      img: "/images/cover/Cover8.jpg",
+      img: "/images/cover/cover8.jpg",
       title: "Known to Unknown by Subhadeep Ghosh",
     },
     {
-      img: "/images/cover/Cover7.jpg",
+      img: "/images/cover/cover7.jpg",
       title: "Natural Vision by Subhadeep Ghosh",
     },
     {
-      img: "/images/cover/Cover6.jpg",
+      img: "/images/cover/cover6.jpg",
       title: "Bhramjal by Dr. Kamlesh Kumar",
     },
     {
