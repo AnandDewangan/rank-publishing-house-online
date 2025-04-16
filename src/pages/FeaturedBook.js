@@ -49,7 +49,7 @@ const FeaturedBook = () => {
     {
       img: "/images/cover/Cover1.jpg",
       title: "Beauty Sleep",
-    }
+    },
   ];
 
   return (
@@ -63,15 +63,14 @@ const FeaturedBook = () => {
         <div className="row align-items-center">
           <div className="col-lg-3 col-sm-6 text-center">
             <a href="">
-  <img
-    src="/images/cover/cover6.jpg"
-    alt="Bhramjal"
-    className="img-fluid border rounded-3"
-    width={230}
-    style={{ boxShadow: "5px 5px 10px black" }}
-  />
-</a>
-
+              <img
+                src="/images/cover/cover6.jpg"
+                alt="Bhramjal"
+                className="img-fluid border rounded-3"
+                width={230}
+                style={{ boxShadow: "5px 5px 10px black" }}
+              />
+            </a>
           </div>
           <div className="col-lg-6 col-sm-6 mt-3 mt-sm-0">
             <div className="heading-block">
@@ -79,7 +78,11 @@ const FeaturedBook = () => {
               <span className="text-primary">डॉ. कमलेश कुमार</span>
             </div>
             <p className="mb-0">
-              कुछ यात्राएँ कलम से नहीं, आत्मा से लिखी जाती हैं। "भ्रमजाल" ऐसी ही एक अनुभूति है, जिसे मैंने केवल शब्दों से नहीं, अपनी चेतना, अपने जीवन और अपने भीतर गूंजते हर प्रश्न के उत्तर की तलाश से रचा है। यह पुस्तक मेरी आवाज़ नहीं, उन सभी मौनों की प्रतिध्वनि है जिन्हें समाज ने अनसुना कर दिया, जिन्हें कभी सवाल पूछने की इजाज़त नहीं मिली।
+              कुछ यात्राएँ कलम से नहीं, आत्मा से लिखी जाती हैं। "भ्रमजाल" ऐसी ही
+              एक अनुभूति है, जिसे मैंने केवल शब्दों से नहीं, अपनी चेतना, अपने
+              जीवन और अपने भीतर गूंजते हर प्रश्न के उत्तर की तलाश से रचा है। यह
+              पुस्तक मेरी आवाज़ नहीं, उन सभी मौनों की प्रतिध्वनि है जिन्हें समाज
+              ने अनसुना कर दिया, जिन्हें कभी सवाल पूछने की इजाज़त नहीं मिली।
             </p>
           </div>
           <div className="col-lg-3 mt-5 mt-lg-0 text-center">
