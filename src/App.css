@@ -586,6 +586,7 @@ strong {
   .hero-section {
     height: calc(90vh - 88px);
     padding-top: 350px;
+    margin-top: 50px;
   }
 }
 
