@@ -29,9 +29,9 @@ export default function Header() {
         </Link>
 
         <div className="d-lg-none ms-auto me-3">
-          <a href="tel:+919171242297" className="btn custom-btn custom-border-btn btn-naira btn-inverted">
-            <i className="btn-icon bi-telephone"></i>
-            <span>Call Now</span>
+          <a href="/author-login" className="btn custom-btn custom-border-btn btn-naira btn-inverted">
+            <i className="btn-icon bi bi-box-arrow-in-right"></i>
+            <span>Login</span>
           </a>
         </div>
 
@@ -66,9 +66,9 @@ export default function Header() {
           </ul>
 
           <div className="d-none d-lg-block">
-            <a href="+919171242297" className="btn custom-btn custom-border-btn btn-naira btn-inverted">
-              <i className="btn-icon bi-telephone"></i>
-              <span>Call Now</span>
+            <a href="/author-login" className="btn custom-btn custom-border-btn btn-naira btn-inverted">
+              <i className="btn-icon bi bi-box-arrow-in-right"></i>
+              <span>Login</span>
             </a>
           </div>
         </div>
