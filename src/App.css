@@ -10,45 +10,44 @@ https://templatemo.com/tm-588-ebook-landing
   CUSTOM PROPERTIES ( VARIABLES )             
 -----------------------------------------*/
 :root {
-  --white-color:                  #ffffff;
-  --primary-color:                #E76F51;
-  --secondary-color:              #E9C46A;
-  --section-bg-color:             #f0f8ff;
-  --custom-btn-bg-color:          #F4A261;
-  --custom-btn-bg-hover-color:    #E76F51;
-  --dark-color:                   #000000;
-  --p-color:                      #717275;
-  --link-hover-color:             #E76F51;
+  --white-color: #ffffff;
+  --primary-color: #e76f51;
+  --secondary-color: #e9c46a;
+  --section-bg-color: #f0f8ff;
+  --custom-btn-bg-color: #f4a261;
+  --custom-btn-bg-hover-color: #e76f51;
+  /* --dark-color:                   #000000; */
+  /* --p-color:                      #717275; */
+  --link-hover-color: #e76f51;
 
-  --body-font-family:             'Unbounded', sans-serif;
+  --body-font-family: "Unbounded", sans-serif;
 
-  --h1-font-size:                 42px;
-  --h2-font-size:                 36px;
-  --h3-font-size:                 28px;
-  --h4-font-size:                 24px;
-  --h5-font-size:                 22px;
-  --h6-font-size:                 20px;
-  --p-font-size:                  16px;
-  --menu-font-size:               12px;
-  --btn-font-size:                14px;
-  --copyright-font-size:          14px;
+  --h1-font-size: 42px;
+  --h2-font-size: 36px;
+  --h3-font-size: 28px;
+  --h4-font-size: 24px;
+  --h5-font-size: 22px;
+  --h6-font-size: 20px;
+  --p-font-size: 16px;
+  --menu-font-size: 12px;
+  --btn-font-size: 14px;
+  --copyright-font-size: 14px;
 
-  --border-radius-large:          100px;
-  --border-radius-medium:         20px;
-  --border-radius-small:          10px;
+  --border-radius-large: 100px;
+  --border-radius-medium: 20px;
+  --border-radius-small: 10px;
 
-  --font-weight-light:            300;
-  --font-weight-normal:           400;
-  --font-weight-semibold:         600;
-  --font-weight-bold:             700;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }
 
 body {
   background-color: var(--white-color);
-  font-family: var(--body-font-family); 
+  font-family: var(--body-font-family);
   overflow-x: hidden;
 }
-
 
 /*---------------------------------------
   TYPOGRAPHY               
@@ -110,7 +109,7 @@ ul li {
   font-weight: var(--font-weight-normal);
 }
 
-a, 
+a,
 button {
   touch-action: manipulation;
   transition: all 0.3s;
@@ -131,7 +130,6 @@ strong {
   font-weight: var(--font-weight-bold);
 }
 
-
 /*---------------------------------------
   SECTION               
 -----------------------------------------*/
@@ -144,7 +142,6 @@ strong {
   background-color: var(--secondary-color);
   color: var(--white-color);
 }
-
 
 /*---------------------------------------
   AVATAR IMAGE               
@@ -170,7 +167,10 @@ strong {
   left: -30px;
 }
 
-.avatar-image-left + .avatar-image-left + .avatar-image-left + .avatar-image-left {
+.avatar-image-left
+  + .avatar-image-left
+  + .avatar-image-left
+  + .avatar-image-left {
   left: -40px;
 }
 
@@ -189,7 +189,6 @@ strong {
   font-size: var(--h3-font-size);
   margin-right: 10px;
 }
-
 
 /*---------------------------------------
   CUSTOM LINK              
@@ -213,7 +212,7 @@ strong {
 }
 
 .link::before {
-  content: '';
+  content: "";
 }
 
 .link--kale::before {
@@ -228,39 +227,38 @@ strong {
 }
 
 @keyframes lineUp {
-    0% {
-      transform-origin: 50% 100%;
-      transform: scale3d(1, 0.045, 1);
-    }
+  0% {
+    transform-origin: 50% 100%;
+    transform: scale3d(1, 0.045, 1);
+  }
 
-    50% {
-      transform-origin: 50% 100%;
-      transform: scale3d(1, 1, 1);
-    }
+  50% {
+    transform-origin: 50% 100%;
+    transform: scale3d(1, 1, 1);
+  }
 
-    51% {
-      transform-origin: 50% 0%;
-      transform: scale3d(1, 1, 1);
-    }
+  51% {
+    transform-origin: 50% 0%;
+    transform: scale3d(1, 1, 1);
+  }
 
-    100% {
-      transform-origin: 50% 0%;
-      transform: scale3d(1, 0.045, 1);
-    }
+  100% {
+    transform-origin: 50% 0%;
+    transform: scale3d(1, 0.045, 1);
+  }
 }
 
 .link--kale::after {
-    content: '';
-    transition: opacity 0.3s;
-    opacity: 0;
-    transition-delay: 0s;
+  content: "";
+  transition: opacity 0.3s;
+  opacity: 0;
+  transition-delay: 0s;
 }
 
 .link--kale:hover::after {
-    opacity: 1;
-    transition-delay: 0.3s;
+  opacity: 1;
+  transition-delay: 0.3s;
 }
-
 
 /*---------------------------------------
   CUSTOM BUTTON               
@@ -310,7 +308,7 @@ strong {
 }
 
 .btn-naira::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -50%;
   width: 200%;
@@ -402,7 +400,6 @@ strong {
   transform: translate3d(0, 100%, 0);
 }
 
-
 /*---------------------------------------
   NAVIGATION              
 -----------------------------------------*/
@@ -478,7 +475,7 @@ strong {
   padding-bottom: 15px;
 }
 
-.navbar-nav .nav-link.active, 
+.navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
   color: var(--primary-color);
 }
@@ -506,7 +503,8 @@ strong {
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
   transition: top 300ms 50ms ease, -webkit-transform 300ms 350ms ease;
   transition: top 300ms 50ms ease, transform 300ms 350ms ease;
-  transition: top 300ms 50ms ease, transform 300ms 350ms ease, -webkit-transform 300ms 350ms ease;
+  transition: top 300ms 50ms ease, transform 300ms 350ms ease,
+    -webkit-transform 300ms 350ms ease;
   top: 0;
 }
 
@@ -531,14 +529,15 @@ strong {
 .navbar-toggler .navbar-toggler-icon:after {
   transition: top 300ms 350ms ease, -webkit-transform 300ms 50ms ease;
   transition: top 300ms 350ms ease, transform 300ms 50ms ease;
-  transition: top 300ms 350ms ease, transform 300ms 50ms ease, -webkit-transform 300ms 50ms ease;
+  transition: top 300ms 350ms ease, transform 300ms 50ms ease,
+    -webkit-transform 300ms 50ms ease;
   position: absolute;
   right: 0;
   left: 0;
   background: var(--white-color);
   width: 30px;
   height: 2px;
-  content: '';
+  content: "";
 }
 
 .navbar-toggler .navbar-toggler-icon::before {
@@ -548,7 +547,6 @@ strong {
 .navbar-toggler .navbar-toggler-icon::after {
   top: 8px;
 }
-
 
 /*---------------------------------------
   HERO        
@@ -575,30 +573,27 @@ strong {
 .hero-section .row {
   position: relative;
   z-index: 22;
-  top: 100px;
 }
 
 .hero-image {
   position: relative;
   z-index: 2;
-  bottom: 100px;
   display: block;
   margin: auto;
 }
 
-@media screen and (min-width: 991px) {
+@media screen and (min-width: 991px) { 
   .hero-section {
     height: calc(90vh - 88px);
     padding-top: 350px;
   }
 }
 
-
 /*---------------------------------------
   FEATURED              
 -----------------------------------------*/
 .featured-section {
-  background-color: rgba(109, 80, 60, 0.858);
+  background-color: #54200b;
   position: relative;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -617,12 +612,11 @@ strong {
   pointer-events: none;
 }
 
-
 /*---------------------------------------
   CUSTOM BLOCK              
 -----------------------------------------*/
 .custom-block {
-  background-image: url('./images/businessman-sitting-by-table-cafe.jpg');
+  background-image: url("./images/businessman-sitting-by-table-cafe.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -682,7 +676,6 @@ strong {
   line-height: 1.8;
 }
 
-
 /*---------------------------------------
   THE BOOK SECTION            
 -----------------------------------------*/
@@ -710,8 +703,8 @@ strong {
 }
 
 .nav-pills .nav-link:hover,
-.nav-pills .nav-link.active, 
-.nav-pills .show>.nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   background: var(--primary-color);
   color: var(--white-color);
 }
@@ -769,8 +762,7 @@ strong {
   width: 350px;
   height: 350px;
   object-fit: cover;
-} 
-
+}
 
 /*---------------------------------------
   CONTACT               
@@ -811,7 +803,6 @@ strong {
   font-size: var(--copyright-font-size);
 }
 
-
 /*---------------------------------------
   EBOOK DOWNLOAD FORM               
 -----------------------------------------*/
@@ -821,7 +812,6 @@ strong {
   z-index: 2;
   padding: 50px;
 }
-
 
 /*---------------------------------------
   CUSTOM FORM               
@@ -865,7 +855,17 @@ strong {
   transition: opacity 0.3s ease;
 }
 
-.input-group:not(.has-validation)>.dropdown-toggle:nth-last-child(n+3), .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-control, .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-select, .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+.input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n + 3),
+.input-group:not(.has-validation)
+  > .form-floating:not(:last-child)
+  > .form-control,
+.input-group:not(.has-validation)
+  > .form-floating:not(:last-child)
+  > .form-select,
+.input-group:not(.has-validation)
+  > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(
+    .form-floating
+  ) {
   border-radius: var(--border-radius-large);
 }
 
@@ -885,7 +885,6 @@ strong {
   background: var(--custom-btn-bg-hover-color);
   border-color: transparent;
 }
-
 
 /*---------------------------------------
   SOCIAL ICON               
@@ -920,7 +919,6 @@ strong {
   color: var(--white-color);
 }
 
-
 /*---------------------------------------
   RESPONSIVE STYLES               
 -----------------------------------------*/
@@ -953,7 +951,7 @@ strong {
     padding-top: 50px;
     padding-bottom: 50px;
   }
-  
+
   .navbar {
     background-color: rgba(0, 0, 0, 0.65);
   }
@@ -1020,7 +1018,7 @@ strong {
     top: 5px;
   }
 
-  .btn-naira > span, 
+  .btn-naira > span,
   .btn-naira .btn-icon {
     font-size: 12px;
     padding: 5px 15px;
@@ -1054,4 +1052,114 @@ strong {
 
 .social-link.whatsapp:hover {
   color: #28a745 !important; /* Bootstrap Success Color */
+}
+
+/* 🔹 Modal Background Overlay */
+.overlay-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6); /* 🔹 Dark Transparent Background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* 🔹 Modal Content */
+.image-modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* 🔹 Image Inside Modal */
+.modal-image {
+  max-width: 80%;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+/* 🔹 Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px; /* Adjust based on column width */
+  display: inline-block;
+  font-size: 14px; /* 🔹 Slightly bigger font */
+  font-weight: 500;
+  vertical-align: middle;
+  padding: 5px 8px;
+  cursor: pointer; /* 🔹 Indicate interactivity */
+  transition: color 0.3s ease-in-out;
+}
+
+.book-cover-container {
+  max-width: 120px;
+  margin-right: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.book-cover {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 2px solid #f0f0f0;
+  border-radius: 10px;
+}
+
+.login-box {
+  border-radius: 8px;
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+button:focus {
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.dropdown-item {
+  padding: 8px 16px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #dee2e6;
+  margin: 4px 0;
 }
