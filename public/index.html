@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    
+
     <!-- SEO Optimized Meta Tags -->
     <meta name="description" content="Rank Publishing House - India's Best and Top Book Publisher. Get your book published with us and reach millions of readers!" />
     <meta name="keywords" content="Best Book Publisher, Top Publishing House, Book Publishing, Self Publishing, India, Rank Publishing House" />
     <meta name="author" content="Rank Publishing House" />
-    
+
     <!-- Open Graph Meta Tags (For Social Media) -->
     <meta property="og:title" content="Rank Publishing House - Best Book Publisher in India" />
     <meta property="og:description" content="Publish your book with Rank Publishing House and become a bestselling author!" />
@@ -24,8 +25,13 @@
     <meta name="twitter:description" content="Get your book published with Rank Publishing House and reach a global audience!" />
     <meta name="twitter:image" content="%PUBLIC_URL%/favicon.png" />
 
+    <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
+
+    <!-- Web Manifest -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Title -->
     <title>Rank Publishing House - India's Best and Top Book Publisher. Get your book published with us and reach millions of readers!</title>
 
     <!-- Bootstrap & Main CSS -->
@@ -43,13 +49,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet" />
 
-    <script src="https://apis.google.com/js/api.js"></script> 
-  </head>
-  <body>
+    <!-- Google API Script (if needed) -->
+    <script src="https://apis.google.com/js/api.js"></script>
+</head>
+
+<body>
+    <!-- For JavaScript to work -->
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!-- Root div where React app will be injected -->
     <div id="root"></div>
 
     <!-- Bootstrap Bundle -->
     <script src="%PUBLIC_URL%/assets/js/bootstrap.bundle.min.js"></script>
-  </body>
+
+    <!-- Register the service worker (if needed for offline usage and caching) -->
+    <script src="%PUBLIC_URL%/service-worker-registration.js"></script>
+</body>
+
 </html>
