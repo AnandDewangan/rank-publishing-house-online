@@ -46,15 +46,15 @@ const AddAuthor = () => {
     const isbnRegex = /^[0-9]{15}$/;
 
     if (!emailRegex.test(formData.email)) {
-      toast.error("❌ Invalid email format");
+      toast.error("Invalid email format");
       return false;
     }
     if (!contactRegex.test(formData.contact_no)) {
-      toast.error("❌ Invalid contact number");
+      toast.error("Invalid contact number");
       return false;
     }
     if (!accountNumberRegex.test(formData.account_number)) {
-      toast.error("❌ Invalid account number");
+      toast.error("Invalid account number");
       return false;
     }
     if (!ifscRegex.test(formData.ifsc_code)) {
@@ -62,7 +62,7 @@ const AddAuthor = () => {
       return false;
     }
     if (!upiRegex.test(formData.upi_id)) {
-      toast.error("❌ Invalid UPI ID");
+      toast.error("Invalid UPI ID");
       return false;
     }
     if (!isbnRegex.test(formData.isbn)) {
@@ -113,7 +113,7 @@ const AddAuthor = () => {
         bio: "",
       });
     } catch (err) {
-      toast.error(`❌ ${err.message}`);
+      toast.error(`${err.message}`);
     } finally {
       setLoading(false);
     }
@@ -147,7 +147,7 @@ const AddAuthor = () => {
                   <BiHome />
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
-                  <a href="/" className="text-decoration-none fw-semibold">
+                  <a href="/admin-dashboard" className="text-decoration-none fw-semibold">
                     Home
                   </a>
                 </li>
