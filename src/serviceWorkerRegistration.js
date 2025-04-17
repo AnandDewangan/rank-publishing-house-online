@@ -14,7 +14,7 @@ export function register(config) {
     if (publicUrl.origin !== window.location.origin) return;
 
     window.addEventListener('load', () => {
-      const swUrl = `/service-worker.js`;
+      const swUrl = `/service-worker.js`; // Fix path for service worker
 
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
