@@ -105,7 +105,7 @@ export default function Footer() {
               </div>
 
               <p className="copyright-text mt-4">
-                Copyright © 2025 Rank Publishing House <br />
+                Copyright © 2025. All rights reserved by <a href="https://www.rankpublishinghouse.online">Rank Publishing House</a> <br />
               </p>
             </Col>
           </Row>
