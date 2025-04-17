@@ -2,15 +2,19 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Footer() {
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") || "blue-theme"
-  );
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "blue-theme");
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-bs-theme", theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
+
+  // Function to toggle the settings menu
+  const handleThemeChange = (newTheme) => {
+    setTheme(newTheme);
+    setIsOpen(false); // Close the settings menu after selecting a theme
+  };
 
   return (
     <>
@@ -23,7 +27,7 @@ export default function Footer() {
             rel="noopener noreferrer"
           >
             Rank Publishing House
-          </a> 
+          </a>
         </p>
       </footer>
 
@@ -46,8 +50,6 @@ export default function Footer() {
             className="material-icons-outlined"
             style={{ fontSize: "22px" }}
           >
-            {" "}
-            {/* 🔹 Icon size chhota */}
             settings
           </span>
         </button>
@@ -72,22 +74,21 @@ export default function Footer() {
           >
             {[
               { id: "blue-theme", icon: "wb_sunny", color: "#007bff" }, // Blue Theme
-              { id: "light-theme", icon: "nights_stay", color: "#f8f9fa" }, // Light Theme
               { id: "semi-dark", icon: "contrast", color: "#343a40" }, // Semi Dark
             ].map((themeOption) => (
               <motion.button
                 key={themeOption.id}
-                className="rounded-circle p-2 shadow border-0" // p-2 for small padding
+                className="rounded-circle p-2 shadow border-0"
                 style={{
                   backgroundColor: themeOption.color,
-                  color: themeOption.id === "light-theme" ? "#000" : "#fff", // Light theme ke liye dark text
+                  color: themeOption.id === "light-theme" ? "#000" : "#fff",
                   width: "40px", // 🔹 Chhota button
                   height: "40px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
-                onClick={() => setTheme(themeOption.id)}
+                onClick={() => handleThemeChange(themeOption.id)} // Close the settings menu on theme change
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -95,8 +96,6 @@ export default function Footer() {
                   className="material-icons-outlined"
                   style={{ fontSize: "20px" }}
                 >
-                  {" "}
-                  {/* 🔹 Chhota icon */}
                   {themeOption.icon}
                 </span>
               </motion.button>
