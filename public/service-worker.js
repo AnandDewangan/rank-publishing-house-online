@@ -1,6 +1,5 @@
 const CACHE_NAME = 'v1';
 const CACHE_URLS = [
-  '/',                                      // Home page
   '/index.html'
 ];
 
