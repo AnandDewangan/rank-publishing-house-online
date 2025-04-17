@@ -1169,3 +1169,6 @@ button:focus {
   background-color: #dee2e6;
   margin: 4px 0;
 }
+.page-footer{
+  padding: 30px;
+}
