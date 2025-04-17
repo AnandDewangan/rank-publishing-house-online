@@ -12,14 +12,27 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log("Caching assets");
-      return cache.addAll(CACHE_URLS);
+      // Fetch each URL and cache it
+      return Promise.all(
+        CACHE_URLS.map((url) => {
+          return fetch(url)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`Failed to fetch ${url}`);
+              }
+              return cache.put(url, response);
+            })
+            .catch((error) => {
+              console.error(`Failed to cache ${url}:`, error);
+            });
+        })
+      );
     })
   );
 });
 
 self.addEventListener("activate", (event) => {
   console.log("Service Worker activating.");
-  // Optionally clean up old caches
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
