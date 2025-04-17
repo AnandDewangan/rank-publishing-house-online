@@ -1,7 +1,7 @@
 {
   "id": "/",
-  "short_name": "Rank Publishing House",
-  "name": "Create React App Sample",
+  "short_name": "Rank",
+  "name": "Publishing House",
   "icons": [
     {
       "src": "favicon.ico",
