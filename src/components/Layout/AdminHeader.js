@@ -32,16 +32,16 @@ export default function AdminHeader() {
               Author List
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/inquiry-form" className="nav-link fw-semibold text-primary">
-              Inquiry Form
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/pif-form" className="nav-link fw-semibold text-primary">
-              PIF Form
-            </Link>
-          </li>
+          // <li className="nav-item">
+          //   <Link to="/inquiry-form" className="nav-link fw-semibold text-primary">
+          //     Inquiry Form
+          //   </Link>
+          // </li>
+          // <li className="nav-item">
+          //   <Link to="/pif-form" className="nav-link fw-semibold text-primary">
+          //     PIF Form
+          //   </Link>
+          // </li>
           <li className="nav-item">
             <button onClick={handleLogout} className="btn btn-outline-danger btn-sm">
               <BiLogOut />
