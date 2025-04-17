@@ -13,18 +13,18 @@ const WhoWeAre = () => {
         "We provide unbelievable Print On Demand Lifetime Inventory on International Print Quality for your books. We provide best POD service for your book.",
     },
     {
-      icon: "bi-truck",
-      title: "Quick Service",
-      color: "text-danger",
-      description:
-        "With quick publishing within 7 to 10 Days only, your book will be ready for worldwide distribution as print and eBook. We ensure fastest service is delivered to you.",
-    },
-    {
       icon: "bi-people-fill",
       title: "Support",
       color: "text-success",
       description:
         "Get a dedicated Project flow while publishing and a caring post-publishing support once released. You are provided with best in class support platforms.",
+    },
+    {
+      icon: "bi-truck",
+      title: "Quick Service",
+      color: "text-danger",
+      description:
+        "With quick publishing within 7 to 10 Days only, your book will be ready for worldwide distribution as print and eBook. We ensure fastest service is delivered to you.",
     },
     {
       icon: "bi-globe",
