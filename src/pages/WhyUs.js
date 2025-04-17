@@ -36,7 +36,7 @@ export default function WhyUs() {
                 vision with the world. We offer book publishing, cover designing, sales, and distribution services at
                 the most economical prices.
               </h4>
-              <Button variant="danger" href="/about-us">
+              <Button variant="danger" href="/about">
                 Learn More
               </Button>
             </div>
