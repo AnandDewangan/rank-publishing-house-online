@@ -1,13 +1,15 @@
-const CACHE_NAME = 'v1';
+const CACHE_NAME = 'v1'; // Increment this when assets change
 const CACHE_URLS = [
   '/',
   '/index.html',
   '/static/js/main.js',
   '/static/css/main.css',
   '/static/media/logo.5e350eac0a92c9b8a15f.png',
-  // add other files you want to cache for offline usage
+  '/offline.html', // Fallback page for offline use
+  // Add other files you want to cache for offline usage
 ];
 
+// Install Service Worker and cache files
 self.addEventListener("install", (event) => {
   console.log("Service Worker installing.");
   event.waitUntil(
@@ -18,9 +20,9 @@ self.addEventListener("install", (event) => {
   );
 });
 
+// Activate Service Worker and clean up old caches
 self.addEventListener("activate", (event) => {
   console.log("Service Worker activating.");
-  // Optionally clean up old caches
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
@@ -35,13 +37,20 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// Fetch event - handle cache and network
 self.addEventListener("fetch", (event) => {
   console.log("Fetching:", event.request.url);
 
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      // Return cached response if available, else fetch from network
-      return cachedResponse || fetch(event.request);
+      if (cachedResponse) {
+        return cachedResponse; // Return from cache if available
+      }
+
+      return fetch(event.request).catch(() => {
+        // If network fails, fallback to offline.html (ensure it's cached)
+        return caches.match('/offline.html');
+      });
     })
   );
 });
