@@ -47,7 +47,7 @@ const Hero = () => {
               </a>
 
               {/* Email Us Button */}
-              <a href="mailto:books@rankpublication.com" className="btn btn-outline-light smoothscroll">
+              <a href="mailto:books@rankpublishinghouse.online" className="btn btn-outline-light smoothscroll">
                 <i className="bi bi-envelope-fill"></i> Email Us
               </a>
             </div>
