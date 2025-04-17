@@ -23,5 +23,30 @@
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "scope": "/", 
-  "orientation": "portrait" 
+  "screenshots": [
+  {
+    "src": "screenshot-desktop1.png",
+    "sizes": "1280x800",
+    "type": "image/png",
+    "form_factor": "wide"
+  },
+  {
+    "src": "screenshot-desktop2.png",
+    "sizes": "1280x800",
+    "type": "image/png",
+    "form_factor": "wide"
+  },
+  {
+    "src": "screenshot-mobile1.png",
+    "sizes": "375x667",
+    "type": "image/png",
+    "form_factor": "narrow"
+  },
+  {
+    "src": "screenshot-mobile2.png",
+    "sizes": "375x667",
+    "type": "image/png",
+    "form_factor": "narrow"
+  }
+]
 }
