@@ -47,13 +47,13 @@ export default function FeaturesSection() {
               Have more queries? Register to get a complete publishing consultancy, from writing to
               publishing worldwide. Or check our FAQ section.
             </p>
-            <Button
+            <a
               variant="outline-danger"
               className="rounded-pill fw-semibold"
-              href=""
+              href="tel: +919171242297"
             >
               <i className="bi bi-question-circle me-2"></i> Know More
-            </Button>
+            </a>
           </Col>
         </Row>
       </Container>
