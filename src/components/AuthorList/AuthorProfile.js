@@ -124,7 +124,7 @@ const AuthorProfile = () => {
                     <img
                       src={
                         author.image_path
-                          ? `http://localhost:5000/uploads/${author.image_path}`
+                          ? `${baseURL}/uploads/${author.image_path}`
                           : BoyImg
                       }
                       alt="Profile"
