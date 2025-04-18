@@ -49,34 +49,40 @@ const AuthorProfile = () => {
   };
 
   const handleSave = () => {
-    const updateData = new FormData();
-    
-    Object.keys(formData).forEach((key) => {
-      if (formData[key]) {
-        updateData.append(key, formData[key]);
-      }
-    });
-  
-    if (selectedFile) {
-      updateData.append("image_path", selectedFile);
+  const updateData = new FormData();
+
+  // ✅ First append normal fields
+  Object.entries(formData).forEach(([key, value]) => {
+    if (key !== "image_path") {
+      updateData.append(key, value);
     }
-  
-    axios
-      .put(`${baseURL}/api/authors/${id}`, updateData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then(() => {
-        setAuthor({
-          ...formData,
-          image_path: selectedImage
-            ? URL.createObjectURL(selectedImage)
-            : author.image_path,
-        });
-        setEditMode(false);
-        toast.success("Author updated successfully!");
-      })
-      .catch(() => toast.error("Error updating author details"));
-  };
+  });
+
+  // ✅ Only append image_path if file is selected
+  if (selectedFile) {
+    updateData.append("image_path", selectedFile);
+  }
+
+  axios
+    .put(`${baseURL}/api/authors/${id}`, updateData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+    .then(() => {
+      setAuthor({
+        ...formData,
+        image_path: selectedImage
+          ? URL.createObjectURL(selectedImage)
+          : author.image_path,
+      });
+      setEditMode(false);
+      toast.success("Author updated successfully!");
+    })
+    .catch((err) => {
+      console.error("Error updating:", err);
+      toast.error("Error updating author details");
+    });
+};
+
 
   if (!author) return <h2>Loading author details...</h2>;
 
