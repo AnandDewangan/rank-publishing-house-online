@@ -27,7 +27,6 @@ const SalesChart = () => {
           });
         } catch (error) {
           toast.error(`Failed to fetch sales chart data: ${error.message}`);
-          console.error(error);
           setChartData({
             categories: [],
             series: [{ name: "Sales", data: [] }],
