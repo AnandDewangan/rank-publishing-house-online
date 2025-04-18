@@ -139,7 +139,7 @@ const BookList = ({
                 <div className="col-md-2 d-flex justify-content-around align-items-center">
                   <div className="book-cover-container">
                     <img
-                      src={`http://localhost:5000/uploads/${book.cover_image}`}
+                      src={`${baseURL}/uploads/${book.cover_image}`}
                       alt={book.title}
                       className="img-fluid book-cover"
                     />
