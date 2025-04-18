@@ -79,12 +79,14 @@ const AddAuthor = () => {
     setLoading(true);
 
     const formPayload = new FormData();
-Object.keys(formData).forEach((key) => {
-  // Only append the image file if it exists
-  if (key === "image_path" && formData[key]) {
-    formPayload.append("image_path", formData[key]);
-  } else if (key !== "image_path") {
-    formPayload.append(key, formData[key]);
+
+Object.entries(formData).forEach(([key, value]) => {
+  if (key === "image_path") {
+    if (value instanceof File) {
+      formPayload.append("image_path", value); // ✅ Append only actual file
+    }
+  } else {
+    formPayload.append(key, value);
   }
 });
 
