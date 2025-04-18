@@ -44,7 +44,7 @@ const AuthorSalesChart = () => {
 
   useEffect(() => {
     const authorId = localStorage.getItem("authorId");
-    console.log("🟩 Author ID from localStorage:", authorId); // <- ADD THIS LINE
+    // console.log("🟩 Author ID from localStorage:", authorId); // <- ADD THIS LINE
   
     if (!authorId) {
       setLoading(false);
@@ -54,7 +54,7 @@ const AuthorSalesChart = () => {
     axios
       .get(`${baseURL}/api/orders/author-sales/${authorId}`)
       .then((response) => {
-        console.log("🟦 Response Data:", response.data); // <- ADD THIS TOO
+        // console.log("🟦 Response Data:", response.data); // <- ADD THIS TOO
   
         const { total_amazon = 0, total_flipkart = 0, total_other = 0 } =
           response.data || {};
@@ -65,7 +65,7 @@ const AuthorSalesChart = () => {
         }));
       })
       .catch((error) => {
-        console.error("❌ Error fetching sales data:", error);
+        // console.error("❌ Error fetching sales data:", error);
       })
       .finally(() => {
         setLoading(false);
