@@ -42,8 +42,8 @@ const AddAuthor = () => {
     const contactRegex = /^[6-9]\d{9}$/;
     const accountNumberRegex = /^\d{9,18}$/;
     const ifscRegex = /^[A-Z]{4}0[A-Z0-9]{6}$/;
-    const upiRegex = /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/;
-    const isbnRegex = /^[0-9]{15}$/;
+    // const upiRegex = /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/;
+    const isbnRegex = /^[0-9]{13}$/;
 
     if (!emailRegex.test(formData.email)) {
       toast.error("Invalid email format");
@@ -61,12 +61,12 @@ const AddAuthor = () => {
       toast.error("❌ Invalid IFSC code");
       return false;
     }
-    if (!upiRegex.test(formData.upi_id)) {
-      toast.error("Invalid UPI ID");
-      return false;
-    }
+    // if (!upiRegex.test(formData.upi_id)) {
+    //   toast.error("Invalid UPI ID");
+    //   return false;
+    // }
     if (!isbnRegex.test(formData.isbn)) {
-      toast.error("Invalid ISBN! It should be exactly 15 digits.");
+      toast.error("Invalid ISBN! It should be exactly 13 digits.");
       return false;
     }
     return true;
@@ -319,7 +319,6 @@ const AddAuthor = () => {
                   className="form-control"
                   placeholder="UPI ID"
                   onChange={handleChange}
-                  required
                 />
               </div>
             </div>
