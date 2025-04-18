@@ -136,10 +136,10 @@ const AuthorProfile = () => {
                   {/* Left Column: Labels */}
                   <div className="col-3 fw-bold">
                     <p>Email</p>
-                    <p>Contact</p>
-                    <p>First Book</p>
-                    <p>Password</p>
-                    <p>Account No</p>
+                    <p>Mobile</p>
+                    <p>Book</p>
+                    <p>Pass</p>
+                    <p>Account</p>
                     <p>Bank</p>
                     <p>UPI ID</p>
                   </div>
