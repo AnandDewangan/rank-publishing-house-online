@@ -1,28 +1,35 @@
 const CACHE_NAME = "v1";
-const CACHE_URLS = ["/index.html", "/"]; // Add more static assets as needed
+const CACHE_URLS = ["/index.html"];
 
-// ✅ Install: Pre-cache essential resources
 self.addEventListener("install", (event) => {
   console.log("[Service Worker] Installing...");
-
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
+    caches.open(CACHE_NAME).then(async (cache) => {
       console.log("[Service Worker] Caching assets...");
-      return cache.addAll(CACHE_URLS);
+      try {
+        for (const url of CACHE_URLS) {
+          const response = await fetch(url);
+          if (response.ok) {
+            await cache.put(url, response.clone());
+          } else {
+            console.warn(`[Service Worker] Failed to fetch ${url}:`, response.status);
+          }
+        }
+      } catch (err) {
+        console.error("[Service Worker] Installation error:", err);
+      }
     })
   );
 });
 
-// ✅ Activate: Cleanup old caches
 self.addEventListener("activate", (event) => {
   console.log("[Service Worker] Activating...");
-
   event.waitUntil(
     caches.keys().then((cacheNames) =>
       Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log("[Service Worker] Removing old cache:", cacheName);
+            console.log("[Service Worker] Deleting old cache:", cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -36,9 +43,10 @@ self.addEventListener("fetch", (event) => {
 
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      const fetchPromise = fetch(event.request)
+      if (cachedResponse) return cachedResponse;
+
+      return fetch(event.request)
         .then((networkResponse) => {
-          // Validate the response
           if (
             !networkResponse ||
             networkResponse.status !== 200 ||
@@ -47,21 +55,27 @@ self.addEventListener("fetch", (event) => {
             return networkResponse;
           }
 
-          // ✅ Clone before cache so we don’t consume the stream
-          const responseClone = networkResponse.clone();
+          const clonedResponse = networkResponse.clone();
+
           caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
+            cache.put(event.request, clonedResponse).catch((err) => {
+              console.warn("[Service Worker] Cache put failed:", err);
+            });
           });
 
-          return networkResponse; // Safe to return original
+          return networkResponse;
         })
         .catch((err) => {
-          console.warn("[Service Worker] Fetch failed:", err);
-          return cachedResponse; // fallback to cache if fetch fails
+          console.error("[Service Worker] Fetch failed:", err);
+          return new Response(
+            "⚠️ You are offline and this resource is not cached.",
+            {
+              status: 503,
+              statusText: "Service Unavailable",
+              headers: { "Content-Type": "text/plain" },
+            }
+          );
         });
-
-      return cachedResponse || fetchPromise;
     })
   );
 });
-
