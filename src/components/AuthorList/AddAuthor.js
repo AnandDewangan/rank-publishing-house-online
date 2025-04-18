@@ -79,9 +79,15 @@ const AddAuthor = () => {
     setLoading(true);
 
     const formPayload = new FormData();
-    Object.keys(formData).forEach((key) =>
-      formPayload.append(key, formData[key])
-    );
+Object.keys(formData).forEach((key) => {
+  // Only append the image file if it exists
+  if (key === "image_path" && formData[key]) {
+    formPayload.append("image_path", formData[key]);
+  } else if (key !== "image_path") {
+    formPayload.append(key, formData[key]);
+  }
+});
+
 
     try {
       const res = await fetch(`${baseURL}/api/authors/add`, {
