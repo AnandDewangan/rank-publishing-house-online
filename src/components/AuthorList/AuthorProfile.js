@@ -207,7 +207,7 @@ const AuthorProfile = () => {
                     <img
                       src={
                         selectedImage ||
-                        `http://localhost:5000/uploads/${author.image_path}`
+                        `${baseURL}/uploads/${author.image_path}`
                       }
                       alt="Change Profile"
                       className="image-preview mt-2"
