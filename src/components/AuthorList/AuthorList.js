@@ -41,7 +41,6 @@ export default function AuthorList() {
         });
         setAuthors(res.data);
       } catch (err) {
-        console.error("Error fetching authors:", err.response?.data || err.message);
         toast.error("Failed to fetch authors.");
       }
     };
