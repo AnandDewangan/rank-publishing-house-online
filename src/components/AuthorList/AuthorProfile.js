@@ -132,9 +132,9 @@ const AuthorProfile = () => {
                   </div>
                 </div>
                 <hr />
-                <div className="d-flex align-items-center justify-content-between flex-wrap">
+                <div className="row">
                   {/* Left Column: Labels */}
-                  <div className="fw-bold">
+                  <div className="col-md-3 fw-bold">
                     <p>Email:</p>
                     <p>Contact:</p>
                     <p>First Book:</p>
@@ -145,7 +145,7 @@ const AuthorProfile = () => {
                   </div>
 
                   {/* Right Column: Values */}
-                  <div className="">
+                  <div className="col-md-9 text-end">
                     <p>
                       <a href={`mailto:${author.email}`}>{author.email}</a>
                     </p>
