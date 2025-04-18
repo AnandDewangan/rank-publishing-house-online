@@ -134,18 +134,18 @@ const AuthorProfile = () => {
                 <hr />
                 <div className="row">
                   {/* Left Column: Labels */}
-                  <div className="col-md-3 fw-bold">
-                    <p>Email:</p>
-                    <p>Contact:</p>
-                    <p>First Book:</p>
-                    <p>Password:</p>
-                    <p>Account No:</p>
-                    <p>Bank:</p>
-                    <p>UPI ID:</p>
+                  <div className="col-3 fw-bold">
+                    <p>Email</p>
+                    <p>Contact</p>
+                    <p>First Book</p>
+                    <p>Password</p>
+                    <p>Account No</p>
+                    <p>Bank</p>
+                    <p>UPI ID</p>
                   </div>
 
                   {/* Right Column: Values */}
-                  <div className="col-md-9 text-end">
+                  <div className="col-9 text-end">
                     <p>
                       <a href={`mailto:${author.email}`}>{author.email}</a>
                     </p>
