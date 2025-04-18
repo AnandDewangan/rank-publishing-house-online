@@ -6,25 +6,23 @@ const CACHE_URLS = [
 self.addEventListener("install", (event) => {
   // console.log("Service Worker installing.");
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      // console.log("Caching assets");
-      // Fetch each URL and cache it
-      return Promise.all(
-        CACHE_URLS.map((url) => {
-          return fetch(url)
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error(`Failed to fetch ${url}`);
-              }
-              return cache.put(url, response);
-            })
-            .catch((error) => {
-              // console.error(`Failed to cache ${url}:`, error);
-            });
-        })
-      );
-    })
-  );
+  caches.open(CACHE_NAME).then((cache) => {
+    return Promise.all(
+      CACHE_URLS.map(async (url) => {
+        try {
+          const response = await fetch(url);
+          if (response.ok) {
+            await cache.put(url, response.clone());
+          } else {
+            console.warn(`Fetch failed for ${url}`, response.status);
+          }
+        } catch (err) {
+          console.error(`Error fetching ${url}:`, err);
+        }
+      })
+    );
+  })
+);
 });
 
 self.addEventListener("activate", (event) => {
