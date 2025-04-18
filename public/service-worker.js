@@ -46,7 +46,7 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       // Return cached response if available, else fetch from network
-      return cachedResponse || fetch(event.request);
+      return cachedResponse;
     })
   );
 });
