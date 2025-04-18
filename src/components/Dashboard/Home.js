@@ -2,6 +2,7 @@ import React from "react";
 import AuthorChart from "./AuthorChart";
 import AuthorMonthlyChart from "./AuthorMonthlyChart";
 import AuthorSalesChart from "./AuthorSalesChart";
+import MapSection from "./MapSection";
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
           </div>
           <div className="col-lg-8">
             <AuthorMonthlyChart />
+          </div>
+          <div className="col-xxl-12">
+            <MapSection />
           </div>
         </div>
       </div>
