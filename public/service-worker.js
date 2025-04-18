@@ -31,7 +31,6 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// ✅ Fetch: Serve from cache, fallback to network, then update cache
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
@@ -39,6 +38,7 @@ self.addEventListener("fetch", (event) => {
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request)
         .then((networkResponse) => {
+          // Validate the response
           if (
             !networkResponse ||
             networkResponse.status !== 200 ||
@@ -47,20 +47,21 @@ self.addEventListener("fetch", (event) => {
             return networkResponse;
           }
 
-          // Update cache with latest version
+          // ✅ Clone before cache so we don’t consume the stream
+          const responseClone = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, networkResponse.clone());
+            cache.put(event.request, responseClone);
           });
 
-          return networkResponse;
+          return networkResponse; // Safe to return original
         })
         .catch((err) => {
           console.warn("[Service Worker] Fetch failed:", err);
           return cachedResponse; // fallback to cache if fetch fails
         });
 
-      // Prefer cached version, but update in background
       return cachedResponse || fetchPromise;
     })
   );
 });
+
