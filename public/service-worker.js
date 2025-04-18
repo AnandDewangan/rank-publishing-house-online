@@ -4,10 +4,10 @@ const CACHE_URLS = [
 ];
 
 self.addEventListener("install", (event) => {
-  console.log("Service Worker installing.");
+  // console.log("Service Worker installing.");
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log("Caching assets");
+      // console.log("Caching assets");
       // Fetch each URL and cache it
       return Promise.all(
         CACHE_URLS.map((url) => {
@@ -19,7 +19,7 @@ self.addEventListener("install", (event) => {
               return cache.put(url, response);
             })
             .catch((error) => {
-              console.error(`Failed to cache ${url}:`, error);
+              // console.error(`Failed to cache ${url}:`, error);
             });
         })
       );
@@ -28,13 +28,13 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-  console.log("Service Worker activating.");
+  // console.log("Service Worker activating.");
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log("Deleting old cache", cacheName);
+            // console.log("Deleting old cache", cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -44,7 +44,7 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  console.log("Fetching:", event.request.url);
+  // console.log("Fetching:", event.request.url);
 
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
