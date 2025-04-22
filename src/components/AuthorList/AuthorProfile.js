@@ -147,6 +147,7 @@ const AuthorProfile = () => {
                     <p>Pass</p>
                     <p>Account</p>
                     <p>Bank</p>
+                    <p>IFSC Code</p>
                     <p>UPI ID</p>
                   </div>
 
@@ -166,6 +167,7 @@ const AuthorProfile = () => {
                     <p>
                       {author.bank_name} ({author.account_type})
                     </p>
+                    <p>{author.ifsc_code}</p>
                     <p>{author.upi_id}</p>
                   </div>
                 </div>
