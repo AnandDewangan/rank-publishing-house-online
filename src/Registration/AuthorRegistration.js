@@ -82,8 +82,8 @@ export default function AuthorRegistration() {
                     <Form.Label><i className="bi bi-tag-fill me-2"></i> Select Package*</Form.Label>
                     <Form.Select name="form-cf-14" required>
                       <option disabled selected value="">Select One</option>
-                      <option value="Classic (Starts @ Rs.4,999)">Classic (Starts @ Rs.4,999)</option>
-                      <option value="Supreme (Starts @ Rs.7,999)">Gold (Starts @ Rs.7,999)</option>
+                      <option value="Classic (Starts @ Rs.5,999)">Classic (Starts @ Rs.5,999)</option>
+                      <option value="Supreme (Starts @ Rs.7,999)">Supreme (Starts @ Rs.7,999)</option>
                       <option value="Platinum (Starts @ Rs.11,999)">Platinum (Starts @ Rs.11,999)</option>
                       <option value="Not-sure">Not sure yet</option>
                     </Form.Select>
