@@ -62,7 +62,7 @@ const AuthorProfile = () => {
   }
 
   axios
-    .put(`${baseURL}/api/authors/update/${id}`, updateData)
+    .put(`${baseURL}/api/authors/${id}`, updateData)
     .then(() => {
       setAuthor({
         ...formData,
