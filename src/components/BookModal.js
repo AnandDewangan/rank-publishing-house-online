@@ -260,7 +260,7 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId  }) => {
                     {bookToEdit && bookToEdit.cover_image && (
                       <div className="mt-2">
                         <img
-                          src={`${baseURL}/uploads/${book.cover_image}`}
+                          src={`${baseURL}/uploads/${formData.cover_image}`}
                           alt={bookToEdit.title}
                           width="100"
                         />
