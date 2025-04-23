@@ -20,20 +20,20 @@ const Hero = () => {
 
   const books = [
     {
-      img: "/images/cover/Cover12.jpg",
-      title: "Serial Killer Sulgati Rakh, Praveen Pamal",
-    },
-    {
-      img: "/images/cover/Cover11.jpg",
-      title: "Vimuktnama, Dr. B.P. Chavhan",
-    },
-    {
       img: "/images/cover/Cover10.jpg",
       title: "Bhukha Hindusthan, Jivan Kumar",
     },
     {
       img: "/images/cover/Cover9.jpg",
       title: "Jivan ko sahi disha me jeene ki raah, Harish Kumar",
+    },
+    {
+      img: "/images/cover/Cover12.jpg",
+      title: "Serial Killer Sulgati Rakh, Praveen Pamal",
+    },
+    {
+      img: "/images/cover/Cover11.jpg",
+      title: "Vimuktnama, Dr. B.P. Chavhan",
     },
     {
       img: "/images/cover/cover8.jpg",
