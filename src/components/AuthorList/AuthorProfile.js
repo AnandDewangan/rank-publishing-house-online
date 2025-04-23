@@ -51,22 +51,18 @@ const AuthorProfile = () => {
   const handleSave = () => {
   const updateData = new FormData();
 
-  // ✅ First append normal fields
   Object.entries(formData).forEach(([key, value]) => {
     if (key !== "image_path") {
       updateData.append(key, value);
     }
   });
 
-  // ✅ Only append image_path if file is selected
   if (selectedFile) {
     updateData.append("image_path", selectedFile);
   }
 
   axios
-    .put(`${baseURL}/api/authors/${id}`, updateData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    })
+    .put(`${baseURL}/api/authors/${id}`, updateData) // ✅ No headers here
     .then(() => {
       setAuthor({
         ...formData,
@@ -82,6 +78,7 @@ const AuthorProfile = () => {
       toast.error("Error updating author details");
     });
 };
+
 
 
   if (!author) return <h2>Loading author details...</h2>;
