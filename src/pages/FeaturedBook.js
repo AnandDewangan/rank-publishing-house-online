@@ -7,7 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 const FeaturedBook = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 2,
