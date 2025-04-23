@@ -53,19 +53,7 @@ const FeaturedBook = () => {
     {
       img: "/images/cover/Cover4.jpg",
       title: "The Cooking God in You",
-    },
-    {
-      img: "/images/cover/Cover3.jpg",
-      title: "Samkalin Hindi Sahitya",
-    },
-    {
-      img: "/images/cover/Cover2.jpg",
-      title: "Eternally Imperfect",
-    },
-    {
-      img: "/images/cover/Cover1.jpg",
-      title: "Beauty Sleep",
-    },
+    }
   ];
 
   return (
