@@ -121,7 +121,7 @@ const AuthorProfile = () => {
                     <img
                       src={
                         author.image_path
-                          ? `${baseURL}/uploads/${author.image_path}`
+                          ? `${author.image_path}`
                           : BoyImg
                       }
                       alt="Profile"
@@ -206,7 +206,7 @@ const AuthorProfile = () => {
                     <img
                       src={
                         selectedImage ||
-                        `${baseURL}/uploads/${author.image_path}`
+                        `{author.image_path}`
                       }
                       alt="Change Profile"
                       className="image-preview mt-2"
