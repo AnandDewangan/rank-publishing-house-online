@@ -77,7 +77,7 @@ export default function AuthorList() {
         header: "Profile",
         cell: ({ getValue }) => {
           const imageSrc = getValue()
-            ? `${baseURL}/uploads/${getValue()}`
+            ? getValue()
             : "assets/images/avatars/01.png";
 
           return (
