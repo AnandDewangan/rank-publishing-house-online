@@ -16,7 +16,7 @@ const BookList = ({
   const [selectedBookId, setSelectedBookId] = useState(null);
   const userRole = localStorage.getItem("userRole");
   const token = localStorage.getItem("adminToken");
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
+  const baseURL = "http://localhost:5000";
 
   const handleOrderInputChange = (bookId, field, value) => {
     setOrderInputs((prev) => ({
@@ -122,7 +122,7 @@ const BookList = ({
                   <h6>{book.author}</h6>
                   <p>Sub Title: {book.subtitle}</p>
                   <p>ISBN: {book.isbn}</p>
-                  <p>SKU: {book.sku}</p>
+                  <p>RPH: {book.sku}</p>
                 </div>
                 <div className="col-md-3 col-sm-6">
                   <p>Paper Size: {book.size}</p>
@@ -139,7 +139,7 @@ const BookList = ({
                 <div className="col-md-2 d-flex justify-content-around align-items-center">
                   <div className="book-cover-container">
                     <img
-                      src={`${baseURL}/uploads/${book.cover_image}`}
+                      src={book.cover_image}
                       alt={book.title}
                       className="img-fluid book-cover"
                     />

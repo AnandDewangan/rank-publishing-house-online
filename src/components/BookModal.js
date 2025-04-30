@@ -3,12 +3,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { BiBookAdd, BiEdit } from "react-icons/bi";
 
-const BookModal = ({ toggleModal, addBook, bookToEdit, authorId  }) => {
+const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
   const [formData, setFormData] = useState({
     sku: "",
     isbn: "",
     author: "",
-    authorId: authorId, 
+    authorId: authorId,
     title: "",
     subtitle: "",
     size: "",
@@ -19,9 +19,9 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId  }) => {
     eMrp: "",
     hardMrp: "",
     rankMrp: "",
-    cover_image: null
+    cover_image: null,
   });
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
+  const baseURL = "http://localhost:5000";
 
   useEffect(() => {
     if (bookToEdit) {
@@ -40,36 +40,44 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId  }) => {
         eMrp: bookToEdit.eMrp || "",
         hardMrp: bookToEdit.hardMrp || "",
         rankMrp: bookToEdit.rankMrp || "",
-        cover_image: null
+        cover_image: null,
       });
     }
   }, [bookToEdit]);
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData((prev) => ({
+        ...prev,
+        cover_image: file,
+      }));
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, cover_image: e.target.files[0] });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = new FormData();
+
+    // ✅ Skip empty file if not selected
     Object.keys(formData).forEach((key) => {
+      if (key === "cover_image" && !formData[key]) return;
       data.append(key, formData[key]);
     });
 
+    const url = bookToEdit
+      ? `${baseURL}/api/books/update-book/${bookToEdit._id}`
+      : `${baseURL}/api/books/add-book`;
+
+    const method = bookToEdit ? "put" : "post";
+
     try {
-      const url = bookToEdit
-  ? `${baseURL}/api/books/update-book/${bookToEdit._id}`
-  : `${baseURL}/api/books/add-book`;
-
-
-      const method = bookToEdit ? "put" : "post";
-
       const response = await axios({
         method,
         url,
@@ -81,16 +89,15 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId  }) => {
 
       addBook(response.data.newBook);
       toggleModal();
-      toast.success(
-        "Book " + (bookToEdit ? "updated" : "added") + " successfully!"
-      );
+      toast.success(`Book ${bookToEdit ? "updated" : "added"} successfully!`);
     } catch (error) {
-      toast.error("Error submitting book:", error);
+      console.error("Submit Error:", error);
+      toast.error(`Error ${bookToEdit ? "updating" : "adding"} book.`);
     }
   };
 
   return (
-    <div className="modal fade show" tabIndex="-1" style={{ display: "block" }}> 
+    <div className="modal fade show" tabIndex="-1" style={{ display: "block" }}>
       <div className="modal-dialog modal-lg">
         {" "}
         {/* Large Modal */}
@@ -255,19 +262,21 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId  }) => {
                       name="cover_image"
                       className="form-control"
                       placeholder="Cover Image"
-                      onChange={handleFileChange}
+                      accept="image/*"
+                      onChange={handleImageUpload}
                     />
+
+                    {/* Show preview for editing */}
                     {bookToEdit && bookToEdit.cover_image && (
                       <div className="mt-2">
                         <img
-                          src={`${baseURL}/uploads/${formData.cover_image}`}
+                          src={bookToEdit.cover_image} // ✅ direct URL (from DB, e.g., Cloudinary or static)
                           alt={bookToEdit.title}
                           width="100"
                         />
                       </div>
                     )}
                   </div>
-                  
                 </div>
               </div>
 
