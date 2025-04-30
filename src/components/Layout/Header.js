@@ -91,7 +91,7 @@ export default function Header() {
                 style={{ cursor: "pointer" }}
               >
                 <img
-                  src={`http://localhost:5000/uploads/${author.image_path}`}
+                  src={author.image_path}
                   onError={(e) => {
                     e.target.src = "/assets/images/avatars/01.png";
                   }}
@@ -109,7 +109,7 @@ export default function Header() {
                 >
                   <div className="text-center p-3 border-bottom">
                     <img
-                      src={`http://localhost:5000/uploads/${author.image_path}`}
+                      src={author.image_path}
                       onError={(e) => {
                         e.target.src = "/assets/images/avatars/01.png";
                       }}
