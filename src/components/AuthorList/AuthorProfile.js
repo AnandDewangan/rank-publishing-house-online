@@ -19,10 +19,8 @@ const AuthorProfile = () => {
   const [author, setAuthor] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({});
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-  const userRole = localStorage.getItem("userRole"); 
+  const userRole = localStorage.getItem("userRole");
   const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
@@ -35,51 +33,59 @@ const AuthorProfile = () => {
       .catch(() => toast.error("Error fetching author details!"));
   }, [id]);
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const uploadData = new FormData();
+    uploadData.append("image", file);
+
+    try {
+      // Upload new image
+      const uploadRes = await axios.post(
+        `${baseURL}/api/authors/upload-image`,
+        uploadData
+      );
+      const { url, public_id } = uploadRes.data;
+
+      // Delete old image if exists
+      if (formData.image_public_id) {
+        await axios.post(`${baseURL}/api/authors/delete-image`, {
+          public_id: formData.image_public_id,
+        });
+      }
+
+      // Update formData with new image
+      setFormData({
+        ...formData,
+        image_path: url,
+        image_public_id: public_id,
+      });
+
+      toast.success("Image uploaded successfully!");
+    } catch (error) {
+      console.error("Upload error:", error);
+      toast.error("Image upload failed!");
+    }
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedFile(file);
-      setSelectedImage(URL.createObjectURL(file)); 
-      setFormData({ ...formData, image_path: file }); 
-    }
-  };
-
   const handleSave = () => {
-  const updateData = new FormData();
-
-  Object.entries(formData).forEach(([key, value]) => {
-    if (key !== "image_path") {
-      updateData.append(key, value);
-    }
-  });
-
-  if (selectedFile) {
-    updateData.append("image_path", selectedFile);
-  }
-
-  axios
-    .put(`${baseURL}/api/authors/${id}`, updateData)
-    .then(() => {
-      setAuthor({
-        ...formData,
-        image_path: selectedImage
-          ? URL.createObjectURL(selectedImage)
-          : author.image_path,
+    axios
+      .put(`${baseURL}/api/authors/${id}`, formData)
+      .then(() => {
+        setAuthor(formData);
+        setEditMode(false);
+        toast.success("Author updated successfully!");
+      })
+      .catch((err) => {
+        console.error("Error updating:", err);
+        toast.error("Error updating author details");
       });
-      setEditMode(false);
-      toast.success("Author updated successfully!");
-    })
-    .catch((err) => {
-      console.error("Error updating:", err);
-      toast.error("Error updating author details");
-    });
-};
-
-
+  };
 
   if (!author) return <h2>Loading author details...</h2>;
 
@@ -95,7 +101,10 @@ const AuthorProfile = () => {
             <nav aria-label="breadcrumb" className="ps-3">
               <ol className="breadcrumb mb-0 p-0">
                 <li className="breadcrumb-item">
-                  <Link to="/admin-dashboard" className="text-decoration-none fw-semibold">
+                  <Link
+                    to="/admin-dashboard"
+                    className="text-decoration-none fw-semibold"
+                  >
                     Home
                   </Link>
                 </li>
@@ -121,7 +130,7 @@ const AuthorProfile = () => {
                     <img
                       src={
                         author.image_path
-                          ? `${author.image_path}`
+                          ? author.image_path
                           : BoyImg
                       }
                       alt="Profile"
@@ -201,24 +210,19 @@ const AuthorProfile = () => {
                   </button>
                 </div>
                 {/* Image Upload */}
-                <div className="image-upload-container mb-2">
-                  <label htmlFor="imageUpload" className="image-upload-label">
-                    <img
-                      src={
-                        selectedImage ||
-                        `{author.image_path}`
-                      }
-                      alt="Change Profile"
-                      className="image-preview mt-2"
-                    />
-                  </label>
+                <div className="mb-2 text-center">
+                  <img
+                    src={formData.image_path || BoyImg}
+                    alt="Author"
+                    className="image-preview mt-2"
+                    width={100}
+                    height={100}
+                  />
                   <input
                     type="file"
-                    id="imageUpload"
-                    name="image_path"
                     accept="image/*"
-                    className="d-none"
-                    onChange={handleImageChange}
+                    onChange={handleImageUpload}
+                    className="form-control mt-2"
                   />
                 </div>
 
@@ -231,14 +235,14 @@ const AuthorProfile = () => {
                   placeholder="Name"
                 />
                 {userRole === "admin" && (
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="form-control mb-2"
-                  placeholder="Email"
-                />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="form-control mb-2"
+                    placeholder="Email"
+                  />
                 )}
                 <div className="position-relative">
                   <input
@@ -267,14 +271,14 @@ const AuthorProfile = () => {
                   placeholder="Contact"
                 />
                 {userRole === "admin" && (
-                <input
-                  type="text"
-                  name="first_book_name"
-                  value={formData.first_book_name}
-                  onChange={handleChange}
-                  className="form-control mb-2"
-                  placeholder="First Book"
-                />
+                  <input
+                    type="text"
+                    name="first_book_name"
+                    value={formData.first_book_name}
+                    onChange={handleChange}
+                    className="form-control mb-2"
+                    placeholder="First Book"
+                  />
                 )}
                 <input
                   type="text"

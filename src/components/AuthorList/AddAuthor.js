@@ -9,6 +9,7 @@ const AddAuthor = () => {
     sku: "",
     isbn: "",
     image_path: null,
+    image_public_id: null,
     name: "",
     email: "",
     password: generatePassword(8),
@@ -28,13 +29,41 @@ const AddAuthor = () => {
   const navigate = useNavigate();
   const baseURL = process.env.REACT_APP_API_BASE_URL;
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, image_path: e.target.files[0] });
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const res = await fetch(`${baseURL}/api/authors/upload-image`, {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setFormData({
+          ...formData,
+          image_path: data.url,
+          image_public_id: data.public_id,
+        });
+
+        toast.success("Image uploaded successfully");
+      } else {
+        throw new Error(data.error || "Upload failed");
+      }
+    } catch (error) {
+      toast.error("Image upload failed");
+      console.error(error);
+    }
   };
 
   const validateInputs = () => {
@@ -42,7 +71,6 @@ const AddAuthor = () => {
     const contactRegex = /^[6-9]\d{9}$/;
     const accountNumberRegex = /^\d{9,18}$/;
     const ifscRegex = /^[A-Z]{4}0[A-Z0-9]{6}$/;
-    // const upiRegex = /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/;
     const isbnRegex = /^[0-9]{13}$/;
 
     if (!emailRegex.test(formData.email)) {
@@ -61,12 +89,12 @@ const AddAuthor = () => {
       toast.error("❌ Invalid IFSC code");
       return false;
     }
-    // if (!upiRegex.test(formData.upi_id)) {
-    //   toast.error("Invalid UPI ID");
-    //   return false;
-    // }
     if (!isbnRegex.test(formData.isbn)) {
       toast.error("Invalid ISBN! It should be exactly 13 digits.");
+      return false;
+    }
+    if (!formData.image_path || !formData.image_public_id) { 
+      toast.error("Please upload a profile image.");
       return false;
     }
     return true;
@@ -78,27 +106,20 @@ const AddAuthor = () => {
 
     setLoading(true);
 
-    const formPayload = new FormData();
-
-Object.entries(formData).forEach(([key, value]) => {
-  if (key === "image_path") {
-    if (value instanceof File) {
-      formPayload.append("image_path", value); // ✅ Append only actual file
-    }
-  } else {
-    formPayload.append(key, value);
-  }
-});
-
+    // Handle author creation (without image)
+    const formPayload = { ...formData };
 
     try {
       const res = await fetch(`${baseURL}/api/authors/add`, {
         method: "POST",
-        body: formPayload,
+        body: JSON.stringify(formPayload),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       const result = await res.json();
-      if (!res.ok) throw new Error(result.message || "Something went wrong"); 
+      if (!res.ok) throw new Error(result.message || "Something went wrong");
 
       toast.success("Author added successfully!");
       navigate("/author-list");
@@ -107,6 +128,7 @@ Object.entries(formData).forEach(([key, value]) => {
         sku: "",
         isbn: "",
         image_path: null,
+        image_public_id: null,
         name: "",
         email: "",
         password: generatePassword(8),
@@ -155,7 +177,10 @@ Object.entries(formData).forEach(([key, value]) => {
                   <BiHome />
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
-                  <a href="/admin-dashboard" className="text-decoration-none fw-semibold">
+                  <a
+                    href="/admin-dashboard"
+                    className="text-decoration-none fw-semibold"
+                  >
                     Home
                   </a>
                 </li>
@@ -195,13 +220,25 @@ Object.entries(formData).forEach(([key, value]) => {
                 />
               </div>
               <div className="col-md-6 my-2">
+                <label className="form-label">Upload Profile Image</label>
                 <input
                   type="file"
-                  name="image_path"
+                  accept="image/*"
                   className="form-control"
-                  placeholder="Profile Image"
-                  onChange={handleFileChange}
+                  onChange={handleImageUpload}
                 />
+                {formData.image_path && (
+                  <img
+                    src={formData.image_path}
+                    alt="Preview"
+                    className="mt-2 rounded"
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      objectFit: "cover",
+                    }}
+                  />
+                )}
               </div>
               <div className="col-md-6 my-2">
                 <input

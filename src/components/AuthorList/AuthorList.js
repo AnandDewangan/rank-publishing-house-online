@@ -91,7 +91,7 @@ export default function AuthorList() {
             />
           );
         },
-      },
+      },      
       {
         accessorKey: "name",
         header: "Author Name",
