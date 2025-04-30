@@ -21,7 +21,7 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
     rankMrp: "",
     cover_image: null,
   });
-  const baseURL = "http://localhost:5000";
+  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     if (bookToEdit) {
