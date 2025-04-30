@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Logo from "./logo.png";
+import Logo from "./rank-logo.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
