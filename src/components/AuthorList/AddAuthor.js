@@ -204,7 +204,7 @@ const AddAuthor = () => {
                   type="text"
                   name="sku"
                   className="form-control"
-                  placeholder="SKU"
+                  placeholder="RPH"
                   onChange={handleChange}
                   required
                 />
