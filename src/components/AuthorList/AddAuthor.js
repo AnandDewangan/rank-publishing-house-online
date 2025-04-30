@@ -220,7 +220,6 @@ const AddAuthor = () => {
                 />
               </div>
               <div className="col-md-6 my-2">
-                <label className="form-label">Upload Profile Image</label>
                 <input
                   type="file"
                   accept="image/*"
