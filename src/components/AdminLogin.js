@@ -9,7 +9,7 @@ const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const baseURL = "http://localhost:5000";
+  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   const handleLogin = async () => {
     try {
