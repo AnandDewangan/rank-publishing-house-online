@@ -64,8 +64,7 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
     e.preventDefault();
 
     const data = new FormData();
-
-    // ✅ Skip empty file if not selected
+    
     Object.keys(formData).forEach((key) => {
       if (key === "cover_image" && !formData[key]) return;
       data.append(key, formData[key]);
@@ -122,7 +121,7 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
                       type="text"
                       name="sku"
                       className="form-control"
-                      placeholder="SKU"
+                      placeholder="RPH"
                       value={formData.sku}
                       onChange={handleChange}
                       required
