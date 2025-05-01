@@ -38,31 +38,35 @@ const AddAuthor = () => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const formData = new FormData();
-    formData.append("image", file);
+    const uploadData = new FormData();
+    uploadData.append("image", file);
 
     try {
-      const res = await fetch(`${baseURL}/api/authors/upload-image`, {
-        method: "POST",
-        body: formData,
+      // Upload new image
+      const uploadRes = await axios.post(
+        `${baseURL}/api/authors/upload-image`,
+        uploadData
+      );
+      const { url, public_id } = uploadRes.data;
+
+      // Delete old image if exists
+      if (formData.image_public_id) {
+        await axios.post(`${baseURL}/api/authors/delete-image`, {
+          public_id: formData.image_public_id,
+        });
+      }
+
+      // Update formData with new image
+      setFormData({
+        ...formData,
+        image_path: url,
+        image_public_id: public_id,
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        setFormData({
-          ...formData,
-          image_path: data.url,
-          image_public_id: data.public_id,
-        });
-
-        toast.success("Image uploaded successfully");
-      } else {
-        throw new Error(data.error || "Upload failed");
-      }
+      toast.success("Image uploaded successfully!");
     } catch (error) {
-      toast.error("Image upload failed");
-      console.error(error);
+      console.error("Upload error:", error);
+      toast.error("Image upload failed!");
     }
   };
 
