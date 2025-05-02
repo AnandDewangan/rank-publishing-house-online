@@ -21,7 +21,7 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
     rankMrp: "",
     cover_image: null,
   });
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
+  const baseURL = "http://localhost:5000";
 
   useEffect(() => {
     if (bookToEdit) {
@@ -64,7 +64,8 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
     e.preventDefault();
 
     const data = new FormData();
-    
+
+    // ✅ Skip empty file if not selected
     Object.keys(formData).forEach((key) => {
       if (key === "cover_image" && !formData[key]) return;
       data.append(key, formData[key]);
