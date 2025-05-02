@@ -33,6 +33,11 @@ export default function AdminHeader() {
             </Link>
           </li>
           <li className="nav-item">
+            <Link to="/admin-finance" className="nav-link fw-semibold text-success">
+              Financial
+            </Link>
+          </li>
+          <li className="nav-item">
             <button onClick={handleLogout} className="btn btn-outline-danger btn-sm">
               <BiLogOut />
             </button>
