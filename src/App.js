@@ -28,6 +28,10 @@ import Transactions from "./components/Transactions";
 import AdminLogin from "./components/AdminLogin";
 import AuthorLogin from "./components/AuthorLogin";
 
+// Finance Tools (new)
+import Dashboard from "./pages/Dashboard"; // 💰 Finance Dashboard
+import SalarySlipGenerator from "./pages/SalarySlipGenerator"; // 📄 Salary Slip
+
 // Dashboard Layouts and Route Guards
 import AuthorLayout from "./components/Layout/AuthorLayout";
 import AdminLayout from "./components/Layout/AdminLayout";
@@ -47,7 +51,9 @@ function App() {
     <Router>
       <Helmet>
         {/* Primary Meta Tags */}
-        <title>Rank Publishing House - India's Best Book Publishing House</title>
+        <title>
+          Rank Publishing House - India's Best Book Publishing House
+        </title>
         <meta
           name="description"
           content="Rank Publishing House is one of the top book publishing companies in India, offering self-publishing, eBook publishing, and global distribution services."
@@ -72,7 +78,10 @@ function App() {
           property="og:image"
           content="https://www.rankpublishinghouse.online/static/media/logo.5e350eac0a92c9b8a15f.png"
         />
-        <meta property="og:url" content="https://www.rankpublishinghouse.online" />
+        <meta
+          property="og:url"
+          content="https://www.rankpublishinghouse.online"
+        />
         <meta property="og:site_name" content="Rank Publishing House" />
 
         {/* Twitter */}
@@ -176,6 +185,27 @@ function App() {
             <PrivateRoute adminOnly={true}>
               <AdminLayout>
                 <AddAuthor />
+              </AdminLayout>
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/admin-finance"
+          element={
+            <PrivateRoute adminOnly={true}>
+              <AdminLayout>
+                <Dashboard />
+              </AdminLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/salary-slip-generator"
+          element={
+            <PrivateRoute adminOnly={true}>
+              <AdminLayout>
+                <SalarySlipGenerator />
               </AdminLayout>
             </PrivateRoute>
           }
