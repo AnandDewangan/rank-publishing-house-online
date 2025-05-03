@@ -46,7 +46,7 @@ export default function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
+        <div className={`navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
           <ul className="navbar-nav ms-lg-auto me-lg-4">
             <li className="nav-item">
               <Link className="nav-link" to="/">Home</Link>
