@@ -49,7 +49,7 @@ export default function Header() {
         <div
   className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}
   id="navbarNav"
-  style={{ visibility: isOpen ? "visible" : "hidden" }}
+  style={{ visibility: "visible" }}
 >
 
           <ul className="navbar-nav ms-lg-auto me-lg-4">
