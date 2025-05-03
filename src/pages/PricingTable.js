@@ -6,7 +6,7 @@ const PricingTable = () => {
   const packages = [
     {
       name: "CLASSIC",
-      price: "₹5,999/-",
+      price: "₹6,999/-",
       icon: "bi-book-fill",
       features: [
         ["Paperback + E-Book Publishing", "Author Contract"],
@@ -36,7 +36,7 @@ const PricingTable = () => {
     },
     {
       name: "SUPREME",
-      price: "₹7,999",
+      price: "₹8,999",
       icon: "bi-file-earmark-pdf-fill",
       features: [
         ["Paperback + E-Book Publishing", "Author Contract"],
@@ -80,7 +80,7 @@ const PricingTable = () => {
     },
     {
       name: "PLATINUM",
-      price: "₹11,999",
+      price: "₹12,999",
       icon: "bi-file-earmark-pdf-fill",
       features: [
         ["Paperback + E-Book Publishing", "Author Contract"],
