@@ -393,15 +393,9 @@ input::placeholder {
 
 /* main content */
 .main-wrapper {
-  margin-top: 70px;
   padding-bottom: 20px;
   margin-left: 0px;
   transition: ease-out 0.3s;
-}
-@media (min-width: 1366px) {
-  .main-wrapper {
-    margin-top: 100px;
-  }
 }
 .main-wrapper .main-content {
   padding: 1.5rem;
