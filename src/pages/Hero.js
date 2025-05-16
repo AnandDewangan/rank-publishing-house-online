@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Slider from "react-slick"; // make sure this is imported
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axios from "axios";
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const Hero = () => {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const res = await axios.get(
+          `${baseURL}/api/images/cover-images`
+        );
+        setImages(res.data);
+      } catch (err) {
+        console.error("Failed to fetch images", err);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
   const heroSliderSettings = {
     dots: false,
     infinite: true,
@@ -15,63 +34,11 @@ const Hero = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
-    fade: true, // optional: for crossfade effect instead of sliding
+    fade: true,
   };
-
-  const books = [
-    {
-      img: "/images/cover/Cover10.jpg",
-      title: "Bhukha Hindusthan, Jivan Kumar",
-    },
-    {
-      img: "/images/cover/Cover9.jpg",
-      title: "Jivan ko sahi disha me jeene ki raah, Harish Kumar",
-    },
-    {
-      img: "/images/cover/Cover12.jpg",
-      title: "Serial Killer Sulgati Rakh, Praveen Pamal",
-    },
-    {
-      img: "/images/cover/Cover11.jpg",
-      title: "Vimuktnama, Dr. B.P. Chavhan",
-    },
-    {
-      img: "/images/cover/cover8.jpg",
-      title: "Known to Unknown by Subhadeep Ghosh",
-    },
-    {
-      img: "/images/cover/cover7.jpg",
-      title: "Natural Vision by Subhadeep Ghosh",
-    },
-    {
-      img: "/images/cover/cover6.jpg",
-      title: "Bhramjal by Dr. Kamlesh Kumar",
-    },
-    {
-      img: "/images/cover/Cover5.jpg",
-      title: "Saagara Raagamu",
-    },
-    {
-      img: "/images/cover/Cover4.jpg",
-      title: "The Cooking God in You",
-    },
-    {
-      img: "/images/cover/Cover3.jpg",
-      title: "Samkalin Hindi Sahitya",
-    },
-    {
-      img: "/images/cover/Cover2.jpg",
-      title: "Eternally Imperfect",
-    },
-    {
-      img: "/images/cover/Cover1.jpg",
-      title: "Beauty Sleep",
-    },
-  ];
 
   return (
     <>
-      {/* Hero Section */}
       <section
         className="hero-section d-flex justify-content-center align-items-center"
         id="section_1"
@@ -83,7 +50,6 @@ const Hero = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-6 col-12 mb-5 pb-5 pb-lg-0 mb-lg-0">
-              {/* India’s Fastest Growing Self-Publishing Company */}
               <motion.h1
                 className="text-white mb-4"
                 initial={{ y: 50, opacity: 0 }}
@@ -93,7 +59,6 @@ const Hero = () => {
                 India’s Fastest Growing <br /> Self-Publishing Company
               </motion.h1>
 
-              {/* Call Now Button */}
               <a
                 href="tel:+919171242297"
                 className="btn custom-btn smoothscroll me-3"
@@ -101,7 +66,6 @@ const Hero = () => {
                 <i className="bi bi-telephone-fill"></i> Call Now
               </a>
 
-              {/* Email Us Button */}
               <a
                 href="mailto:books@rankpublishinghouse.online"
                 className="btn btn-outline-light smoothscroll"
@@ -110,14 +74,13 @@ const Hero = () => {
               </a>
             </div>
 
-            {/* Hero Image */}
             <div className="hero-image-wrap col-lg-6 col-12 mt-3 mt-lg-0">
               <Slider {...heroSliderSettings}>
-                {books.map((book, index) => (
+                {images.map((img, index) => (
                   <div key={index} className="text-center">
                     <motion.img
-                      src={book.img}
-                      alt={book.title}
+                      src={img}
+                      alt={`Book ${index + 1}`}
                       className="hero-image img-fluid rounded"
                       style={{
                         height: "100%",
@@ -138,7 +101,6 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* Featured Section */}
       <section className="featured-section">
         <div className="container">
           <div className="row">

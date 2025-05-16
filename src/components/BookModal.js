@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { BiBookAdd, BiEdit } from "react-icons/bi";
+
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
   const [formData, setFormData] = useState({
@@ -20,8 +21,8 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
     hardMrp: "",
     rankMrp: "",
     cover_image: null,
-  });
-  const baseURL = "http://localhost:5000";
+    description: "",
+  }); 
 
   useEffect(() => {
     if (bookToEdit) {
@@ -41,6 +42,7 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
         hardMrp: bookToEdit.hardMrp || "",
         rankMrp: bookToEdit.rankMrp || "",
         cover_image: null,
+        description: bookToEdit.description || "",
       });
     }
   }, [bookToEdit]);
@@ -266,6 +268,17 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
                       onChange={handleImageUpload}
                     />
 
+                    <div className="mb-3">
+                    <input
+                      type="text"
+                      name="description"
+                      className="form-control"
+                      placeholder="Description"
+                      value={formData.description}
+                      onChange={handleChange}
+                    />
+                  </div>
+
                     {/* Show preview for editing */}
                     {bookToEdit && bookToEdit.cover_image && (
                       <div className="mt-2">
@@ -281,7 +294,6 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
               </div>
 
               <button type="submit" className="btn btn-success w-100">
-                {bookToEdit ? <BiEdit /> : <BiBookAdd />}{" "}
                 {bookToEdit ? "Update Book" : "Add Book"}
               </button>
             </form>

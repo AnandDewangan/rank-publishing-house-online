@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { BiBookAdd, BiDetail, BiEdit, BiTrash } from "react-icons/bi";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"; 
+
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const BookList = ({
   books,
@@ -16,7 +18,6 @@ const BookList = ({
   const [selectedBookId, setSelectedBookId] = useState(null);
   const userRole = localStorage.getItem("userRole");
   const token = localStorage.getItem("adminToken");
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   const handleOrderInputChange = (bookId, field, value) => {
     setOrderInputs((prev) => ({
@@ -118,12 +119,12 @@ const BookList = ({
             <div className="card-body">
               <div className="row">
                 <div className="col-md-4 col-sm-6">
-                  <h5 className="card-title">{book.title}</h5>
-                  <h6>{book.author}</h6>
-                  <p>Sub Title: {book.subtitle}</p>
+                  <h5 className=" text-purple-600">{book.title}</h5>
+                  <h6 className="text-orange-400">{book.author}</h6>
+                  {book.subtitle ? <p>Sub Title: {book.subtitle}</p> : null}
                   <p>ISBN: {book.isbn}</p>
                   <p>RPH: {book.sku}</p>
-                </div>
+                </div> 
                 <div className="col-md-3 col-sm-6">
                   <p>Paper Size: {book.size}</p>
                   <p>No of Pages: {book.pages}</p>
@@ -238,7 +239,7 @@ const BookList = ({
                     </div>
                     <div className="col-md-1 col-6 mb-2">
                       <button
-                        className="btn btn-success w-100"
+                        className="btn btn-success w-100 text-center"
                         onClick={() => handleAddOrder(book._id)}
                       >
                         <BiBookAdd />

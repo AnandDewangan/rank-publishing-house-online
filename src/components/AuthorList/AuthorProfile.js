@@ -12,7 +12,9 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./AuthorProfile.css";
-import BoyImg from "../../images/avatars/01.png";
+import BoyImg from "../../images/avatars/01.png"; 
+
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const AuthorProfile = () => {
   const { id } = useParams();
@@ -21,7 +23,7 @@ const AuthorProfile = () => {
   const [formData, setFormData] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const userRole = localStorage.getItem("userRole");
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
+
 
   useEffect(() => {
     axios

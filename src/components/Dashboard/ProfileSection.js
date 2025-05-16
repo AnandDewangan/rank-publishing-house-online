@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaPhoneAlt, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { Modal } from "react-bootstrap";
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 export default function ProfileSection() {
   const [profile, setProfile] = useState({
@@ -14,7 +15,6 @@ export default function ProfileSection() {
     linkedin: "",
   });
   const [showModal, setShowModal] = useState(false);
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   // ✅ Fetch Profile Data from API
   useEffect(() => {
@@ -110,7 +110,8 @@ export default function ProfileSection() {
           <button
             className="btn btn-danger align-self-end"
             onClick={() => setShowModal(false)}
-          >X
+          >
+            X
           </button>
           <img
             src={profile.imageUrl}

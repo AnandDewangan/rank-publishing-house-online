@@ -27,10 +27,13 @@ import AuthorBooks from "./components/AuthorBooks";
 import Transactions from "./components/Transactions";
 import AdminLogin from "./components/AdminLogin";
 import AuthorLogin from "./components/AuthorLogin";
+import HeroImage from "./components/ImageUploader"; 
+import FeedbackPage from "./components/FeedbackPage";
+import ArticleManager from "./components/ArticleManager";
 
 // Finance Tools (new)
-import Dashboard from "./pages/Dashboard"; // 💰 Finance Dashboard
-import SalarySlipGenerator from "./pages/SalarySlipGenerator"; // 📄 Salary Slip
+import Dashboard from "./pages/Dashboard";
+import SalarySlipGenerator from "./pages/SalarySlipGenerator";
 
 // Dashboard Layouts and Route Guards
 import AuthorLayout from "./components/Layout/AuthorLayout";
@@ -189,7 +192,36 @@ function App() {
             </PrivateRoute>
           }
         />
-
+        <Route
+          path="/hero-image"
+          element={
+            <PrivateRoute adminOnly={true}>
+              <AdminLayout>
+                <HeroImage />
+              </AdminLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/author-feedback"
+          element={
+            <PrivateRoute adminOnly={true}>
+              <AdminLayout>
+                <FeedbackPage />
+              </AdminLayout>
+            </PrivateRoute>
+          }
+        /> 
+        <Route
+          path="/article-manage"
+          element={
+            <PrivateRoute adminOnly={true}>
+              <AdminLayout>
+              <ArticleManager />
+              </AdminLayout>
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/admin-finance"
           element={

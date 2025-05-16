@@ -98,10 +98,11 @@ export default function Footer() {
               {/* Social Links */}
               <h6 className="site-footer-title mt-5 mb-3 text-danger">Social</h6>
               <div className="d-flex gap-3">
-                <a href="https://www.instagram.com/rankpublishing_house" className="bi bi-instagram fs-3 text-light social-link instagram"></a>
-                <a href="#" className="bi bi-facebook fs-3 text-light social-link facebook"></a>
+                <a href="https://www.instagram.com/rankpublishing_house" target="_blank"  className="bi bi-instagram fs-3 text-light social-link instagram"></a>
+                <a href="https://www.facebook.com/share/1Bu6mqhMwx" target="_blank"  className="bi bi-facebook fs-3 text-light social-link facebook"></a>
+                <a href="https://www.linkedin.com/in/rank-publishing-house-9a9735354"  target="_blank" className="bi bi-linkedin fs-3 text-light social-link linkedin"></a>
+                <a href="https://www.youtube.com/@Rankpublishinghouse" target="_blank"  className="bi bi-youtube fs-3 text-light social-link youtube"></a>
                 <a href="tel:+919171242297" className="bi bi-whatsapp fs-3 text-light social-link whatsapp"></a>
-                <a href="mailto:books@rankpublishinghouse.online" className="bi bi-envelope fs-3 text-light social-link email"></a>
               </div>
 
               <p className="copyright-text mt-4">

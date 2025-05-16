@@ -66,7 +66,7 @@ export default function Header() {
   };
 
   return (
-    <header className="top-header">
+    <header className="bg-dark">
       <nav className="navbar navbar-expand align-items-center justify-content-between border-bottom px-4">
         <div>
           <a href="/dashboard">

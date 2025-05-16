@@ -7,6 +7,8 @@ import { format } from "date-fns";
 import { BiArrowBack } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
+const baseURL = process.env.REACT_APP_API_BASE_URL;
+
 const Dashboard = () => {
   const currentDate = new Date();
   const [month, setMonth] = useState(
@@ -14,7 +16,6 @@ const Dashboard = () => {
   );
   const [year, setYear] = useState(String(currentDate.getFullYear()));
   const [transactions, setTransactions] = useState([]);
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   const loadData = async () => {
     try {

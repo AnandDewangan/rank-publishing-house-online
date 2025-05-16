@@ -1,41 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
-const testimonials = [
-  {
-    name: "Kamlesh Yadav",
-    feedback:
-      "Rank Publishing House turned my dream into reality! Their expert team provided seamless guidance from manuscript submission to final publishing. The marketing support was top-notch, and my book reached readers worldwide!",
-  },
-  {
-    name: "Jay Goswami",
-    feedback:
-      "A truly exceptional publishing experience! The team at Rank Publishing House helped me refine my book, design a stunning cover, and successfully launch it on global platforms. Highly recommend their services!",
-  },
-  {
-    name: "Jaypal Singh",
-    feedback:
-      "Professional, efficient, and committed! Rank Publishing House ensured my book had the perfect formatting, an eye-catching cover, and a marketing plan that boosted sales significantly. Their expertise made my publishing journey stress-free!",
-  },
-  {
-    name: "Sudhir Shrivastav",
-    feedback:
-      "Publishing with Rank Publishing House was an absolute delight! Their dedicated team worked tirelessly to make my book shine. The author dashboard for tracking sales and royalties is a game-changer!",
-  },
-  {
-    name: "Aashish Kumar",
-    feedback:
-      "From manuscript review to distribution, Rank Publishing House exceeded my expectations. Their publishing managers and marketing team provided invaluable support, making my book a success in the market!",
-  },
-];
-
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 export default function Testimonials() {
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    fetchFeedbacks();
+  }, []);
+
+  const fetchFeedbacks = async () => {
+    try {
+      const res = await axios.get(`${baseURL}/api/feedbacks`);
+      setTestimonials(res.data);
+    } catch (err) {
+      console.error("Error fetching feedbacks:", err);
+    }
+  };
+
   return (
     <section id="testimonial" className="py-5 bg-light">
       <Container>
         <div className="text-center mb-5">
-          <h2 className="text-danger fs-2">More Testimonials from our Authors</h2>
+          <h2 className="text-danger fs-2">
+            More Testimonials from our Authors
+          </h2>
           <h6 className="text-muted">
             Real stories from satisfied happy writers sharing their experiences
           </h6>
@@ -46,9 +37,9 @@ export default function Testimonials() {
               <blockquote className="text-center">
                 <Row className="justify-content-center">
                   <Col md={8}>
-                    <p className="fs-5 fst-italic">{testimonial.feedback}</p>
+                    <p className="fs-5 fst-italic">{testimonial.message}</p>
                     <strong className="d-block mt-3 text-primary">
-                      {testimonial.name}
+                      {testimonial.author}
                     </strong>
                   </Col>
                 </Row>
@@ -66,7 +57,7 @@ export default function Testimonials() {
                 <Col key={num} xs={6} sm={2} className="brand-logo">
                   <img
                     src={`/images/brand-logo/img-${num}.png`}
-                    className="img-fluid grayscale"
+                    className="img-fluid"
                     alt={`Brand ${num}`}
                   />
                 </Col>

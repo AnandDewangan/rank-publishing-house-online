@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const CallNow = () => {
-  const phoneNumber = "+919171242297"; // अपना नंबर डालें
+  const phoneNumber = "+919171242297";
 
   return (
     <div className="my-5">

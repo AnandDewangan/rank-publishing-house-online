@@ -1044,11 +1044,11 @@ strong {
   transition: color 0.3s ease-in-out;
 }
 
-.social-link.instagram:hover {
+.social-link.instagram:hover, .social-link.youtube:hover {
   color: #dc3545 !important; /* Bootstrap Danger Color */
 }
 
-.social-link.twitter:hover {
+.social-link.linkedin:hover {
   color: #17a2b8 !important; /* Bootstrap Info Color */
 }
 

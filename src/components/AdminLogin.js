@@ -1,15 +1,15 @@
-import { jwtDecode } from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   const handleLogin = async () => {
     try {
@@ -17,27 +17,29 @@ const AdminLogin = () => {
         email,
         password,
       });
-  
+
       const token = res.data.token;
-  
+
       // Decode the JWT to extract role
       const decoded = jwtDecode(token);
       const role = decoded.role;
-  
+
       // Save both token and role to localStorage
       localStorage.setItem("adminToken", token);
-      localStorage.setItem("userRole", role); 
-  
+      localStorage.setItem("userRole", role);
+
       toast.success("Login successful!");
       navigate("/admin-dashboard");
     } catch (err) {
       toast.error("Invalid Credentials");
     }
   };
-  
 
   return (
-    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
+    <div
+      className="container d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
       <ToastContainer />
       <motion.div
         className="login-box p-4 shadow-lg rounded"

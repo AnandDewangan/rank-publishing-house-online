@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ApexCharts from "react-apexcharts"; 
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"; 
+
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const SalesChart = () => {
   const [chartData, setChartData] = useState({
     categories: [],
     series: [{ name: "Books Sold", data: [] }],
   });
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     const fetchChartData = async () => {

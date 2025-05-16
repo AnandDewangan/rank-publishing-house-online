@@ -5,8 +5,8 @@ import axios from "axios";
 import { BiArrowBack, BiBook } from "react-icons/bi";
 import { ToastContainer } from "react-toastify";
 import { useParams } from "react-router-dom";
-const token = localStorage.getItem("adminToken");
-
+const token = localStorage.getItem("adminToken"); 
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const BookManagement = () => {
   const [books, setBooks] = useState([]);
@@ -14,7 +14,6 @@ const BookManagement = () => {
   const [showModal, setShowModal] = useState(false);
   const { authorId } = useParams();
   const userRole = localStorage.getItem("userRole");
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -22,20 +21,20 @@ const BookManagement = () => {
         const url = authorId
           ? `${baseURL}/api/books?authorId=${authorId}`
           : `${baseURL}/api/books`;
-  
-        const response = await axios.get(url, 
-          {headers: {
-          Authorization: `Bearer ${token}`,
-        },});
+
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setBooks(response.data);
       } catch (error) {
         console.error("Error fetching books:", error);
       }
     };
-  
+
     fetchBooks();
   }, [authorId]);
-  
 
   const toggleModal = () => setShowModal(!showModal);
 
@@ -48,7 +47,7 @@ const BookManagement = () => {
       }
       return [...prevBooks, newBook];
     });
-    setBookToEdit(null); 
+    setBookToEdit(null);
   };
 
   return (
@@ -61,7 +60,9 @@ const BookManagement = () => {
               Book List
             </div>
             {userRole === "admin" && (
-            <a onClick={toggleModal} className="btn btn-primary btn-sm"><BiBook /></a> 
+              <a onClick={toggleModal} className="btn btn-primary btn-sm">
+                <BiBook />
+              </a>
             )}
           </div>
           <button

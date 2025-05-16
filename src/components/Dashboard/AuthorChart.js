@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ApexCharts from "react-apexcharts";
+import ApexCharts from "react-apexcharts"; 
+
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const BooksChart = () => {
   const [stats, setStats] = useState({
@@ -11,7 +13,6 @@ const BooksChart = () => {
   });
   
   const authorId = localStorage.getItem("authorId"); 
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     if (!authorId) return;

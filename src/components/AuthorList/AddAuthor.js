@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const baseURL = process.env.REACT_APP_API_BASE_URL;
+
 const AddAuthor = () => {
   const [formData, setFormData] = useState({
     sku: "",
@@ -28,7 +30,6 @@ const AddAuthor = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -98,7 +99,7 @@ const AddAuthor = () => {
       toast.error("Invalid ISBN! It should be exactly 13 digits.");
       return false;
     }
-    if (!formData.image_path || !formData.image_public_id) { 
+    if (!formData.image_path || !formData.image_public_id) {
       toast.error("Please upload a profile image.");
       return false;
     }
@@ -209,7 +210,7 @@ const AddAuthor = () => {
                   type="text"
                   name="sku"
                   className="form-control"
-                  placeholder="SKU"
+                  placeholder="RPH"
                   onChange={handleChange}
                   required
                 />

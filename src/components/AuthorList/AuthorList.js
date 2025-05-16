@@ -16,12 +16,13 @@ import {
   BiSkipNext,
   BiListUl,
   BiMoneyWithdraw,
-  BiUser
+  BiUser,
 } from "react-icons/bi";
 import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../App.css";
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 export default function AuthorList() {
   const [authors, setAuthors] = useState([]);
@@ -29,7 +30,6 @@ export default function AuthorList() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState("");
   const token = localStorage.getItem("adminToken");
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     const fetchAuthors = async () => {
@@ -44,9 +44,9 @@ export default function AuthorList() {
         toast.error("Failed to fetch authors.");
       }
     };
-  
+
     fetchAuthors();
-  }, []);   
+  }, []);
 
   // 🔹 Image Click Handler
   const openImageModal = (image) => {
@@ -91,7 +91,7 @@ export default function AuthorList() {
             />
           );
         },
-      },      
+      },
       {
         accessorKey: "name",
         header: "Author Name",
@@ -150,13 +150,16 @@ export default function AuthorList() {
               <Link to={`/books/${authorId}`} className="btn btn-primary">
                 <BiListUl />
               </Link>
-              <Link to={`/transactions/${authorId}`} className="btn btn-success">
+              <Link
+                to={`/transactions/${authorId}`}
+                className="btn btn-success"
+              >
                 <BiMoneyWithdraw />
               </Link>
             </div>
           );
         },
-      },      
+      },
     ],
     []
   );
@@ -183,7 +186,9 @@ export default function AuthorList() {
             <div className="breadcrumb-title pe-3 text-uppercase">
               Author List
             </div>
-            <a href="/add-author" className="btn btn-primary btn-sm"><BiUser /></a>
+            <a href="/add-author" className="btn btn-primary btn-sm">
+              <BiUser />
+            </a>
           </div>
 
           {/* Right Side: Search & Back Button */}
@@ -202,7 +207,6 @@ export default function AuthorList() {
             >
               <BiArrowBack />
             </button>
-
           </div>
         </div>
 
@@ -262,7 +266,7 @@ export default function AuthorList() {
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
               >
-                <BiSkipPrevious /> Back
+                <BiSkipPrevious />
               </button>
               <span>
                 Page {table.getState().pagination.pageIndex + 1} of{" "}
@@ -275,7 +279,7 @@ export default function AuthorList() {
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage()}
               >
-                Next <BiSkipNext />
+                <BiSkipNext />
               </button>
             </div>
           </div>

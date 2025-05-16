@@ -1,15 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import ApexCharts from "react-apexcharts"; 
+import ApexCharts from "react-apexcharts";
 import { toast } from "react-toastify";
 
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 const SalesChart = () => {
   const [chartData, setChartData] = useState({
     categories: [],
     series: [{ name: "Books Sold", data: [] }],
   });
-
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     const fetchChartData = async () => {
@@ -28,10 +27,9 @@ const SalesChart = () => {
         });
       }
     };
-  
+
     fetchChartData();
   }, []);
-  
 
   const options = {
     chart: {
@@ -56,9 +54,18 @@ const SalesChart = () => {
     },
     dataLabels: { enabled: false },
     colors: [
-      "#ff4d4d", "#ff884d", "#ffc14d", "#a3ff4d", "#4dff4d",
-      "#4dff88", "#4dffc1", "#4da3ff", "#4d4dff", "#884dff",
-      "#c14dff", "#ff4da3"
+      "#ff4d4d",
+      "#ff884d",
+      "#ffc14d",
+      "#a3ff4d",
+      "#4dff4d",
+      "#4dff88",
+      "#4dffc1",
+      "#4da3ff",
+      "#4d4dff",
+      "#884dff",
+      "#c14dff",
+      "#ff4da3",
     ],
     stroke: { show: true, width: 1, colors: ["#ffffff"] },
     xaxis: {
@@ -66,15 +73,25 @@ const SalesChart = () => {
       labels: { style: { fontSize: "14px", fontWeight: "bold" } },
     },
     yaxis: {
-      title: { text: "Books Sold", style: { fontSize: "16px", fontWeight: "bold" } },
+      title: {
+        text: "Books Sold",
+        style: { fontSize: "16px", fontWeight: "bold" },
+      },
     },
     fill: {
       type: "gradient",
       gradient: {
         type: "horizontal",
         gradientToColors: [
-          "#ff1a1a", "#ff6600", "#ffcc00", "#66ff00", "#00ff99",
-          "#0099ff", "#0033ff", "#6600ff", "#ff00ff"
+          "#ff1a1a",
+          "#ff6600",
+          "#ffcc00",
+          "#66ff00",
+          "#00ff99",
+          "#0099ff",
+          "#0033ff",
+          "#6600ff",
+          "#ff00ff",
         ],
         stops: [0, 100],
       },
@@ -82,7 +99,8 @@ const SalesChart = () => {
     tooltip: {
       theme: "dark",
       y: {
-        formatter: (val) => `<span style="font-weight:bold;color:#fff;">${val}</span>`,
+        formatter: (val) =>
+          `<span style="font-weight:bold;color:#fff;">${val}</span>`,
       },
     },
   };
@@ -95,13 +113,16 @@ const SalesChart = () => {
             <h5 className="mb-0">Sales & Views</h5>
           </div>
           {chartData?.categories && chartData?.series && (
-  <ApexCharts
-    options={{ ...options, xaxis: { categories: chartData.categories } }}
-    series={chartData.series}
-    type="bar"
-    height={400}
-  />
-)}
+            <ApexCharts
+              options={{
+                ...options,
+                xaxis: { categories: chartData.categories },
+              }}
+              series={chartData.series}
+              type="bar"
+              height={400}
+            />
+          )}
         </div>
       </div>
     </div>

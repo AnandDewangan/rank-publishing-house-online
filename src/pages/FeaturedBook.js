@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import axios from "axios";
+
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const FeaturedBook = () => {
   const settings = {
@@ -17,44 +20,24 @@ const FeaturedBook = () => {
     arrows: false,
   };
 
-  const books = [
-    {
-      img: "/images/cover/Cover10.jpg",
-      title: "Bhukha Hindusthan, Jivan Kumar",
-    },
-    {
-      img: "/images/cover/Cover9.jpg",
-      title: "Jivan ko sahi disha me jeene ki raah, Harish Kumar",
-    },
-    {
-      img: "/images/cover/Cover12.jpg",
-      title: "Serial Killer Sulgati Rakh, Praveen Pamal",
-    },
-    {
-      img: "/images/cover/Cover11.jpg",
-      title: "Vimuktnama, Dr. B.P. Chavhan",
-    },
-    {
-      img: "/images/cover/cover8.jpg",
-      title: "Known to Unknown by Subhadeep Ghosh",
-    },
-    {
-      img: "/images/cover/cover7.jpg",
-      title: "Natural Vision by Subhadeep Ghosh",
-    },
-    {
-      img: "/images/cover/cover6.jpg",
-      title: "Bhramjal by Dr. Kamlesh Kumar",
-    },
-    {
-      img: "/images/cover/Cover5.jpg",
-      title: "Saagara Raagamu",
-    },
-    {
-      img: "/images/cover/Cover4.jpg",
-      title: "The Cooking God in You",
-    }
-  ];
+  const [books, setBooks] = useState([]);
+  const [latestBook, setLatestBook] = useState(null);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const res = await axios.get(`${baseURL}/api/images`);
+        if (res.data.length > 0) {
+          setBooks(res.data);
+          setLatestBook(res.data[0]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch images", err);
+      }
+    };
+
+    fetchImages();
+  }, []);
 
   return (
     <section className="section py-5" style={{ background: "#fdefe0" }}>
@@ -64,51 +47,45 @@ const FeaturedBook = () => {
             <i className="bi bi-book-fill text-danger"></i> Featured Book
           </h2>
         </div>
-        <div className="row align-items-center">
-          <div className="col-lg-3 col-sm-6 text-center">
-            <a href="">
+        {latestBook && (
+          <div className="row align-items-center">
+            <div className="col-lg-3 col-sm-6 text-center">
               <img
-                src="/images/cover/cover6.jpg"
-                alt="Bhramjal"
+                src={latestBook.url}
+                alt={latestBook.title}
                 className="img-fluid border rounded-3"
                 width={230}
                 style={{ boxShadow: "5px 5px 10px black" }}
               />
-            </a>
-          </div>
-          <div className="col-lg-6 col-sm-6 mt-3 mt-sm-0">
-            <div className="heading-block">
-              <h6 className="text-danger fs-4">भ्रमजाल</h6>
-              <span className="text-primary">डॉ. कमलेश कुमार</span>
             </div>
-            <p className="mb-0">
-              कुछ यात्राएँ कलम से नहीं, आत्मा से लिखी जाती हैं। "भ्रमजाल" ऐसी ही
-              एक अनुभूति है, जिसे मैंने केवल शब्दों से नहीं, अपनी चेतना, अपने
-              जीवन और अपने भीतर गूंजते हर प्रश्न के उत्तर की तलाश से रचा है। यह
-              पुस्तक मेरी आवाज़ नहीं, उन सभी मौनों की प्रतिध्वनि है जिन्हें समाज
-              ने अनसुना कर दिया, जिन्हें कभी सवाल पूछने की इजाज़त नहीं मिली।
-            </p>
+            <div className="col-lg-6 col-sm-6 mt-3 mt-sm-0">
+              <div className="heading-block">
+                <h6 className="text-danger fs-4">{latestBook.title}</h6>
+                <span className="text-primary">{latestBook.name}</span>
+              </div>
+              <p className="mb-0">{latestBook.description}</p>
+            </div>
+            <div className="col-lg-3 mt-5 mt-lg-0 text-center">
+              <h6 className="text-danger">
+                <i className="bi bi-star-fill text-warning"></i> Other featured
+                books
+              </h6>
+              <Slider {...settings}>
+                {books.map((book, index) => (
+                  <div key={index} className="p-2">
+                    <a href={book.url} className="d-block">
+                      <img
+                        src={book.url}
+                        alt={`Book ${index + 1}`}
+                        className="img-fluid rounded shadow-sm border border-secondary"
+                      />
+                    </a>
+                  </div>
+                ))}
+              </Slider>
+            </div>
           </div>
-          <div className="col-lg-3 mt-5 mt-lg-0 text-center">
-            <h6 className="text-danger">
-              <i className="bi bi-star-fill text-warning"></i> Other featured
-              books
-            </h6>
-            <Slider {...settings}>
-              {books.map((book, index) => (
-                <div key={index} className="p-2">
-                  <a href={book.link} className="d-block">
-                    <img
-                      src={book.img}
-                      alt={book.title}
-                      className="img-fluid rounded shadow-sm border border-secondary"
-                    />
-                  </a>
-                </div>
-              ))}
-            </Slider>
-          </div>
-        </div>
+        )}
       </div>
     </section>
   );

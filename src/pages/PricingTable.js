@@ -145,7 +145,7 @@ const PricingTable = () => {
   }, []);
 
   return (
-    <div className="container py-5">
+    <div className="container-fluid py-5">
       <div className="section-title text-center mb-5">
         <h2 className="fs-2 text-danger">Pricing</h2>
         <h6 className="text-muted">

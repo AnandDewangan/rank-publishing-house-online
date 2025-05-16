@@ -3,12 +3,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const AuthorLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   const handleLogin = async () => {
     try {
