@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { BiArrowBack, BiTransfer, BiTrash } from "react-icons/bi";
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const Transactions = () => {
   const { authorId } = useParams();
@@ -22,7 +23,6 @@ const Transactions = () => {
   });
   const userRole = localStorage.getItem("userRole");
   const token = localStorage.getItem("adminToken");
-  const baseURL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     if (authorId) {
@@ -37,13 +37,11 @@ const Transactions = () => {
 
   const fetchAuthorDetails = async () => {
     try {
-      const res = await axios.get(
-        `${baseURL}/api/authors/${authorId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await axios.get(`${baseURL}/api/authors/${authorId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setAuthor(res.data);
     } catch (err) {
       toast.error("Failed to fetch author details", err);
@@ -53,7 +51,8 @@ const Transactions = () => {
   const fetchTransactions = async () => {
     try {
       const res = await axios.get(
-        `${baseURL}/api/transactions/by-author/${authorId}`, {
+        `${baseURL}/api/transactions/by-author/${authorId}`,
+        {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -138,7 +137,10 @@ const Transactions = () => {
             <nav aria-label="breadcrumb" className="ps-3">
               <ol className="breadcrumb mb-0 p-0">
                 <li className="breadcrumb-item">
-                  <Link to="/admin-dashboard" className="text-decoration-none fw-semibold">
+                  <Link
+                    to="/admin-dashboard"
+                    className="text-decoration-none fw-semibold"
+                  >
                     Home
                   </Link>
                 </li>
@@ -154,18 +156,20 @@ const Transactions = () => {
         </div>
 
         <div className="container mt-4">
-        {userRole === "admin" && (
-          <div className="d-flex justify-content-between align-items-center"> 
-          <button
-            className="btn btn-primary mb-3"
-            data-bs-toggle="modal"
-            data-bs-target="#addTransactionModal"
-          >
-            <BiTransfer />
-          </button> 
-            <h6 className="fw-bold">{author?.name} ({author?.contact_no})</h6>
-          </div> 
-        )}
+          {userRole === "admin" && (
+            <div className="d-flex justify-content-between align-items-center">
+              <button
+                className="btn btn-primary mb-3"
+                data-bs-toggle="modal"
+                data-bs-target="#addTransactionModal"
+              >
+                <BiTransfer />
+              </button>
+              <h6 className="fw-bold">
+                {author?.name} ({author?.contact_no})
+              </h6>
+            </div>
+          )}
           {/* Modal */}
           <div
             className="modal fade"
@@ -265,7 +269,7 @@ const Transactions = () => {
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
           <div className="table-responsive">
             <table className="table align-middle">
               <thead className="table-primary">
@@ -278,7 +282,7 @@ const Transactions = () => {
                     Source
                   </th>
                   <th onClick={() => handleSort("amount")}>Amount</th>
-                  {userRole === "admin" && (<th>Actions</th>)}
+                  {userRole === "admin" && <th>Actions</th>}
                 </tr>
               </thead>
               <tbody>
@@ -298,14 +302,14 @@ const Transactions = () => {
                       <td>{txn.source_of_payment}</td>
                       <td>₹{txn.amount}</td>
                       {userRole === "admin" && (
-                      <td>
-                        <button
-                          className="btn btn-sm btn-danger"
-                          onClick={() => handleDelete(txn._id)}
-                        >
-                          <BiTrash />
-                        </button>
-                      </td>
+                        <td>
+                          <button
+                            className="btn btn-sm btn-danger"
+                            onClick={() => handleDelete(txn._id)}
+                          >
+                            <BiTrash />
+                          </button>
+                        </td>
                       )}
                     </tr>
                   ))
