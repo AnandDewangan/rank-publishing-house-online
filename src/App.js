@@ -44,6 +44,12 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+  if (window.location.hostname.endsWith("vercel.app")) {
+    window.location.href = "https://www.rankpublishinghouse.online";
+  }
+}, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 3000);
     return () => clearTimeout(timer);
   }, []);
