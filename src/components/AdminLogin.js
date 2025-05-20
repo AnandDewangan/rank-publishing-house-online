@@ -33,6 +33,10 @@ const AdminLogin = () => {
     } catch (err) {
       toast.error("Invalid Credentials");
     }
+  }; 
+  
+  const goToAuthorLogin = () => {
+    navigate("/author-login");
   };
 
   return (
@@ -87,6 +91,15 @@ const AdminLogin = () => {
           transition={{ duration: 0.7 }}
         >
           Login
+        </motion.button> 
+        
+        <motion.button
+          onClick={goToAuthorLogin}
+          className="btn btn-outline-secondary w-100 my-3"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
+        >
+          Author Login
         </motion.button>
       </motion.div>
     </div>

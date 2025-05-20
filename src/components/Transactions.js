@@ -15,6 +15,14 @@ const Transactions = () => {
     direction: "asc",
   });
 
+  const [stats, setStats] = useState({
+    totalRoyalty: 0,
+    totalTransactionAmount: 0,
+  });
+
+  const [balanceRoyalty, setBalanceRoyalty] = useState(0);
+  const [totalPaid, setTotalPaid] = useState(0);
+
   const [formData, setFormData] = useState({
     transaction_id: "",
     transaction_date_time: "",
@@ -30,6 +38,48 @@ const Transactions = () => {
       fetchTransactions();
     }
   }, [authorId]);
+
+  useEffect(() => {
+    if (!authorId) return;
+
+    const fetchStats = async () => {
+      try {
+        const bookStatsRes = await axios.get(
+          `${baseURL}/api/books/stats/${authorId}`
+        );
+        const salesRes = await axios.get(
+          `${baseURL}/api/orders/author-sales/${authorId}`
+        );
+
+        let {
+          total_amazon = 0,
+          total_flipkart = 0,
+          total_other = 0,
+          total_ebook = 0,
+          totalRoyalty = 0,
+        } = salesRes.data;
+
+        const totalSoldQty =
+          total_amazon + total_flipkart + total_other + total_ebook;
+
+        setStats({
+          totalBooks: bookStatsRes.data.totalBooks || 0,
+          totalSoldQty,
+          totalTransactions: bookStatsRes.data.totalTransactions || 0,
+          totalTransactionAmount: bookStatsRes.data.totalTransactionAmount || 0,
+          totalRoyalty,
+        });
+      } catch (err) {
+        console.error("Error fetching book stats or sales:", err);
+      }
+    };
+
+    fetchStats();
+  }, [authorId]);
+
+  useEffect(() => {
+    setBalanceRoyalty(stats.totalRoyalty - totalPaid);
+  }, [stats.totalRoyalty, totalPaid]);
 
   useEffect(() => {
     sortTransactions(transactions);
@@ -60,6 +110,10 @@ const Transactions = () => {
       );
       setTransactions(res.data);
       setSortedTransactions(res.data);
+
+      // Calculate total paid from all transactions
+      const total = res.data.reduce((sum, txn) => sum + Number(txn.amount), 0);
+      setTotalPaid(total);
     } catch (err) {
       toast.error("Transactions fetch failed:", err);
     }
@@ -154,7 +208,6 @@ const Transactions = () => {
             <BiArrowBack />
           </button>
         </div>
-
         <div className="container mt-4">
           {userRole === "admin" && (
             <div className="d-flex justify-content-between align-items-center">
@@ -282,38 +335,52 @@ const Transactions = () => {
                     Source
                   </th>
                   <th onClick={() => handleSort("amount")}>Amount</th>
+                  <th>Balance After Txn</th>
                   {userRole === "admin" && <th>Actions</th>}
                 </tr>
               </thead>
+
               <tbody>
-                {sortedTransactions.length === 0 ? (
-                  <tr>
-                    <td colSpan="5" className="text-center">
-                      No transactions found
-                    </td>
-                  </tr>
-                ) : (
-                  sortedTransactions.map((txn, index) => (
-                    <tr key={txn._id}>
-                      <td>{index + 1}</td>
-                      <td>
-                        {new Date(txn.transaction_date_time).toLocaleString()}
-                      </td>
-                      <td>{txn.source_of_payment}</td>
-                      <td>₹{txn.amount}</td>
-                      {userRole === "admin" && (
+                {(() => {
+                  let runningBalance = stats.totalRoyalty;
+
+                  return sortedTransactions.map((txn, index) => {
+                    runningBalance -= Number(txn.amount);
+
+                    return (
+                      <tr key={txn._id}>
+                        <td>{index + 1}</td>
                         <td>
-                          <button
-                            className="btn btn-sm btn-danger"
-                            onClick={() => handleDelete(txn._id)}
-                          >
-                            <BiTrash />
-                          </button>
+                          {new Date(txn.transaction_date_time).toLocaleString()}
                         </td>
-                      )}
-                    </tr>
-                  ))
-                )}
+                        <td>{txn.source_of_payment}</td>
+                        <td>₹{txn.amount}</td>
+                        <td
+                          className={
+                            runningBalance < 0 ? "text-danger" : "text-success"
+                          }
+                        >
+                          <span className="text-purple-600">
+                            ₹{runningBalance + Number(txn.amount)}
+                          </span>{" "}<span className="text-red-600">
+                          - ₹{txn.amount} </span>
+                          = <b>₹{runningBalance}</b>
+                        </td>
+
+                        {userRole === "admin" && (
+                          <td>
+                            <button
+                              className="btn btn-sm btn-danger"
+                              onClick={() => handleDelete(txn._id)}
+                            >
+                              <BiTrash />
+                            </button>
+                          </td>
+                        )}
+                      </tr>
+                    );
+                  });
+                })()}
               </tbody>
             </table>
           </div>
