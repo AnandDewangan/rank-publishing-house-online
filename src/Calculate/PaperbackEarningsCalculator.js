@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 const PaperbackEarningsCalculator = ({ productionCost, minimumSellingPrice }) => {
   const [mrp, setMrp] = useState("");
-  const [otherRoyalty, setOtherRoyalty] = useState(0); // Rank Store
-  const [obRoyalty, setObRoyalty] = useState(0);       // Other Channels
+  const [otherRoyalty, setOtherRoyalty] = useState(0); 
+  const [obRoyalty, setObRoyalty] = useState(0);      
 
   const calculateRoyalty = () => {
     const MRP = Number(mrp);
@@ -21,8 +21,8 @@ const PaperbackEarningsCalculator = ({ productionCost, minimumSellingPrice }) =>
     }
 
     // Royalties after respective platform commissions
-    const rankStoreRoyalty = MRP - (MRP * 0.1 + pcost);    // 10% cut
-    const otherChannelRoyalty = MRP - (MRP * 0.4 + pcost); // 40% cut
+    const rankStoreRoyalty = MRP - (MRP * 0.1 + pcost);  
+    const otherChannelRoyalty = MRP - (MRP * 0.4 + pcost);
 
     setOtherRoyalty(Math.round(otherChannelRoyalty));
     setObRoyalty(Math.round(rankStoreRoyalty));
