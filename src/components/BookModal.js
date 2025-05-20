@@ -9,7 +9,7 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
     sku: "",
     isbn: "",
     author: "",
-    authorId: authorId,
+    authorId: authorId || "",
     title: "",
     subtitle: "",
     size: "",
@@ -20,9 +20,38 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
     eMrp: "",
     hardMrp: "",
     rankMrp: "",
+    rankStoreRoyalty: "",
+    eRoyalty: "",
     cover_image: null,
     description: "",
-  }); 
+    cat: "",
+  });
+
+  const [productionCost, setProductionCost] = useState(0);
+  const [minimumSellingPrice, setMinimumSellingPrice] = useState(0);
+  const [manualRoyaltyEdit, setManualRoyaltyEdit] = useState({
+    rankStoreRoyalty: false,
+    eRoyalty: false,
+  });
+
+  function useDebouncedValue(value, delay = 500) {
+    const [debounced, setDebounced] = useState(value);
+
+    useEffect(() => {
+      const handler = setTimeout(() => {
+        setDebounced(value);
+      }, delay);
+
+      return () => clearTimeout(handler);
+    }, [value, delay]);
+
+    return debounced;
+  }
+
+  const debouncedPaperMrp = useDebouncedValue(formData.paperMrp);
+  const debouncedEMrp = useDebouncedValue(formData.eMrp);
+  const debouncedPages = useDebouncedValue(formData.pages);
+  const debouncedSize = useDebouncedValue(formData.size);
 
   useEffect(() => {
     if (bookToEdit) {
@@ -43,9 +72,28 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
         rankMrp: bookToEdit.rankMrp || "",
         cover_image: null,
         description: bookToEdit.description || "",
+        cat: bookToEdit.cat || "",
       });
     }
   }, [bookToEdit]);
+
+  const getProductionCost = (size, pages, format = "Paperback") => {
+    const pageCount = parseInt(pages);
+    if (!size || !pageCount) return 0;
+
+    let sizeKey = size.split("*")[0];
+    let cost = 0;
+
+    if (format === "Paperback") {
+      if (sizeKey === "5") cost = 0.64 * pageCount + 9.5;
+      else if (sizeKey === "6") cost = 0.78 * pageCount + 9.5;
+      else if (sizeKey === "8") cost = 0.86 * pageCount + 9.5;
+    }
+
+    // Add more formats if needed
+
+    return Math.round(cost);
+  };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -59,8 +107,55 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    // If user changes royalty fields manually, set the flag to true
+    if (name === "rankStoreRoyalty" || name === "eRoyalty") {
+      setManualRoyaltyEdit((prev) => ({
+        ...prev,
+        [name]: true,
+      }));
+    }
   };
+
+  useEffect(() => {
+    const pages = parseInt(debouncedPages);
+    const size = debouncedSize;
+
+    if (!size || !pages) return;
+
+    const cost = getProductionCost(size, pages);
+    const msp = cost * 2.3;
+
+    setProductionCost(cost);
+    setMinimumSellingPrice(Math.round(msp));
+
+    if (debouncedPaperMrp && !manualRoyaltyEdit.rankStoreRoyalty) {
+      const paperMrp = parseFloat(debouncedPaperMrp);
+      const royalty = paperMrp - (paperMrp * 0.1 + cost);
+      setFormData((prev) => ({
+        ...prev,
+        rankStoreRoyalty: Math.round(royalty),
+      }));
+    }
+
+    if (debouncedEMrp && !manualRoyaltyEdit.eRoyalty) {
+      const eRoyalty = parseFloat(debouncedEMrp) * 0.3;
+      setFormData((prev) => ({
+        ...prev,
+        eRoyalty: Math.round(eRoyalty),
+      }));
+    }
+  }, [
+    debouncedPages,
+    debouncedSize,
+    debouncedPaperMrp,
+    debouncedEMrp,
+    manualRoyaltyEdit,
+  ]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,6 +167,8 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
       if (key === "cover_image" && !formData[key]) return;
       data.append(key, formData[key]);
     });
+    data.append("productionCost", productionCost);
+    data.append("minimumSellingPrice", minimumSellingPrice);
 
     const url = bookToEdit
       ? `${baseURL}/api/books/update-book/${bookToEdit._id}`
@@ -174,15 +271,19 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
                     />
                   </div>
                   <div className="mb-3">
-                    <input
-                      type="text"
+                    <select
                       name="size"
                       className="form-control"
-                      placeholder="Size"
                       value={formData.size}
                       onChange={handleChange}
-                    />
+                    >
+                      <option value="">Select Size</option>
+                      <option value="5*8">5*8</option>
+                      <option value="6*9">6*9</option>
+                      <option value="8*11">8*11</option>
+                    </select>
                   </div>
+
                   <div className="mb-3">
                     <input
                       type="text"
@@ -192,6 +293,40 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
                       value={formData.pages}
                       onChange={handleChange}
                     />
+                  </div>
+
+                  <div className="mb-3">
+                    <input
+                      type="text"
+                      name="description"
+                      className="form-control"
+                      placeholder="Description"
+                      value={formData.description}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <select
+                      name="cat"
+                      className="form-control"
+                      value={formData.cat}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select Category</option>
+                      <option value="Fiction">Fiction</option>
+                      <option value="Non-Fiction">Non-Fiction</option>
+                      <option value="General">General</option>
+                      <option value="Education">Education</option>
+                      <option value="Biography">Biography</option>
+                      <option value="Academic">Academic</option>
+                      <option value="Poetry">Poetry</option>
+                      <option value="Science">Science</option>
+                      <option value="History">History</option>
+                      <option value="Comics">Comics</option>
+                      <option value="Social">Social</option>
+                      <option value="Others">Others</option>
+                    </select>
                   </div>
                 </div>
 
@@ -229,11 +364,31 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
                   </div>
                   <div className="mb-3">
                     <input
+                      type="number"
+                      name="rankStoreRoyalty"
+                      className="form-control"
+                      placeholder="Paperback Royalty"
+                      value={formData.rankStoreRoyalty}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <input
                       type="text"
                       name="eMrp"
                       className="form-control"
                       placeholder="E-Book MRP"
                       value={formData.eMrp}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <input
+                      type="number"
+                      name="eRoyalty"
+                      className="form-control"
+                      placeholder="Ebook Royalty"
+                      value={formData.eRoyalty}
                       onChange={handleChange}
                     />
                   </div>
@@ -268,27 +423,27 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
                       onChange={handleImageUpload}
                     />
 
-                    <div className="mb-3">
-                    <input
-                      type="text"
-                      name="description"
-                      className="form-control"
-                      placeholder="Description"
-                      value={formData.description}
-                      onChange={handleChange}
-                    />
-                  </div>
-
                     {/* Show preview for editing */}
                     {bookToEdit && bookToEdit.cover_image && (
                       <div className="mt-2">
                         <img
-                          src={bookToEdit.cover_image} // ✅ direct URL (from DB, e.g., Cloudinary or static)
+                          src={bookToEdit.cover_image}
                           alt={bookToEdit.title}
                           width="100"
                         />
                       </div>
                     )}
+                  </div>
+                </div>
+                <div className="row mt-3">
+                  <div className="col-md-6">
+                    <p>
+                      <strong>Production Cost:</strong> ₹{productionCost}
+                    </p>
+                    <p>
+                      <strong>Minimum Selling Price (MSP):</strong> ₹
+                      {minimumSellingPrice}
+                    </p>
                   </div>
                 </div>
               </div>

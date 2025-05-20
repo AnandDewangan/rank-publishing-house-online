@@ -124,18 +124,21 @@ const BookList = ({
                   {book.subtitle ? <p>Sub Title: {book.subtitle}</p> : null}
                   <p>ISBN: {book.isbn}</p>
                   <p>RPH: {book.sku}</p>
+                  <p>Category: {book.cat}</p>
                 </div> 
                 <div className="col-md-3 col-sm-6">
                   <p>Paper Size: {book.size}</p>
                   <p>No of Pages: {book.pages}</p>
                   <p>Paper Color: {book.color}</p>
-                  <p>Cover: {book.cover}</p>
+                  <p>Cover: {book.cover}</p> 
+                  {book.hardMrp ? <p>Hardbound MRP: {book.hardMrp}</p> : null}
                 </div>
                 <div className="col-md-3 col-sm-6">
                   <p>Paper Back MRP: {book.paperMrp}</p>
                   <p>E-Book MRP: {book.eMrp}</p>
-                  <p>Hardbound MRP: {book.hardMrp}</p>
                   <p>Rank Store MRP: {book.rankMrp}</p>
+                  {book.rankStoreRoyalty ? <p>Paper BackRoyalty: {book.rankStoreRoyalty}</p>: null}
+                  {book.eRoyalty ? <p>E-Book Royalty: {book.eRoyalty}</p>: null}
                 </div>
                 <div className="col-md-2 d-flex justify-content-around align-items-center">
                   <div className="book-cover-container">
@@ -205,6 +208,7 @@ const BookList = ({
                         <option value="Amazon">Amazon</option>
                         <option value="Flipkart">Flipkart</option>
                         <option value="Other">Other</option>
+                        <option value="E-Book">E-Book</option>
                       </select>
                     </div>
 
