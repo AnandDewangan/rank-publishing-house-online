@@ -11,12 +11,12 @@ const AuthorSalesChart = () => {
         type: "pie",
         height: 200,
       },
-      labels: ["Amazon", "Flipkart", "Other"],
-      colors: ["#ff9800", "#2196F3", "#9E9E9E"],
+      labels: ["Amazon", "Flipkart", "Other", "E-Book"], // ✅ added E-Book
+      colors: ["#ff9800", "#2196F3", "#9E9E9E", "#4CAF50"], // ✅ added color
       legend: {
         position: "bottom",
         labels: {
-          colors: ["#FF9800", "#2196F3", "#9E9E9E"],
+          colors: ["#FF9800", "#2196F3", "#9E9E9E", "#4CAF50"],
         },
       },
       tooltip: {
@@ -56,14 +56,17 @@ const AuthorSalesChart = () => {
           total_amazon = 0,
           total_flipkart = 0,
           total_other = 0,
+          total_ebook = 0, // ✅ fetch ebook sales
         } = response.data || {};
 
         setChartData((prevData) => ({
           ...prevData,
-          series: [total_amazon, total_flipkart, total_other],
+          series: [total_amazon, total_flipkart, total_other, total_ebook], // ✅ add it to series
         }));
       })
-      .catch((error) => {})
+      .catch((error) => {
+        console.error("Error fetching author sales:", error);
+      })
       .finally(() => {
         setLoading(false);
       });
