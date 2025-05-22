@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import axios from "axios";
+
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const BookSalesChart = () => {
@@ -11,12 +12,12 @@ const BookSalesChart = () => {
         type: "pie",
         height: 200,
       },
-      labels: ["Amazon", "Flipkart", "Other", "E-Book"],
-      colors: ["#ff9800", "#2196F3", "#9E9E9E", "#4CAF50"],
+      labels: ["Amazon", "Flipkart", "Other", "E-Book", "RankStore"],
+      colors: ["#ff9800", "#2196F3", "#9E9E9E", "#4CAF50", "#673AB7"],
       legend: {
         position: "bottom",
         labels: {
-          colors: ["#FF9800", "#2196F3", "#9E9E9E", "#4CAF50"],
+          colors: ["#FF9800", "#2196F3", "#9E9E9E", "#4CAF50", "#673AB7"],
         },
       },
       responsive: [
@@ -44,11 +45,12 @@ const BookSalesChart = () => {
           total_flipkart = 0,
           total_other = 0,
           total_ebook = 0,
+          total_rankstore = 0,
         } = response.data || {};
 
         setChartData((prevData) => ({
           ...prevData,
-          series: [total_amazon, total_flipkart, total_other, total_ebook],
+          series: [total_amazon, total_flipkart, total_other, total_ebook, total_rankstore],
         }));
       })
       .catch((error) =>
