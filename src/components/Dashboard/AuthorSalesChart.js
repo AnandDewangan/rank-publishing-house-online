@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import axios from "axios";
+
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const AuthorSalesChart = () => {
@@ -11,12 +12,12 @@ const AuthorSalesChart = () => {
         type: "pie",
         height: 200,
       },
-      labels: ["Amazon", "Flipkart", "Other", "E-Book"], // ✅ added E-Book
-      colors: ["#ff9800", "#2196F3", "#9E9E9E", "#4CAF50"], // ✅ added color
+      labels: ["Amazon", "Flipkart", "Other", "E-Book", "RankStore"], // ✅ Added RankStore
+      colors: ["#ff9800", "#2196F3", "#9E9E9E", "#4CAF50", "#673AB7"], // ✅ Color for RankStore
       legend: {
         position: "bottom",
         labels: {
-          colors: ["#FF9800", "#2196F3", "#9E9E9E", "#4CAF50"],
+          colors: ["#FF9800", "#2196F3", "#9E9E9E", "#4CAF50", "#673AB7"], // ✅ Matching legend colors
         },
       },
       tooltip: {
@@ -56,12 +57,19 @@ const AuthorSalesChart = () => {
           total_amazon = 0,
           total_flipkart = 0,
           total_other = 0,
-          total_ebook = 0, // ✅ fetch ebook sales
+          total_ebook = 0,
+          total_rankstore = 0, // ✅ Fetch RankStore data
         } = response.data || {};
 
         setChartData((prevData) => ({
           ...prevData,
-          series: [total_amazon, total_flipkart, total_other, total_ebook], // ✅ add it to series
+          series: [
+            total_amazon,
+            total_flipkart,
+            total_other,
+            total_ebook,
+            total_rankstore, // ✅ Add to series
+          ],
         }));
       })
       .catch((error) => {
