@@ -137,27 +137,26 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
     setMinimumSellingPrice(Math.round(msp));
 
     if (debouncedPaperMrp) {
-  const paperMrp = parseFloat(debouncedPaperMrp);
+      const paperMrp = parseFloat(debouncedPaperMrp);
 
-  // ✅ Rank Store Royalty logic (same as before)
-  if (!manualRoyaltyEdit.rankStoreRoyalty) {
-    const rankRoyalty = paperMrp - (paperMrp * 0.1 + cost);
-    setFormData((prev) => ({
-      ...prev,
-      rankStoreRoyalty: Math.round(rankRoyalty),
-    }));
-  }
+      // ✅ Rank Store Royalty logic (same as before)
+      if (!manualRoyaltyEdit.rankStoreRoyalty) {
+        const rankRoyalty = paperMrp - (paperMrp * 0.1 + cost);
+        setFormData((prev) => ({
+          ...prev,
+          rankStoreRoyalty: Math.round(rankRoyalty),
+        }));
+      }
 
-  // ✅ Corrected Paperback Royalty logic
-  if (!manualRoyaltyEdit.paperBackRoyalty) {
-    const paperBackRoyalty = paperMrp - (paperMrp * 0.4 + cost);
-    setFormData((prev) => ({
-      ...prev,
-      paperBackRoyalty: Math.round(paperBackRoyalty),
-    }));
-  }
-}
-
+      // ✅ Corrected Paperback Royalty logic
+      if (!manualRoyaltyEdit.paperBackRoyalty) {
+        const paperBackRoyalty = paperMrp - (paperMrp * 0.4 + cost);
+        setFormData((prev) => ({
+          ...prev,
+          paperBackRoyalty: Math.round(paperBackRoyalty),
+        }));
+      }
+    }
 
     if (debouncedEMrp && !manualRoyaltyEdit.eRoyalty) {
       const eRoyalty = parseFloat(debouncedEMrp) * 0.3;

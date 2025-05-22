@@ -209,6 +209,7 @@ const BookList = ({
                         <option value="Flipkart">Flipkart</option>
                         <option value="Other">Other</option>
                         <option value="E-Book">E-Book</option>
+                        <option value="Rank-Store">Rank Store</option>
                       </select>
                     </div>
 
