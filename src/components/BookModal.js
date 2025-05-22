@@ -18,8 +18,8 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
     cover: "",
     paperMrp: "",
     eMrp: "",
-    hardMrp: "",
     rankMrp: "",
+    paperBackRoyalty: "",
     rankStoreRoyalty: "",
     eRoyalty: "",
     cover_image: null,
@@ -30,6 +30,7 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
   const [productionCost, setProductionCost] = useState(0);
   const [minimumSellingPrice, setMinimumSellingPrice] = useState(0);
   const [manualRoyaltyEdit, setManualRoyaltyEdit] = useState({
+    paperBackRoyalty: false,
     rankStoreRoyalty: false,
     eRoyalty: false,
   });
@@ -68,7 +69,6 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
         cover: bookToEdit.cover || "",
         paperMrp: bookToEdit.paperMrp || "",
         eMrp: bookToEdit.eMrp || "",
-        hardMrp: bookToEdit.hardMrp || "",
         rankMrp: bookToEdit.rankMrp || "",
         cover_image: null,
         description: bookToEdit.description || "",
@@ -112,8 +112,11 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
       [name]: value,
     }));
 
-    // If user changes royalty fields manually, set the flag to true
-    if (name === "rankStoreRoyalty" || name === "eRoyalty") {
+    if (
+      name === "paperBackRoyalty" ||
+      name === "rankStoreRoyalty" ||
+      name === "eRoyalty"
+    ) {
       setManualRoyaltyEdit((prev) => ({
         ...prev,
         [name]: true,
@@ -133,14 +136,28 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
     setProductionCost(cost);
     setMinimumSellingPrice(Math.round(msp));
 
-    if (debouncedPaperMrp && !manualRoyaltyEdit.rankStoreRoyalty) {
-      const paperMrp = parseFloat(debouncedPaperMrp);
-      const royalty = paperMrp - (paperMrp * 0.1 + cost);
-      setFormData((prev) => ({
-        ...prev,
-        rankStoreRoyalty: Math.round(royalty),
-      }));
-    }
+    if (debouncedPaperMrp) {
+  const paperMrp = parseFloat(debouncedPaperMrp);
+
+  // ✅ Rank Store Royalty logic (same as before)
+  if (!manualRoyaltyEdit.rankStoreRoyalty) {
+    const rankRoyalty = paperMrp - (paperMrp * 0.1 + cost);
+    setFormData((prev) => ({
+      ...prev,
+      rankStoreRoyalty: Math.round(rankRoyalty),
+    }));
+  }
+
+  // ✅ Corrected Paperback Royalty logic
+  if (!manualRoyaltyEdit.paperBackRoyalty) {
+    const paperBackRoyalty = paperMrp - (paperMrp * 0.4 + cost);
+    setFormData((prev) => ({
+      ...prev,
+      paperBackRoyalty: Math.round(paperBackRoyalty),
+    }));
+  }
+}
+
 
     if (debouncedEMrp && !manualRoyaltyEdit.eRoyalty) {
       const eRoyalty = parseFloat(debouncedEMrp) * 0.3;
@@ -162,7 +179,6 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
 
     const data = new FormData();
 
-    // ✅ Skip empty file if not selected
     Object.keys(formData).forEach((key) => {
       if (key === "cover_image" && !formData[key]) return;
       data.append(key, formData[key]);
@@ -364,11 +380,11 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
                   </div>
                   <div className="mb-3">
                     <input
-                      type="number"
-                      name="rankStoreRoyalty"
+                      type="text"
+                      name="paperBackRoyalty"
                       className="form-control"
-                      placeholder="Paperback Royalty"
-                      value={formData.rankStoreRoyalty}
+                      placeholder="Paper Back Royalty"
+                      value={formData.paperBackRoyalty}
                       onChange={handleChange}
                     />
                   </div>
@@ -395,16 +411,6 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
                   <div className="mb-3">
                     <input
                       type="text"
-                      name="hardMrp"
-                      className="form-control"
-                      placeholder="Hardbound MRP"
-                      value={formData.hardMrp}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <input
-                      type="text"
                       name="rankMrp"
                       className="form-control"
                       placeholder="Rank Store MRP"
@@ -412,7 +418,16 @@ const BookModal = ({ toggleModal, addBook, bookToEdit, authorId }) => {
                       onChange={handleChange}
                     />
                   </div>
-
+                  <div className="mb-3">
+                    <input
+                      type="number"
+                      name="rankStoreRoyalty"
+                      className="form-control"
+                      placeholder="Rank Store Royalty"
+                      value={formData.rankStoreRoyalty}
+                      onChange={handleChange}
+                    />
+                  </div>
                   <div className="mb-3">
                     <input
                       type="file"

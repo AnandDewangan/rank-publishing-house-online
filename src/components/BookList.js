@@ -131,13 +131,13 @@ const BookList = ({
                   <p>No of Pages: {book.pages}</p>
                   <p>Paper Color: {book.color}</p>
                   <p>Cover: {book.cover}</p> 
-                  {book.hardMrp ? <p>Hardbound MRP: {book.hardMrp}</p> : null}
-                </div>
-                <div className="col-md-3 col-sm-6">
                   <p>Paper Back MRP: {book.paperMrp}</p>
+                </div>
+                <div className="col-md-3 col-sm-6"> 
+                  {book.paperBackRoyalty ? <p>Paper Back Royalty: {book.paperBackRoyalty}</p> : null}
                   <p>E-Book MRP: {book.eMrp}</p>
                   <p>Rank Store MRP: {book.rankMrp}</p>
-                  {book.rankStoreRoyalty ? <p>Paper BackRoyalty: {book.rankStoreRoyalty}</p>: null}
+                  {book.rankStoreRoyalty ? <p>Rank Store Royalty: {book.rankStoreRoyalty}</p>: null}
                   {book.eRoyalty ? <p>E-Book Royalty: {book.eRoyalty}</p>: null}
                 </div>
                 <div className="col-md-2 d-flex justify-content-around align-items-center">
