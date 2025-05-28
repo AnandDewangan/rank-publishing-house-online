@@ -10,6 +10,11 @@ const AuthorLogin = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+  localStorage.clear();
+  sessionStorage.clear();
+}, []);
+
   const handleLogin = async () => {
     try {
       const res = await axios.post(`${baseURL}/api/authors/login`, {
