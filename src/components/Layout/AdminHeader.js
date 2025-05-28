@@ -10,6 +10,7 @@ export default function AdminHeader() {
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
     localStorage.removeItem("userRole");
+    localStorage.clear();
     navigate("/admin-login");
   };
 
