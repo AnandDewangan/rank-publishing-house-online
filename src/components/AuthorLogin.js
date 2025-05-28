@@ -18,6 +18,7 @@ const AuthorLogin = () => {
       });
       localStorage.setItem("authorToken", res.data.token);
       localStorage.setItem("authorId", res.data.authorId);
+      localStorage.setItem("authTime", now);
       toast.success("Login Successful!");
       navigate("/dashboard");
     } catch (err) {
