@@ -57,6 +57,7 @@ export default function Header() {
     localStorage.removeItem("authorToken"); 
     localStorage.removeItem("userRole");
     localStorage.removeItem("authorId");
+    localStorage.clear();
     navigate("/");
   };
 
