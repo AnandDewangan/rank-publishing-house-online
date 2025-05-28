@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./App.css";
 
+import SessionManager from "./components/SessionManager";
 // Common Layout
 import Header from "./Layout/Header";
 import Footer from "./Layout/Footer";
@@ -110,7 +111,7 @@ function App() {
 
         <link rel="canonical" href="https://www.rankpublishinghouse.online" />
       </Helmet>
-
+      <SessionManager />
       <Routes>
         <Route
           path="/"
