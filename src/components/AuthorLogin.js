@@ -21,6 +21,7 @@ const AuthorLogin = () => {
         email,
         password,
       });
+      const now = new Date().getTime();
       localStorage.setItem("authorToken", res.data.token);
       localStorage.setItem("authorId", res.data.authorId);
       localStorage.setItem("authTime", now);
