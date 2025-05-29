@@ -10,10 +10,19 @@ const AuthorLogin = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
+ useEffect(() => {
+  // Full reset: clear localStorage, sessionStorage and cookies (if any)
   localStorage.clear();
   sessionStorage.clear();
+
+  // Optional: Clear cookies (if you had cookies set manually via JS)
+  document.cookie.split(";").forEach((c) => {
+    document.cookie = c
+      .replace(/^ +/, "")
+      .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+  });
 }, []);
+
 
   const handleLogin = async () => {
     try {
