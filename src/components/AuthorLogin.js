@@ -10,19 +10,18 @@ const AuthorLogin = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
- useEffect(() => {
-  // Full reset: clear localStorage, sessionStorage and cookies (if any)
-  localStorage.clear();
-  sessionStorage.clear();
+  useEffect(() => {
+    // Full reset: clear localStorage, sessionStorage and cookies (if any)
+    localStorage.clear();
+    sessionStorage.clear();
 
-  // Optional: Clear cookies (if you had cookies set manually via JS)
-  document.cookie.split(";").forEach((c) => {
-    document.cookie = c
-      .replace(/^ +/, "")
-      .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-  });
-}, []);
-
+    // Optional: Clear cookies (if you had cookies set manually via JS)
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+  }, []);
 
   const handleLogin = async () => {
     try {
@@ -34,12 +33,13 @@ const AuthorLogin = () => {
       localStorage.setItem("authorToken", res.data.token);
       localStorage.setItem("authorId", res.data.authorId);
       localStorage.setItem("authTime", now);
+
       toast.success("Login Successful!");
       navigate("/dashboard");
     } catch (err) {
       toast.error("Invalid Credentials");
     }
-  }; 
+  };
 
   return (
     <div
@@ -94,7 +94,6 @@ const AuthorLogin = () => {
         >
           Login
         </motion.button>
-
       </motion.div>
     </div>
   );

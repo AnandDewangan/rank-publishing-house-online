@@ -18,7 +18,7 @@ const SessionManager = () => {
 
         if (elapsed > SESSION_TIMEOUT) {
           localStorage.clear();
-          alert("Session expired. Please login again.");
+          toast.info("Session expired. Please login again.");
           navigate("/author-login"); // 🔁 force redirect to login
         }
       }
