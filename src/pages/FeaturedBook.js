@@ -49,7 +49,8 @@ const FeaturedBook = () => {
         </div>
         {latestBook && (
           <div className="row align-items-center">
-            <div className="col-lg-3 col-sm-6 text-center">
+            <div className="col-lg-3 col-sm-6">
+              <a href="https://www.rankpublishinghouse.store" target="_blank" rel="noopener noreferrer">
               <img
                 src={latestBook.url}
                 alt={latestBook.title}
@@ -57,6 +58,7 @@ const FeaturedBook = () => {
                 width={230}
                 style={{ boxShadow: "5px 5px 10px black" }}
               />
+              </a>
             </div>
             <div className="col-lg-6 col-sm-6 mt-3 mt-sm-0">
               <div className="heading-block">
@@ -73,7 +75,7 @@ const FeaturedBook = () => {
               <Slider {...settings}>
                 {books.map((book, index) => (
                   <div key={index} className="p-2">
-                    <a href={book.url} className="d-block">
+                    <a href="https://www.rankpublishinghouse.store" target="_blank" rel="noreferrer" className="d-block">
                       <img
                         src={book.url}
                         alt={`Book ${index + 1}`}
