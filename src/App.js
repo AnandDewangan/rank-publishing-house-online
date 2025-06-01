@@ -6,6 +6,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./App.css";
 
 import SessionManager from "./components/SessionManager";
+
 // Common Layout
 import Header from "./Layout/Header";
 import Footer from "./Layout/Footer";
@@ -28,9 +29,15 @@ import AuthorBooks from "./components/AuthorBooks";
 import Transactions from "./components/Transactions";
 import AdminLogin from "./components/AdminLogin";
 import AuthorLogin from "./components/AuthorLogin";
-import HeroImage from "./components/ImageUploader"; 
+import HeroImage from "./components/ImageUploader";
 import FeedbackPage from "./components/FeedbackPage";
 import ArticleManager from "./components/ArticleManager";
+import InitialForm from "./components/PIF/InitialForm";
+import StepOneForm from "./components/PIF/StepOneForm";
+import StepTwoForm from "./components/PIF/StepTwoForm";
+import StepThreeForm from "./components/PIF/StepThreeForm";
+import StepFourForm from "./components/PIF/StepFourForm";
+import ThankYou from "./components/PIF/ThankYouPage";
 
 // Finance Tools (new)
 import Dashboard from "./pages/Dashboard";
@@ -40,15 +47,17 @@ import SalarySlipGenerator from "./pages/SalarySlipGenerator";
 import AuthorLayout from "./components/Layout/AuthorLayout";
 import AdminLayout from "./components/Layout/AdminLayout";
 import PrivateRoute from "./utils/PrivateRoute";
+import EntryDetailsPage from "./components/PIF/EntryDetailsPage";
+import AllEntriesPage from "./components/PIF/AllEntriesPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-  if (window.location.hostname.endsWith("vercel.app")) {
-    window.location.href = "https://www.rankpublishinghouse.online";
-  }
-}, []);
+    if (window.location.hostname.endsWith("vercel.app")) {
+      window.location.href = "https://www.rankpublishinghouse.online";
+    }
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 3000);
@@ -124,6 +133,16 @@ function App() {
           }
         />
         <Route
+          path="/thank-you"
+          element={
+            <>
+              <Header />
+              <ThankYou />
+              <Footer />
+            </>
+          }
+        />
+        <Route
           path="/about"
           element={
             <>
@@ -163,6 +182,10 @@ function App() {
             </>
           }
         />
+        <Route path="/step-one/:rphCode" element={<StepOneForm />} />
+        <Route path="/step-two/:rphCode" element={<StepTwoForm />} />
+        <Route path="/step-three/:rphCode" element={<StepThreeForm />} />
+        <Route path="/step-four/:rphCode" element={<StepFourForm />} />
 
         {/* Auth Pages (No header/footer) */}
         <Route path="/admin-login" element={<AdminLogin />} />
@@ -218,13 +241,43 @@ function App() {
               </AdminLayout>
             </PrivateRoute>
           }
-        /> 
+        />
+        <Route
+          path="/pif-form"
+          element={
+            <PrivateRoute adminOnly={true}>
+              <AdminLayout>
+                <InitialForm />
+              </AdminLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/entries"
+          element={
+            <PrivateRoute adminOnly={true}>
+              <AdminLayout>
+                <AllEntriesPage />
+              </AdminLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/entry-details/:rphCode"
+          element={
+            <PrivateRoute adminOnly={true}>
+              <AdminLayout>
+                <EntryDetailsPage />
+              </AdminLayout>
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/article-manage"
           element={
             <PrivateRoute adminOnly={true}>
               <AdminLayout>
-              <ArticleManager />
+                <ArticleManager />
               </AdminLayout>
             </PrivateRoute>
           }
