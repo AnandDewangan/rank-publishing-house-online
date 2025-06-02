@@ -64,44 +64,8 @@ const StepThreeForm = () => {
     <div className="max-w-4xl mx-auto p-6 my-10 bg-white shadow-md rounded-xl">
       <ProgressBar currentStep={3} />
       <h2 className="text-2xl font-semibold mb-4 text-purple-600">
-        Cover Page & Manuscript Details
+        Cover Page Details
       </h2>
-
-      <div className="bg-yellow-50 border border-yellow-300 text-sm text-gray-700 p-4 rounded-xl space-y-3 mb-6">
-        <p>
-          <strong>1. Premium Cover:</strong> Provide a Pixabay image URL.
-        </p>
-        <p>
-          <strong>2. Advanced Cover:</strong> Provide Shutterstock image ID.
-        </p>
-        <p>
-          <strong>3. Back Cover:</strong> No customization. Text should be
-          150–200 words, image from Step 1 used. For Hindi books, use Kruti Dev
-          010/Unicode from Word.
-        </p>
-        <h6 className="text-red-700 font-semibold">
-          <strong>Important:</strong> Author Image, Co-Author Image, Cover Image Sample and Manuscript must be
-          emailed to: 
-        <br /> 
-          📧{" "}
-          <a
-            href="mailto:books@rankpublishinghouse.online"
-            className="underline text-blue-800"
-          >
-            books@rankpublishinghouse.online
-          </a>
-          <br />
-          OR <br />
-          📧{" "}
-          <a
-            href="mailto:rankpublishinghouse@gmail.com"
-            className="underline text-blue-800"
-          >
-            rankpublishinghouse@gmail.com
-          </a>
-          </h6>
-      </div>
-
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block font-medium">Cover Page URL</label>
