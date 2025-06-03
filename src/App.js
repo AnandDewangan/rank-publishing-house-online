@@ -49,6 +49,7 @@ import AdminLayout from "./components/Layout/AdminLayout";
 import PrivateRoute from "./utils/PrivateRoute";
 import EntryDetailsPage from "./components/PIF/EntryDetailsPage";
 import AllEntriesPage from "./components/PIF/AllEntriesPage";
+import OrdersPage from "./components/OrdersPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -278,6 +279,16 @@ function App() {
             <PrivateRoute adminOnly={true}>
               <AdminLayout>
                 <ArticleManager />
+              </AdminLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/store-order"
+          element={
+            <PrivateRoute adminOnly={true}>
+              <AdminLayout>
+                <OrdersPage />
               </AdminLayout>
             </PrivateRoute>
           }
