@@ -1,6 +1,6 @@
 import React from 'react';
 import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable'; // ✅ Correct import
+import autoTable from 'jspdf-autotable'; 
 import { format } from 'date-fns';
 
 const ExportPdfButton = ({ transactions, month, year }) => {
