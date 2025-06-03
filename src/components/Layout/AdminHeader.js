@@ -20,6 +20,7 @@ export default function AdminHeader() {
     { name: "Hero-Image", path: "/hero-image", className: "text-orange-600" },
     { name: "Testimonial", path: "/author-feedback", className: "text-yellow-600" },
     { name: "Articles", path: "/article-manage", className: "text-green-600" },
+    { name: "Store Order", path: "/store-order", className: "text-blue-600" },
     { name: "PIF", path: "/pif-form", className: "text-purple-600" },
   ];
 
