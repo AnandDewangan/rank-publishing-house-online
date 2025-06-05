@@ -111,16 +111,6 @@ const StepOneForm = ({ initialData }) => {
                 >
                   books@rankpublishinghouse.online
                 </a>
-                <br />
-                OR
-                <br />
-                📧{" "}
-                <a
-                  href="mailto:rankpublishinghouse@gmail.com"
-                  className="underline text-blue-800"
-                >
-                  rankpublishinghouse@gmail.com
-                </a>
               </h6>
             </div>
             <button
