@@ -50,6 +50,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import EntryDetailsPage from "./components/PIF/EntryDetailsPage";
 import AllEntriesPage from "./components/PIF/AllEntriesPage";
 import OrdersPage from "./components/OrdersPage";
+import InvoiceForm from "./components/InvoiceForm";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -249,6 +250,16 @@ function App() {
             <PrivateRoute adminOnly={true}>
               <AdminLayout>
                 <InitialForm />
+              </AdminLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/invoice"
+          element={
+            <PrivateRoute adminOnly={true}>
+              <AdminLayout>
+                <InvoiceForm />
               </AdminLayout>
             </PrivateRoute>
           }
