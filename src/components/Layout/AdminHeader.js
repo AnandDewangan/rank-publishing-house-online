@@ -22,6 +22,7 @@ export default function AdminHeader() {
     { name: "Articles", path: "/article-manage", className: "text-green-600" },
     { name: "Store Order", path: "/store-order", className: "text-blue-600" },
     { name: "PIF", path: "/pif-form", className: "text-purple-600" },
+    { name: "Invoice", path: "/Invoice", className: "text-green-700" },
   ];
 
   return (
