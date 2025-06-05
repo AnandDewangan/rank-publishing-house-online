@@ -3,7 +3,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
 const Invoice = React.forwardRef(({ formData, selectedPackage, invoiceNo, dateTime }, ref) => (
-  <div ref={ref} className="p-6 border rounded text-sm bg-white" style={{ width: "600px" }}>
+  <div ref={ref} className="p-6 border rounded text-sm" style={{ width: "600px" }}>
     <div className="mb-4">
       <h2 className="text-xl font-bold">Rank Publishing House</h2>
       <p>Bahartarai Chowk, Sarkanda<br />Bilaspur (Chhattisgarh) 495001</p>
