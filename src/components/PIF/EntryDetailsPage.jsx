@@ -80,7 +80,7 @@ const EntryDetailsPage = () => {
             {Object.entries(entry).map(([key, value]) => (
               <div className="col-md-6 mb-3" key={key}>
                 <span>{key.replace(/([A-Z])/g, " $1").toUpperCase()}:</span>{" "}
-                <strong>{String(value)}</strong>
+                <strong>{String(value)}</strong><hr />
               </div>
             ))}
           </div>
